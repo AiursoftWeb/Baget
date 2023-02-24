@@ -69,7 +69,6 @@ namespace BaGet
 
             // Add storage providers.
             app.AddFileStorage();
-            app.AddGoogleCloudStorage();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
