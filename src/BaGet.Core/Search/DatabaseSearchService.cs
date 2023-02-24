@@ -38,9 +38,9 @@ namespace BaGet.Core
                 frameworks);
 
             var packageIds = search
+                .OrderByDescending(x => x.Downloads)
                 .Select(p => p.Id)
                 .Distinct()
-                .OrderBy(id => id)
                 .Skip(request.Skip)
                 .Take(request.Take);
 
