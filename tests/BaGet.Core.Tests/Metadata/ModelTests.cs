@@ -224,14 +224,14 @@ namespace Aiursoft.BaGet.Core.Tests.Metadata
             /// <summary>
             /// The properties added by the model type in the "BaGet.Core" project.
             /// </summary>
-            public Dictionary<string, Type> AddedProperties { get; set; } = new Dictionary<string, Type>();
+            public Dictionary<string, Type> AddedProperties { get; set; } = new();
 
             /// <summary>
             /// The properties whose types were modified by the model type in the
             /// "BaGet.Core" project.
             /// </summary>
             public Dictionary<string, (Type From, Type To)> ModifiedProperties { get; set; }
-                = new Dictionary<string, (Type From, Type To)>();
+                = new();
         }
     }
 }
