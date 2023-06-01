@@ -1,6 +1,6 @@
 using System;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     /// <summary>
     /// A wrapper that allows for unit tests related to system time.

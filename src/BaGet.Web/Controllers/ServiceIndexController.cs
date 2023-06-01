@@ -1,11 +1,11 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Core;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Protocol.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BaGet.Web
+namespace Aiursoft.BaGet.Web
 {
     /// <summary>
     /// The NuGet Service Index. This aids NuGet client to discover this server's services.

@@ -4,12 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Protocol;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol;
+using Aiursoft.BaGet.Protocol.Models;
 using NuGet.Versioning;
 using Microsoft.Extensions.Logging;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     /// <summary>
     /// The mirroring client for a NuGet server that uses the V3 protocol.

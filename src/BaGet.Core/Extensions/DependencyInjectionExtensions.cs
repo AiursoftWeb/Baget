@@ -2,13 +2,13 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
-using BaGet.Protocol;
+using Aiursoft.BaGet.Protocol;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public static partial class DependencyInjectionExtensions
     {

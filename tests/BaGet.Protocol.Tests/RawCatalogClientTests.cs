@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using BaGet.Protocol.Internal;
+using Aiursoft.BaGet.Protocol.Internal;
 using Xunit;
 
-namespace BaGet.Protocol.Tests
+namespace Aiursoft.BaGet.Protocol.Tests
 {
     public class RawCatalogClientTests : IClassFixture<ProtocolFixture>
     {

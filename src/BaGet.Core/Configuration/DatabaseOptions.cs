@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class DatabaseOptions
     {

@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 
-namespace BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol
 {
     /// <summary>
     /// These are documented interpretations of values returned by the Service Index resource.

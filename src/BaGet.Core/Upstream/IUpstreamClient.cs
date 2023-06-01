@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     /// <summary>
     /// A client to interact with an upstream package source.

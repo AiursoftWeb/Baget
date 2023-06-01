@@ -17,7 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BaGet.Protocol\BaGet.Protocol.csproj" />
+		<ProjectReference Include="..\BaGet.Protocol\Aiursoft.BaGet.Protocol.csproj" />
 	</ItemGroup>
 
 </Project>

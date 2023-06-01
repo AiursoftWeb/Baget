@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public static partial class DependencyInjectionExtensions
     {

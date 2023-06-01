@@ -1,9 +1,9 @@
 using System;
-using BaGet.Core;
+using Aiursoft.BaGet.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace BaGet
+namespace Aiursoft.BaGet
 {
     public static class BaGetApplicationExtensions
     {

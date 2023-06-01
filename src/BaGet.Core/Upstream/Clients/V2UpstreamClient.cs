@@ -13,7 +13,7 @@ using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
 using NuGet.Versioning;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     using ILogger = ILogger<V2UpstreamClient>;
     using INuGetLogger = NuGet.Common.ILogger;

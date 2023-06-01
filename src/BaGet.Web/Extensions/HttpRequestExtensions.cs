@@ -1,10 +1,10 @@
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Core;
+using Aiursoft.BaGet.Core;
 using Microsoft.AspNetCore.Http;
 
-namespace BaGet.Web
+namespace Aiursoft.BaGet.Web
 {
     public static class HttpRequestExtensions
     {

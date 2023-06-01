@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class BaGetServiceIndex : IServiceIndexService
     {

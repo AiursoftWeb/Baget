@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace BaGet.Protocol.Models
+namespace Aiursoft.BaGet.Protocol.Models
 {
     public class SearchContext
     {

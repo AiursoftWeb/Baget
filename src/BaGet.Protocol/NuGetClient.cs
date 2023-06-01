@@ -6,10 +6,10 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 using NuGet.Versioning;
 
-namespace BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol
 {
     /// <summary>
     /// The client to interact with a NuGet server.

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 
-namespace BaGet.Protocol.Internal
+namespace Aiursoft.BaGet.Protocol.Internal
 {
     public class NullAutocompleteClient : IAutocompleteClient
     {

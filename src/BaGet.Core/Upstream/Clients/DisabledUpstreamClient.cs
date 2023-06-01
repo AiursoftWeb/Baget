@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using NuGet.Versioning;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     /// <summary>
     /// The client used when there are no upstream package sources.

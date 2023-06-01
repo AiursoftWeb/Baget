@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     /// <summary>
     /// BaGet's extensions to the package metadata model. These additions

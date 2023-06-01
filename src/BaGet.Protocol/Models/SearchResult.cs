@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using BaGet.Protocol.Internal;
+using Aiursoft.BaGet.Protocol.Internal;
 
-namespace BaGet.Protocol.Models
+namespace Aiursoft.BaGet.Protocol.Models
 {
     /// <summary>
     /// A package that matched a search query.

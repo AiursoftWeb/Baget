@@ -9,7 +9,7 @@ using Moq;
 using NuGet.Versioning;
 using Xunit;
 
-namespace BaGet.Core.Tests
+namespace Aiursoft.BaGet.Core.Tests
 {
     public class PackageServiceTests
     {

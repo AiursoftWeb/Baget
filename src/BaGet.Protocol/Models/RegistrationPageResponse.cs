@@ -1,4 +1,4 @@
-namespace BaGet.Protocol.Models
+namespace Aiursoft.BaGet.Protocol.Models
 {
     /// <summary>
     /// A page of package metadata entries.

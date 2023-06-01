@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace BaGet.Protocol.Models
+namespace Aiursoft.BaGet.Protocol.Models
 {
     /// <summary>
     /// A package's metadata.

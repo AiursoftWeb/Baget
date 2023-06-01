@@ -2,10 +2,10 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 using NuGet.Versioning;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     /// <inheritdoc />
     public class DefaultPackageMetadataService : IPackageMetadataService

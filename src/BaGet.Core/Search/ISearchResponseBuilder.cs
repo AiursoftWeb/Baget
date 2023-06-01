@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public interface ISearchResponseBuilder
     {

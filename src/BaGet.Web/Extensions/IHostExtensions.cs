@@ -1,12 +1,12 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Core;
+using Aiursoft.BaGet.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 
-namespace BaGet.Web
+namespace Aiursoft.BaGet.Web
 {
     public static class IHostExtensions
     {

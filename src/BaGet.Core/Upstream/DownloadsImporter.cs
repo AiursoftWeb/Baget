@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class DownloadsImporter
     {

@@ -1,4 +1,4 @@
-namespace BaGet.Web
+namespace Aiursoft.BaGet.Web
 {
     public class Routes
     {

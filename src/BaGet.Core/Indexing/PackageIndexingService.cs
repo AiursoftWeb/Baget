@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NuGet.Packaging;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class PackageIndexingService : IPackageIndexingService
     {

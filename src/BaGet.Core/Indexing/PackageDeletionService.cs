@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NuGet.Versioning;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class PackageDeletionService : IPackageDeletionService
     {

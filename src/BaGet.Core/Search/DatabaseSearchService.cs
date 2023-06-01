@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class DatabaseSearchService : ISearchService
     {

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace BaGet.Web
+namespace Aiursoft.BaGet.Web
 {
     /// <summary>
     /// Captures <see cref="OperationCanceledException" /> and converts to HTTP 409 response.

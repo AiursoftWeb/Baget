@@ -4,9 +4,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 
-namespace BaGet.Protocol.Internal
+namespace Aiursoft.BaGet.Protocol.Internal
 {
     /// <summary>
     /// The client used to search for packages.

@@ -1,8 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 
-namespace BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol
 {
     /// <summary>
     /// The Catalog client, used to discover package events.

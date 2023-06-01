@@ -1,10 +1,10 @@
 using System;
-using BaGet.Core;
+using Aiursoft.BaGet.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using NuGet.Versioning;
 
-namespace BaGet.Web
+namespace Aiursoft.BaGet.Web
 {
     // TODO: This should validate the "Host" header against known valid values
     public class BaGetUrlGenerator : IUrlGenerator

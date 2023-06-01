@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class MirrorOptions : IValidatableObject
     {

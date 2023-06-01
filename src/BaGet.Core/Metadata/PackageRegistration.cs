@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     /// <summary>
     /// The information on all versions of a package.

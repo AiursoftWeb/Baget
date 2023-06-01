@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using NuGet.Versioning;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     /// <summary>
     /// The "source of truth" for packages' state. Packages' content

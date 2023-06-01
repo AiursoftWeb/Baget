@@ -1,4 +1,4 @@
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class SearchOptions
     {

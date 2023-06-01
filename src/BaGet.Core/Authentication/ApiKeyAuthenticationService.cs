@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class ApiKeyAuthenticationService : IAuthenticationService
     {

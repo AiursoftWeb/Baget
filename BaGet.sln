@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaGet", "src\BaGet\BaGet.csproj", "{284366CB-C68F-473E-908A-50A382616AE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.BaGet", "src\BaGet\Aiursoft.BaGet.csproj", "{284366CB-C68F-473E-908A-50A382616AE0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaGet.Core", "src\BaGet.Core\BaGet.Core.csproj", "{FFFACD28-C300-4046-BCFE-4A7899E88EA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.BaGet.Core", "src\BaGet.Core\Aiursoft.BaGet.Core.csproj", "{FFFACD28-C300-4046-BCFE-4A7899E88EA3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{26A0B557-53FB-4B9A-94C4-BCCF1BDCB0CC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaGet.Protocol", "src\BaGet.Protocol\BaGet.Protocol.csproj", "{A2D23427-9278-4D52-B31F-759212252832}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.BaGet.Protocol", "src\BaGet.Protocol\Aiursoft.BaGet.Protocol.csproj", "{A2D23427-9278-4D52-B31F-759212252832}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaGet.Web", "src\BaGet.Web\BaGet.Web.csproj", "{D68B56AC-98DD-4DA7-B4F8-1243538A8A5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.BaGet.Web", "src\BaGet.Web\Aiursoft.BaGet.Web.csproj", "{D68B56AC-98DD-4DA7-B4F8-1243538A8A5C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaGet.Database.Sqlite", "src\BaGet.Database.Sqlite\BaGet.Database.Sqlite.csproj", "{EC5E6B2C-2494-40E8-8682-080BA580DDA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.BaGet.Database.Sqlite", "src\BaGet.Database.Sqlite\Aiursoft.BaGet.Database.Sqlite.csproj", "{EC5E6B2C-2494-40E8-8682-080BA580DDA7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D998480A-D226-45AA-8E55-F9116ABEE0EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaGet.Core.Tests", "tests\BaGet.Core.Tests\BaGet.Core.Tests.csproj", "{5D10994C-179B-4616-BD4A-5B48C7542619}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.BaGet.Core.Tests", "tests\BaGet.Core.Tests\Aiursoft.BaGet.Core.Tests.csproj", "{5D10994C-179B-4616-BD4A-5B48C7542619}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaGet.Protocol.Tests", "tests\BaGet.Protocol.Tests\BaGet.Protocol.Tests.csproj", "{52C6DFEB-97F7-48B5-83DF-A561324B3023}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.BaGet.Protocol.Tests", "tests\BaGet.Protocol.Tests\Aiursoft.BaGet.Protocol.Tests.csproj", "{52C6DFEB-97F7-48B5-83DF-A561324B3023}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaGet.Web.Tests", "tests\BaGet.Web.Tests\BaGet.Web.Tests.csproj", "{D759FED1-2DC4-4C89-B4B7-B245B7C1F988}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.BaGet.Web.Tests", "tests\BaGet.Web.Tests\Aiursoft.BaGet.Web.Tests.csproj", "{D759FED1-2DC4-4C89-B4B7-B245B7C1F988}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

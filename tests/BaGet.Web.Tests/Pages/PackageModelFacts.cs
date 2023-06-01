@@ -4,12 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Core;
+using Aiursoft.BaGet.Core;
 using Moq;
 using NuGet.Versioning;
 using Xunit;
 
-namespace BaGet.Web.Tests
+namespace Aiursoft.BaGet.Web.Tests
 {
     public class PackageModelFacts
     {

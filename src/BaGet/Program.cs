@@ -1,14 +1,14 @@
 using System;
 using System.Threading.Tasks;
-using BaGet.Core;
-using BaGet.Web;
+using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Web;
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace BaGet
+namespace Aiursoft.BaGet
 {
     public class Program
     {

@@ -1,4 +1,4 @@
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     /// <summary>
     /// The NuGet V3 enumerate package versions request.

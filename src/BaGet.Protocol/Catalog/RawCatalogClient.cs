@@ -3,9 +3,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 
-namespace BaGet.Protocol.Internal
+namespace Aiursoft.BaGet.Protocol.Internal
 {
     public class RawCatalogClient : ICatalogClient
     {

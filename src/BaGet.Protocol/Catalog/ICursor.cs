@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BaGet.Protocol.Catalog
+namespace Aiursoft.BaGet.Protocol.Catalog
 {
     /// <summary>
     /// The NuGet Catalog resource is an append-only data structure indexed by time.

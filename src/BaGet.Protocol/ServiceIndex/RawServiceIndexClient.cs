@@ -2,9 +2,9 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 
-namespace BaGet.Protocol.Internal
+namespace Aiursoft.BaGet.Protocol.Internal
 {
     /// <summary>
     /// The NuGet Service Index client, used to discover other resources.

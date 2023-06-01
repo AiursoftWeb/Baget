@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json.Serialization;
-using BaGet.Core;
-using BaGet.Web;
+using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Web;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BaGet
+namespace Aiursoft.BaGet
 {
     public static class IServiceCollectionExtensions
     {

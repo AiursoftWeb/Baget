@@ -2,10 +2,10 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Protocol.Internal;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Internal;
+using Aiursoft.BaGet.Protocol.Models;
 
-namespace BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol
 {
     /// <summary>
     /// The <see cref="NuGetClientFactory"/> creates clients to interact with a NuGet server.

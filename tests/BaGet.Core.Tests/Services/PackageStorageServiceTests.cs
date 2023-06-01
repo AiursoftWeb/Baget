@@ -9,7 +9,7 @@ using Moq;
 using NuGet.Versioning;
 using Xunit;
 
-namespace BaGet.Core.Tests.Services
+namespace Aiursoft.BaGet.Core.Tests.Services
 {
     public class PackageStorageServiceTests
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     /// <summary>
     /// Used to determine the compatibility matrix between frameworks.

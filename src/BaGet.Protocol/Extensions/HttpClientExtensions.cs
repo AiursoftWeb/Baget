@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol
 {
     internal static class HttpClientExtensions
     {

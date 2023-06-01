@@ -1,7 +1,7 @@
 using System.Net.Http;
-using BaGet.Protocol.Internal;
+using Aiursoft.BaGet.Protocol.Internal;
 
-namespace BaGet.Protocol.Tests
+namespace Aiursoft.BaGet.Protocol.Tests
 {
     public class ProtocolFixture
     {

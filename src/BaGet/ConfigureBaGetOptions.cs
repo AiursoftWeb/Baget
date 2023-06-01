@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using BaGet.Core;
+using Aiursoft.BaGet.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Options;
 
-namespace BaGet
+namespace Aiursoft.BaGet
 {
     /// <summary>
     /// BaGet's options configuration, specific to the default BaGet application.

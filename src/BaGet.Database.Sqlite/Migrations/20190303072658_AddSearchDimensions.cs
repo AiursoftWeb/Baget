@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BaGet.Database.Sqlite.Migrations
+namespace Aiursoft.BaGet.Database.Sqlite.Migrations
 {
     public partial class AddSearchDimensions : Migration
     {

@@ -1,7 +1,7 @@
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 using NuGet.Versioning;
 
-namespace BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol
 {
     /// <summary>
     /// These are documented interpretations of values returned by the Search resource.

@@ -4,7 +4,7 @@ using Moq;
 using NuGet.Versioning;
 using Xunit;
 
-namespace BaGet.Core.Tests.Metadata
+namespace Aiursoft.BaGet.Core.Tests.Metadata
 {
     public class RegistrationBuilderTests
     {

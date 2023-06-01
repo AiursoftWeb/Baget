@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Xunit;
 
-namespace BaGet.Core.Tests.Services
+namespace Aiursoft.BaGet.Core.Tests.Services
 {
     public class SymbolIndexingServiceTests
     {

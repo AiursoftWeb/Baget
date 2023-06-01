@@ -1,11 +1,11 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Core;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Protocol.Models;
 using Moq;
 using Xunit;
 
-namespace BaGet.Web.Tests
+namespace Aiursoft.BaGet.Web.Tests
 {
     public class IndexModelFacts
     {

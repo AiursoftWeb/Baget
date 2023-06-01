@@ -1,8 +1,8 @@
-using BaGet.Core;
+using Aiursoft.BaGet.Core;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
-namespace BaGet.Database.Sqlite
+namespace Aiursoft.BaGet.Database.Sqlite
 {
     public class SqliteContext : AbstractContext<SqliteContext>
     {

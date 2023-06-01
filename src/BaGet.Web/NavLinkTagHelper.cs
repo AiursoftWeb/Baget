@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace BaGet.Web
+namespace Aiursoft.BaGet.Web
 {
     [HtmlTargetElement(Attributes = "nav-link")]
     public class NavLinkTagHelper : TagHelper

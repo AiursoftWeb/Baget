@@ -1,9 +1,9 @@
-using BaGet.Web;
+using Aiursoft.BaGet.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Routing.Constraints;
 
-namespace BaGet
+namespace Aiursoft.BaGet
 {
     public class BaGetEndpointBuilder
     {

@@ -1,4 +1,4 @@
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     // See NuGetGallery.Core's: https://github.com/NuGet/NuGetGallery/blob/master/src/NuGetGallery.Core/Entities/PackageDependency.cs
     public class PackageDependency

@@ -1,7 +1,7 @@
 using System;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class UriToStringConverter : ValueConverter<Uri, string>
     {

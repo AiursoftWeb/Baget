@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
 
-namespace BaGet.Core.Tests.Services
+namespace Aiursoft.BaGet.Core.Tests.Services
 {
     public class FileStorageServiceTests
     {

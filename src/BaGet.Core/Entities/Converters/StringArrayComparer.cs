@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class StringArrayComparer : ValueComparer<string[]>
     {

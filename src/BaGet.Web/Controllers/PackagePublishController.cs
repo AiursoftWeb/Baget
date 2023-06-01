@@ -1,13 +1,13 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Core;
+using Aiursoft.BaGet.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NuGet.Versioning;
 
-namespace BaGet.Web
+namespace Aiursoft.BaGet.Web
 {
     public class PackagePublishController : Controller
     {

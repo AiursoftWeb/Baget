@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BaGet.Database.Sqlite.Migrations
+namespace Aiursoft.BaGet.Database.Sqlite.Migrations
 {
     [DbContext(typeof(SqliteContext))]
     [Migration("20180804082808_Initial")]

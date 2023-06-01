@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using NuGet.Common;
 using NuGet.Packaging;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     using NuGetPackageType = NuGet.Packaging.Core.PackageType;
 

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class NullContext : IContext
     {

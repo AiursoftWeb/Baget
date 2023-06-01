@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.Models;
 using Xunit;
 
-namespace BaGet.Core.Tests.Metadata
+namespace Aiursoft.BaGet.Core.Tests.Metadata
 {
     public class ModelTests
     {

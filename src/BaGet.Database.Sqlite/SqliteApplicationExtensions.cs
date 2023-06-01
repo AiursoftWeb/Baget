@@ -1,11 +1,11 @@
 using System;
-using BaGet.Core;
-using BaGet.Database.Sqlite;
+using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Database.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace BaGet
+namespace Aiursoft.BaGet
 {
     public static class SqliteApplicationExtensions
     {

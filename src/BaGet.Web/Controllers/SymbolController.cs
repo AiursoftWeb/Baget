@@ -1,12 +1,12 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using BaGet.Core;
+using Aiursoft.BaGet.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace BaGet.Web
+namespace Aiursoft.BaGet.Web
 {
     public class SymbolController : Controller
     {

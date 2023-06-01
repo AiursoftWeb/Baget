@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BaGet.Core
+namespace Aiursoft.BaGet.Core
 {
     public class BaGetApplication
     {

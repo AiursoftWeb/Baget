@@ -23,7 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\BaGet.Web\BaGet.Web.csproj" />
+		<ProjectReference Include="..\..\src\BaGet.Web\Aiursoft.BaGet.Web.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace BaGet.Protocol.Models
+namespace Aiursoft.BaGet.Protocol.Models
 {
     /// <summary>
     /// The alternate package that should be used instead of a deprecated package.
