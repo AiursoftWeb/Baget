@@ -21,7 +21,7 @@ namespace BaGet.Web
         public string GetServiceIndexUrl()
         {
             return _linkGenerator.GetUriByRouteValues(
-                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext)),
                 Routes.IndexRouteName,
                 values: null);
         }
@@ -39,7 +39,7 @@ namespace BaGet.Web
         public string GetPackagePublishResourceUrl()
         {
             return _linkGenerator.GetUriByRouteValues(
-                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext)),
                 Routes.UploadPackageRouteName,
                 values: null);
         }
@@ -47,7 +47,7 @@ namespace BaGet.Web
         public string GetSymbolPublishResourceUrl()
         {
             return _linkGenerator.GetUriByRouteValues(
-                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext)),
                 Routes.UploadSymbolRouteName,
                 values: null);
         }
@@ -55,7 +55,7 @@ namespace BaGet.Web
         public string GetSearchResourceUrl()
         {
             return _linkGenerator.GetUriByRouteValues(
-                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext)),
                 Routes.SearchRouteName,
                 values: null);
         }
@@ -63,7 +63,7 @@ namespace BaGet.Web
         public string GetAutocompleteResourceUrl()
         {
             return _linkGenerator.GetUriByRouteValues(
-                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext)),
                 Routes.AutocompleteRouteName,
                 values: null);
         }
@@ -71,7 +71,7 @@ namespace BaGet.Web
         public string GetRegistrationIndexUrl(string id)
         {
             return _linkGenerator.GetUriByRouteValues(
-                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext)),
                 Routes.RegistrationIndexRouteName,
                 values: new { Id = id.ToLowerInvariant() });
         }
@@ -85,7 +85,7 @@ namespace BaGet.Web
         public string GetRegistrationLeafUrl(string id, NuGetVersion version)
         {
             return _linkGenerator.GetUriByRouteValues(
-                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext)),
                 Routes.RegistrationLeafRouteName,
                 values: new
                 {
@@ -97,7 +97,7 @@ namespace BaGet.Web
         public string GetPackageVersionsUrl(string id)
         {
             return _linkGenerator.GetUriByRouteValues(
-                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext)),
                 Routes.PackageVersionsRouteName,
                 values: new { Id = id.ToLowerInvariant() });
         }
@@ -108,7 +108,7 @@ namespace BaGet.Web
             var versionString = version.ToNormalizedString().ToLowerInvariant();
 
             return _linkGenerator.GetUriByRouteValues(
-                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext)),
                 Routes.PackageDownloadRouteName,
                 values: new
                 {
@@ -124,7 +124,7 @@ namespace BaGet.Web
             var versionString = version.ToNormalizedString().ToLowerInvariant();
 
             return _linkGenerator.GetUriByRouteValues(
-                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext)),
                 Routes.PackageDownloadRouteName,
                 values: new
                 {
@@ -140,7 +140,7 @@ namespace BaGet.Web
             var versionString = version.ToNormalizedString().ToLowerInvariant();
 
             return _linkGenerator.GetUriByRouteValues(
-                _httpContextAccessor.HttpContext,
+                _httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext)),
                 Routes.PackageDownloadIconRouteName,
                 values: new
                 {
@@ -151,7 +151,7 @@ namespace BaGet.Web
 
         private string AbsoluteUrl(string relativePath)
         {
-            var request = _httpContextAccessor.HttpContext.Request;
+            var request = _httpContextAccessor.HttpContext?.Request ?? throw new ArgumentNullException(nameof(_httpContextAccessor.HttpContext));
 
             return string.Concat(
                 request.Scheme,

@@ -51,7 +51,7 @@ namespace BaGet.Core
         {
             // Ensure the filename doesn't try to escape out of the current directory.
             var tempPath = Path.GetDirectoryName(Path.GetTempPath());
-            var expandedPath = Path.GetDirectoryName(Path.Combine(tempPath, filename));
+            var expandedPath = Path.GetDirectoryName(Path.Combine(tempPath ?? throw new ArgumentNullException(nameof(tempPath)), filename));
             
             if (expandedPath != tempPath)
             {

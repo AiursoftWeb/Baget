@@ -6,7 +6,7 @@ using NuGet.Frameworks;
 
 namespace BaGet.Core
 {
-    using static NuGet.Frameworks.FrameworkConstants;
+    using static FrameworkConstants;
 
     public class FrameworkCompatibilityService : IFrameworkCompatibilityService
     {
@@ -31,7 +31,7 @@ namespace BaGet.Core
                 .Where(f => f.IsStatic)
                 .Where(f => f.FieldType == typeof(NuGetFramework))
                 .Select(f => (NuGetFramework)f.GetValue(null))
-                .Where(f => supportedFrameworks.Contains(f.Framework))
+                .Where(f => supportedFrameworks.Contains(f?.Framework))
                 .ToDictionary(f => f.GetShortFolderName());
 
             // Add more frameworks missing from "CommonFrameworks"

@@ -58,8 +58,14 @@ namespace BaGet.Core
 
             path = GetFullPath(path);
 
+            var pathDirectory = Path.GetDirectoryName(path);
+            if (pathDirectory == null)
+            {
+                throw new ArgumentNullException(nameof(pathDirectory));
+            }
+
             // Ensure that the path exists.
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            Directory.CreateDirectory(pathDirectory);
 
             try
             {

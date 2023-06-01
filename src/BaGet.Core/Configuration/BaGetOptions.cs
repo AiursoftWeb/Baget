@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace BaGet.Core
 {
     public class BaGetOptions
@@ -30,12 +28,12 @@ namespace BaGet.Core
         /// If enabled, pushing a package that already exists will replace the
         /// existing package.
         /// </summary>
-        public bool AllowPackageOverwrites { get; set; } = false;
+        public bool AllowPackageOverwrites { get; set; }
 
         /// <summary>
         /// If true, disables package pushing, deleting, and re-listing.
         /// </summary>
-        public bool IsReadOnlyMode { get; set; } = false;
+        public bool IsReadOnlyMode { get; set; }
 
         /// <summary>
         /// The URLs the BaGet server will use.

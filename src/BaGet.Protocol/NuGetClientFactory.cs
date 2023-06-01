@@ -196,16 +196,15 @@ namespace BaGet.Protocol
             // TODO: This should periodically refresh the service index response.
             return clientFactory(_clients);
         }
+    }
 
-        private class NuGetClients
-        {
-            public ServiceIndexResponse ServiceIndex { get; set; }
-
-            public IPackageContentClient PackageContentClient { get; set; }
-            public IPackageMetadataClient PackageMetadataClient { get; set; }
-            public ISearchClient SearchClient { get; set; }
-            public IAutocompleteClient AutocompleteClient { get; set; }
-            public ICatalogClient CatalogClient { get; set; }
-        }
+    public class NuGetClients
+    {
+        public ServiceIndexResponse ServiceIndex { get; set; }
+        public IPackageContentClient PackageContentClient { get; set; }
+        public IPackageMetadataClient PackageMetadataClient { get; set; }
+        public ISearchClient SearchClient { get; set; }
+        public IAutocompleteClient AutocompleteClient { get; set; }
+        public ICatalogClient CatalogClient { get; set; }
     }
 }

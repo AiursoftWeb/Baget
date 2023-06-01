@@ -153,6 +153,11 @@ namespace BaGet.Core
                     using (var pdbReaderProvider = MetadataReaderProvider.FromPortablePdbStream(pdbStream, MetadataStreamOptions.LeaveOpen))
                     {
                         var reader = pdbReaderProvider.GetMetadataReader();
+                        if (reader.DebugMetadataHeader == null)
+                        {
+                            throw new InvalidOperationException($"Reader {reader} Debug meta data header is null!");
+                        }
+
                         var id = new BlobContentId(reader.DebugMetadataHeader.Id);
 
                         signature = id.Guid.ToString("N").ToUpperInvariant();

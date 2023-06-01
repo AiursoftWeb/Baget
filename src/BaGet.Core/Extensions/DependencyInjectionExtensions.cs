@@ -171,8 +171,8 @@ namespace BaGet.Core
             var options = provider.GetRequiredService<IOptions<MirrorOptions>>().Value;
 
             var assembly = Assembly.GetEntryAssembly();
-            var assemblyName = assembly.GetName().Name;
-            var assemblyVersion = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "0.0.0";
+            var assemblyName = assembly?.GetName().Name ?? "Unknown";
+            var assemblyVersion = assembly?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "0.0.0";
 
             var client = new HttpClient(new HttpClientHandler
             {

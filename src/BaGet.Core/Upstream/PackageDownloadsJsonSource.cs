@@ -47,11 +47,12 @@ namespace BaGet.Core
                         {
                             // TODO: This line reads the entire document into memory...
                             var record = JToken.ReadFrom(jsonReader);
-                            var id = string.Intern(record[0].ToString().ToLowerInvariant());
+
+                            var id = string.Intern(record[0]!.ToString().ToLowerInvariant());
 
                             // The second entry in each record should be an array of versions, if not move on to next entry.
                             // This is a check to safe guard against invalid entries.
-                            if (record.Count() == 2 && record[1].Type != JTokenType.Array)
+                            if (record.Count() == 2 && record[1]!.Type != JTokenType.Array)
                             {
                                 continue;
                             }
@@ -65,8 +66,8 @@ namespace BaGet.Core
                             {
                                 if (token != null && token.Count() == 2)
                                 {
-                                    var version = string.Intern(NuGetVersion.Parse(token[0].ToString()).ToNormalizedString().ToLowerInvariant());
-                                    var downloads = token[1].ToObject<int>();
+                                    var version = string.Intern(NuGetVersion.Parse(token[0]!.ToString()).ToNormalizedString().ToLowerInvariant());
+                                    var downloads = token[1]!.ToObject<int>();
 
                                     results[id][version] = downloads;
                                 }

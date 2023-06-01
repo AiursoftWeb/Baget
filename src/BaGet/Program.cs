@@ -59,7 +59,7 @@ namespace BaGet
         {
             return Host
                 .CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((ctx, config) =>
+                .ConfigureAppConfiguration((_, config) =>
                 {
                     var root = Environment.GetEnvironmentVariable("BAGET_CONFIG_ROOT");
 

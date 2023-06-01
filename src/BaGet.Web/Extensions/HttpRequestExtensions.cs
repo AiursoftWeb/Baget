@@ -28,7 +28,7 @@ namespace BaGet.Web
 
                 // Convert the upload stream into a temporary file stream to
                 // minimize memory usage.
-                return await rawUploadStream?.AsTemporaryFileStreamAsync(cancellationToken);
+                return await rawUploadStream.AsTemporaryFileStreamAsync(cancellationToken);
             }
             finally
             {
