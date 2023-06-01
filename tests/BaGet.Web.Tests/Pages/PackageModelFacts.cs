@@ -16,7 +16,6 @@ namespace BaGet.Web.Tests
         private readonly Mock<IPackageContentService> _content;
         private readonly Mock<IPackageService> _packages;
         private readonly Mock<ISearchService> _search;
-        private readonly Mock<IUrlGenerator> _url;
         private readonly PackageModel _target;
 
         private readonly CancellationToken _cancellation = CancellationToken.None;
@@ -26,12 +25,12 @@ namespace BaGet.Web.Tests
             _content = new Mock<IPackageContentService>();
             _packages = new Mock<IPackageService>();
             _search = new Mock<ISearchService>();
-            _url = new Mock<IUrlGenerator>();
+            var url = new Mock<IUrlGenerator>();
             _target = new PackageModel(
                 _packages.Object,
                 _content.Object,
                 _search.Object,
-                _url.Object);
+                url.Object);
 
             _search
                 .Setup(s => s.FindDependentsAsync("testpackage", _cancellation))

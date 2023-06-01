@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using BaGet.Protocol.Models;
@@ -14,7 +13,6 @@ namespace BaGet.Protocol.Internal
             {
                 CommitTimestamp = DateTimeOffset.MinValue,
                 Count = 0,
-                Items = new List<CatalogPageItem>()
             });
         }
 

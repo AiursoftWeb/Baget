@@ -377,7 +377,7 @@ namespace BaGet.Core.Tests.Services
                             It.IsAny<Stream>(),
                             It.IsAny<string>(),
                             It.IsAny<CancellationToken>()))
-                    .Callback((string path, Stream content, string contentType, CancellationToken cancellationToken) =>
+                    .Callback((string path, Stream content, string contentType, CancellationToken _) =>
                     {
                         _puts[path] = (content, contentType);
                     })

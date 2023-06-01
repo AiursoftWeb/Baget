@@ -87,9 +87,7 @@ namespace BaGet.Protocol.Tests
             var options = new JsonSerializerOptions();
             options.Converters.Add(new StringOrStringArrayJsonConverter());
 
-            IReadOnlyList<string> list = null;
-
-            var json = JsonSerializer.Serialize(list, options);
+            var json = JsonSerializer.Serialize((IReadOnlyList<string>)null, options);
 
             Assert.Equal("null", json);
         }

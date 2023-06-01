@@ -41,7 +41,7 @@ namespace BaGet.Protocol.Tests
         {
             Func<string> getContent;
             if (request.Method != HttpMethod.Get
-                || !UrlToGetContent.TryGetValue(request.RequestUri.AbsoluteUri, out getContent))
+                || !UrlToGetContent.TryGetValue(request.RequestUri?.AbsoluteUri ?? throw new ArgumentNullException(nameof(request.RequestUri.AbsoluteUri)), out getContent))
             {
                 return new HttpResponseMessage
                 {

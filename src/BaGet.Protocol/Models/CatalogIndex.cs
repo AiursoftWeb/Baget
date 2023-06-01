@@ -30,6 +30,7 @@ namespace BaGet.Protocol.Models
         /// The items used to discover <see cref="CatalogPage"/>s.
         /// </summary>
         [JsonPropertyName("items")]
+        // ReSharper disable once CollectionNeverUpdated.Global
         public List<CatalogPageItem> Items { get; set; }
     }
 }

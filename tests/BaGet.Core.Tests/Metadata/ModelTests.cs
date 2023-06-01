@@ -114,7 +114,7 @@ namespace BaGet.Core.Tests.Metadata
                 .ToDictionary(p => p.Name, p => p);
 
             // Check that all properties on the original model are present on the derived model.
-            var missingProperties = originalProperties.Keys.Where(name => !derivedProperties.ContainsKey(name));
+            var missingProperties = originalProperties.Keys.Where(name => !derivedProperties.ContainsKey(name)).ToList();
 
             Assert.True(
                 !missingProperties.Any(),
@@ -204,7 +204,7 @@ namespace BaGet.Core.Tests.Metadata
         {
             return property
                 .CustomAttributes
-                ?.SingleOrDefault(x => x.AttributeType == typeof(TAttribute))
+                .SingleOrDefault(x => x.AttributeType == typeof(TAttribute))
                 ?.ConstructorArguments;
         }
 

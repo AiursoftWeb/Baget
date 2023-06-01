@@ -20,7 +20,6 @@ namespace BaGet.Core.Tests.Metadata
         {
             // Arrange
             var packageId = "BaGet.Test";
-            var authors = new string[] { "test" };
 
             var packages = new List<Package>
             {
@@ -56,9 +55,9 @@ namespace BaGet.Core.Tests.Metadata
             return new Package
             {
                 Id = packageId,
-                Authors = new string[] { "test" },
+                Authors = new[] { "test" },
                 PackageTypes = new List<PackageType> { new PackageType { Name = "test" } },
-                Dependencies = new List<PackageDependency> { },
+                Dependencies = new List<PackageDependency>(),
                 Version = new NuGetVersion(version),
             };
         }

@@ -11,7 +11,7 @@ namespace BaGet.Web.Tests
     {
         private readonly IndexModel _target;
 
-        private SearchRequest _capturedRequest = null;
+        private SearchRequest _capturedRequest;
         private readonly SearchResponse _response = new SearchResponse();
         private readonly CancellationToken _cancellation = CancellationToken.None;
 
@@ -20,7 +20,7 @@ namespace BaGet.Web.Tests
             var search = new Mock<ISearchService>();
             search
                 .Setup(s => s.SearchAsync(It.IsAny<SearchRequest>(), _cancellation))
-                .Callback((SearchRequest r, CancellationToken c) => _capturedRequest = r)
+                .Callback((SearchRequest r, CancellationToken _) => _capturedRequest = r)
                 .ReturnsAsync(_response);
 
             _target = new IndexModel(search.Object);
