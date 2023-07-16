@@ -19,8 +19,8 @@
 		</PackageReference>
 		<PackageReference Include="JunitXml.TestLogger" Version="3.0.134" />
 		
-		<PackageReference Include="MSTest.TestAdapter" Version="3.0.4" />
-		<PackageReference Include="MSTest.TestFramework" Version="3.0.4" />
+		<PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
+		<PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
