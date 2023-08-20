@@ -1,4 +1,3 @@
-using System;
 using System.Text.Json.Serialization;
 using Aiursoft.BaGet.Core;
 using Aiursoft.BaGet.Web;

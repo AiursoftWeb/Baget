@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Aiursoft.BaGet.Protocol.Models;
 using NuGet.Versioning;
 

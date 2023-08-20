@@ -1,12 +1,6 @@
-using System;
-using System.Threading.Tasks;
 using Aiursoft.BaGet.Core;
 using Aiursoft.BaGet.Web;
 using McMaster.Extensions.CommandLineUtils;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace Aiursoft.BaGet
 {

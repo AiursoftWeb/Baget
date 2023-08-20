@@ -1,5 +1,3 @@
-using System;
-
 namespace Aiursoft.BaGet.Protocol.Catalog
 {
     /// <summary>

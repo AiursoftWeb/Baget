@@ -1,6 +1,3 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Aiursoft.BaGet.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

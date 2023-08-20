@@ -1,6 +1,3 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Aiursoft.BaGet.Protocol.Models;
 using Microsoft.Extensions.Logging;
 

@@ -1,9 +1,5 @@
-using System;
-using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 namespace Aiursoft.BaGet.Protocol.Catalog

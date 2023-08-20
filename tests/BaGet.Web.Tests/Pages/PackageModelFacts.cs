@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Aiursoft.BaGet.Core;
+﻿using Aiursoft.BaGet.Core;
 using Moq;
 using NuGet.Versioning;
 using Xunit;

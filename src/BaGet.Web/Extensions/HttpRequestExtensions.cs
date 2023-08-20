@@ -1,6 +1,3 @@
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 using Aiursoft.BaGet.Core;
 using Microsoft.AspNetCore.Http;
 

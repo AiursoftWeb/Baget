@@ -1,4 +1,3 @@
-using System;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Aiursoft.BaGet.Core

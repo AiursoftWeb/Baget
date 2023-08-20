@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using NuGet.Versioning;
 
 namespace Aiursoft.BaGet.Core

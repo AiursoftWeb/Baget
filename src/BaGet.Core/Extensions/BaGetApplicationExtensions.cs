@@ -1,4 +1,3 @@
-using System;
 using Aiursoft.BaGet.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;

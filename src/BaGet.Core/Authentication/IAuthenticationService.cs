@@ -1,6 +1,3 @@
-using System.Threading;
-using System.Threading.Tasks;
-
 namespace Aiursoft.BaGet.Core
 {
     public interface IAuthenticationService

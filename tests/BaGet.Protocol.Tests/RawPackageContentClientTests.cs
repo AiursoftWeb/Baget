@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Aiursoft.BaGet.Protocol.Internal;
 using Xunit;
 

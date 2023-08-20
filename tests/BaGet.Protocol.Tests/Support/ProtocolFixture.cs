@@ -1,4 +1,3 @@
-using System.Net.Http;
 using Aiursoft.BaGet.Protocol.Internal;
 
 namespace Aiursoft.BaGet.Protocol.Tests

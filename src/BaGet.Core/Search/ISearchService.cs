@@ -1,5 +1,3 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Aiursoft.BaGet.Protocol.Models;
 
 namespace Aiursoft.BaGet.Core

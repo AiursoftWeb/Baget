@@ -1,6 +1,4 @@
-using System;
 using System.Net;
-using System.Net.Http;
 using System.Reflection;
 using Aiursoft.BaGet.Protocol;
 using Microsoft.Extensions.Configuration;

@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Aiursoft.BaGet.Core;
+﻿using Aiursoft.BaGet.Core;
 using Aiursoft.BaGet.Protocol.Models;
 using Moq;
 using Xunit;

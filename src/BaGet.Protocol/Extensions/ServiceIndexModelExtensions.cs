@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using Aiursoft.BaGet.Protocol.Models;
 
 namespace Aiursoft.BaGet.Protocol

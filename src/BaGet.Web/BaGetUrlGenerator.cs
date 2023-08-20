@@ -1,4 +1,3 @@
-using System;
 using Aiursoft.BaGet.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
