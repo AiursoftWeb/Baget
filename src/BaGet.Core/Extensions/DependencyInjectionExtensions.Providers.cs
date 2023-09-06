@@ -39,7 +39,7 @@ namespace Aiursoft.BaGet.Core
         /// <returns>Whether the database type is active.</returns>
         public static bool HasDatabaseType(this IConfiguration config, string value)
         {
-            return config[DatabaseTypeKey].Equals(value, StringComparison.OrdinalIgnoreCase);
+            return config[DatabaseTypeKey]?.Equals(value, StringComparison.OrdinalIgnoreCase) ?? false;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Aiursoft.BaGet.Core
         /// <returns>Whether the search type is active.</returns>
         public static bool HasSearchType(this IConfiguration config, string value)
         {
-            return config[SearchTypeKey].Equals(value, StringComparison.OrdinalIgnoreCase);
+            return config[SearchTypeKey]?.Equals(value, StringComparison.OrdinalIgnoreCase) ?? false;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Aiursoft.BaGet.Core
         /// <returns>Whether the database type is active.</returns>
         public static bool HasStorageType(this IConfiguration config, string value)
         {
-            return config[StorageTypeKey].Equals(value, StringComparison.OrdinalIgnoreCase);
+            return config[StorageTypeKey]?.Equals(value, StringComparison.OrdinalIgnoreCase) ?? false;
         }
 
         public static IServiceCollection AddBaGetDbContextProvider<TContext>(
