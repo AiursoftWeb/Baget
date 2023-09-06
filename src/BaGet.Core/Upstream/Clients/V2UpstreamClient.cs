@@ -31,7 +31,7 @@ namespace Aiursoft.BaGet.Core
                 throw new ArgumentNullException(nameof(options));
             }
 
-            if (options.Value?.PackageSource?.AbsolutePath == null)
+            if (options.Value.PackageSource?.AbsolutePath == null)
             {
                 throw new ArgumentException("No mirror package source has been set.");
             }
