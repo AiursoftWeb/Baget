@@ -1,23 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>net7.0</TargetFramework>
-        <AssemblyName>Aiursoft.BaGet</AssemblyName>
-        <RootNamespace>Aiursoft.BaGet</RootNamespace>
-        <IsTestProject>false</IsTestProject>
-        <IsPackable>false</IsPackable>
-        <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.1.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.11" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\BaGet.Database.Sqlite\Aiursoft.BaGet.Database.Sqlite.csproj" />
-        <ProjectReference Include="..\BaGet.Web\Aiursoft.BaGet.Web.csproj" />
-    </ItemGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <AssemblyName>Aiursoft.BaGet</AssemblyName>
+    <RootNamespace>Aiursoft.BaGet</RootNamespace>
+    <IsTestProject>false</IsTestProject>
+    <IsPackable>false</IsPackable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaGet.Database.Sqlite\Aiursoft.BaGet.Database.Sqlite.csproj" />
+    <ProjectReference Include="..\BaGet.Web\Aiursoft.BaGet.Web.csproj" />
+  </ItemGroup>
 </Project>
