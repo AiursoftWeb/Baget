@@ -33,7 +33,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task GetsStream()
             {
                 // Arrange
-                using (var content = StringStream("Hello world"))
+                await using (var content = StringStream("Hello world"))
                 {
                     await _target.PutAsync("hello.txt", content, "text/plain");
                 }
@@ -50,8 +50,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             {
                 foreach (var path in OutsideStorePathData)
                 {
-                    await Assert.ThrowsAsync<ArgumentException>(async () =>
-                        await _target.GetAsync(path));
+                    await Assert.ThrowsAsync<ArgumentException>(() =>
+                        _target.GetAsync(path));
                 }
             }
         }
@@ -72,8 +72,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             {
                 foreach (var path in OutsideStorePathData)
                 {
-                    await Assert.ThrowsAsync<ArgumentException>(async () =>
-                        await _target.GetDownloadUriAsync(path));
+                    await Assert.ThrowsAsync<ArgumentException>(() =>
+                        _target.GetDownloadUriAsync(path));
                 }
             }
         }
@@ -84,7 +84,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task SavesContent()
             {
                 StoragePutResult result;
-                using (var content = StringStream("Hello world"))
+                await using (var content = StringStream("Hello world"))
                 {
                     result = await _target.PutAsync("test.txt", content, "text/plain");
                 }
@@ -103,10 +103,10 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 var path = Path.Combine(_storePath, "test.txt");
 
                 Directory.CreateDirectory(Path.GetDirectoryName(path) ?? throw new ArgumentNullException(nameof(path)));
-                File.WriteAllText(path, "Hello world");
+                await File.WriteAllTextAsync(path, "Hello world");
 
                 StoragePutResult result;
-                using (var content = StringStream("Hello world"))
+                await using (var content = StringStream("Hello world"))
                 {
                     // Act
                     result = await _target.PutAsync("test.txt", content, "text/plain");
@@ -123,10 +123,10 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 var path = Path.Combine(_storePath, "test.txt");
 
                 Directory.CreateDirectory(Path.GetDirectoryName(path) ?? throw new ArgumentNullException(nameof(path)));
-                File.WriteAllText(path, "Hello world");
+                await File.WriteAllTextAsync(path, "Hello world");
 
                 StoragePutResult result;
-                using (var content = StringStream("foo bar"))
+                await using (var content = StringStream("foo bar"))
                 {
                     // Act
                     result = await _target.PutAsync("test.txt", content, "text/plain");
@@ -141,11 +141,9 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             {
                 foreach (var path in OutsideStorePathData)
                 {
-                    using (var content = StringStream("Hello world"))
-                    {
-                        await Assert.ThrowsAsync<ArgumentException>(async () =>
-                            await _target.PutAsync(path, content, "text/plain"));
-                    }
+                    await using var content = StringStream("Hello world");
+                    await Assert.ThrowsAsync<ArgumentException>(() =>
+                        _target.PutAsync(path, content, "text/plain"));
                 }
             }
         }
@@ -178,8 +176,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             {
                 foreach (var path in OutsideStorePathData)
                 {
-                    await Assert.ThrowsAsync<ArgumentException>(async () =>
-                        await _target.DeleteAsync(path));
+                    await Assert.ThrowsAsync<ArgumentException>(() =>
+                        _target.DeleteAsync(path));
                 }
             }
         }
@@ -187,19 +185,18 @@ namespace Aiursoft.BaGet.Core.Tests.Services
         public class FactsBase : IDisposable
         {
             protected readonly string _storePath;
-            protected readonly Mock<IOptionsSnapshot<FileSystemStorageOptions>> _options;
             protected readonly FileStorageService _target;
 
-            public FactsBase()
+            protected FactsBase()
             {
                 _storePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-                _options = new Mock<IOptionsSnapshot<FileSystemStorageOptions>>();
+                var options = new Mock<IOptionsSnapshot<FileSystemStorageOptions>>();
 
-                _options
+                options
                     .Setup(o => o.Value)
                     .Returns(() => new FileSystemStorageOptions { Path = _storePath });
 
-                _target = new FileStorageService(_options.Object);
+                _target = new FileStorageService(options.Object);
             }
 
             public void Dispose()
@@ -222,13 +219,11 @@ namespace Aiursoft.BaGet.Core.Tests.Services
 
             protected async Task<string> ToStringAsync(Stream input)
             {
-                using (var reader = new StreamReader(input))
-                {
-                    return await reader.ReadToEndAsync();
-                }
+                using var reader = new StreamReader(input);
+                return await reader.ReadToEndAsync();
             }
 
-            public IEnumerable<string> OutsideStorePathData
+            protected IEnumerable<string> OutsideStorePathData
             {
                 get
                 {
