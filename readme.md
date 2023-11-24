@@ -3,7 +3,7 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.cn/aiursoft/baget/-/blob/master/LICENSE)
 [![Pipeline stat](https://gitlab.aiursoft.cn/aiursoft/baget/badges/master/pipeline.svg)](https://gitlab.aiursoft.cn/aiursoft/baget/-/pipelines)
 [![Test Coverage](https://gitlab.aiursoft.cn/aiursoft/baget/badges/master/coverage.svg)](https://gitlab.aiursoft.cn/aiursoft/baget/-/pipelines)
-[![ManHours](https://manhours.aiursoft.cn/gitlab/gitlab.aiursoft.cn/aiursoft/baget.svg)](https://gitlab.aiursoft.cn/aiursoft/baget/-/commits/master?ref_type=heads)
+[![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.cn/aiursoft/baget.svg)](https://gitlab.aiursoft.cn/aiursoft/baget/-/commits/master?ref_type=heads)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fnuget.aiursoft.cn%2F)](https://nuget.aiursoft.cn)
 
 A lightweight [NuGet] and [symbol] server.
