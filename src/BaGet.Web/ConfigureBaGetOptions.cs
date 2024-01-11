@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Options;
 
-namespace Aiursoft.BaGet
+namespace Aiursoft.BaGet.Web
 {
     /// <summary>
     /// BaGet's options configuration, specific to the default BaGet application.

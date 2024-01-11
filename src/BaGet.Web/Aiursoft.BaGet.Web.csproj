@@ -3,7 +3,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>Aiursoft.BaGet.Web</AssemblyName>
-    <RootNamespace>BaGet.Web</RootNamespace>
+    <RootNamespace>Aiursoft.BaGet.Web</RootNamespace>
     <IsTestProject>false</IsTestProject>
     <IsPackable>false</IsPackable>
     <ImplicitUsings>enable</ImplicitUsings>
