@@ -20,9 +20,9 @@ else
 {
     <div class="row display-package">
         <aside class="col-sm-1 package-icon">
-            <img src="@(Model.IconUrl ?? Url.Content("~/_content/BaGet.Web/images/default-package-icon-256x256.png"))"
+            <img src="@(Model.IconUrl ?? Url.Content("~/images/default-package-icon-256x256.png"))"
                  class="img-responsive"
-                 onerror="this.src='@Url.Content("~/_content/BaGet.Web/images/default-package-icon-256x256.png")'"
+                 onerror="this.src='@Url.Content("~/images/default-package-icon-256x256.png")'"
                  alt="The package icon" />
         </aside>
 
@@ -222,7 +222,7 @@ else
                     @if (Model.Package.RepositoryUrlString != null)
                     {
                         <li>
-                            <img class="icon" aria-hidden="true" alt="GitHub logo" src="@Url.Content("~/_content/BaGet.Web/images/github-32x32.png")" />
+                            <img class="icon" aria-hidden="true" alt="GitHub logo" src="@Url.Content("~/images/github-32x32.png")" />
                             <a href="@Model.Package.RepositoryUrlString">Source code</a>
                         </li>
                     }

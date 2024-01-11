@@ -1,4 +1,5 @@
 using Aiursoft.BaGet.Core;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -7,16 +8,8 @@ namespace Aiursoft.BaGet.Web
 {
     public static class IHostExtensions
     {
-        public static IHostBuilder UseBaGet(this IHostBuilder host, Action<BaGetApplication> configure)
-        {
-            return host.ConfigureServices(services =>
-            {
-                services.AddBaGetWebApplication(configure);
-            });
-        }
-
         public static async Task RunMigrationsAsync(
-            this IHost host,
+            this WebApplication host,
             CancellationToken cancellationToken = default)
         {
             // Run migrations if necessary.

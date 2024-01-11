@@ -1,6 +1,6 @@
 namespace Aiursoft.BaGet.Web
 {
-    public class Routes
+    public abstract class Routes
     {
         public const string IndexRouteName = "index";
         public const string UploadPackageRouteName = "upload-package";

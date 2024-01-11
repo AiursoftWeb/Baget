@@ -1,4 +1,5 @@
 using Aiursoft.BaGet.Core;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -81,17 +82,9 @@ namespace Aiursoft.BaGet
         {
             var failures = new List<string>();
 
-            if (options.Database == null) failures.Add($"The '{nameof(BaGetOptions.Database)}' config is required");
             if (options.Mirror == null) failures.Add($"The '{nameof(BaGetOptions.Mirror)}' config is required");
             if (options.Search == null) failures.Add($"The '{nameof(BaGetOptions.Search)}' config is required");
             if (options.Storage == null) failures.Add($"The '{nameof(BaGetOptions.Storage)}' config is required");
-
-            if (!ValidDatabaseTypes.Contains(options.Database?.Type))
-            {
-                failures.Add(
-                    $"The '{nameof(BaGetOptions.Database)}:{nameof(DatabaseOptions.Type)}' config is invalid. " +
-                    $"Allowed values: {string.Join(", ", ValidDatabaseTypes)}");
-            }
 
             if (!ValidStorageTypes.Contains(options.Storage?.Type))
             {
