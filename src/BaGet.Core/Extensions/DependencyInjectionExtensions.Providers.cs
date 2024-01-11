@@ -7,7 +7,6 @@ namespace Aiursoft.BaGet.Core
 {
     public static partial class DependencyInjectionExtensions
     {
-        private static readonly string DatabaseTypeKey = $"{nameof(BaGetOptions.Database)}:{nameof(DatabaseOptions.Type)}";
         private static readonly string SearchTypeKey = $"{nameof(BaGetOptions.Search)}:{nameof(SearchOptions.Type)}";
         private static readonly string StorageTypeKey = $"{nameof(BaGetOptions.Storage)}:{nameof(StorageOptions.Type)}";
 
@@ -29,17 +28,6 @@ namespace Aiursoft.BaGet.Core
             services.AddSingleton<IProvider<TService>>(new DelegateProvider<TService>(func));
 
             return services;
-        }
-
-        /// <summary>
-        /// Determine whether a database type is currently active.
-        /// </summary>
-        /// <param name="config">The application's configuration.</param>
-        /// <param name="value">The database type that should be checked.</param>
-        /// <returns>Whether the database type is active.</returns>
-        public static bool HasDatabaseType(this IConfiguration config, string value)
-        {
-            return config[DatabaseTypeKey]?.Equals(value, StringComparison.OrdinalIgnoreCase) ?? false;
         }
 
         /// <summary>
@@ -77,31 +65,23 @@ namespace Aiursoft.BaGet.Core
 
             services.AddProvider<IContext>((provider, config) =>
             {
-                if (!config.HasDatabaseType(databaseType)) return null;
-
                 return provider.GetRequiredService<TContext>();
             });
 
             services.AddProvider<IPackageDatabase>((provider, config) =>
             {
-                if (!config.HasDatabaseType(databaseType)) return null;
-
                 return provider.GetRequiredService<PackageDatabase>();
             });
 
             services.AddProvider<ISearchIndexer>((provider, config) =>
             {
                 if (!config.HasSearchType(DatabaseSearchType)) return null;
-                if (!config.HasDatabaseType(databaseType)) return null;
-
                 return provider.GetRequiredService<NullSearchIndexer>();
             });
 
             services.AddProvider<ISearchService>((provider, config) =>
             {
                 if (!config.HasSearchType(DatabaseSearchType)) return null;
-                if (!config.HasDatabaseType(databaseType)) return null;
-
                 return provider.GetRequiredService<DatabaseSearchService>();
             });
 

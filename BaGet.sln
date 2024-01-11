@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.BaGet", "src\BaGet\Aiursoft.BaGet.csproj", "{284366CB-C68F-473E-908A-50A382616AE0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.BaGet.Core", "src\BaGet.Core\Aiursoft.BaGet.Core.csproj", "{FFFACD28-C300-4046-BCFE-4A7899E88EA3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{26A0B557-53FB-4B9A-94C4-BCCF1BDCB0CC}"
@@ -29,10 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{284366CB-C68F-473E-908A-50A382616AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{284366CB-C68F-473E-908A-50A382616AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{284366CB-C68F-473E-908A-50A382616AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{284366CB-C68F-473E-908A-50A382616AE0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FFFACD28-C300-4046-BCFE-4A7899E88EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FFFACD28-C300-4046-BCFE-4A7899E88EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFFACD28-C300-4046-BCFE-4A7899E88EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -66,7 +60,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{284366CB-C68F-473E-908A-50A382616AE0} = {26A0B557-53FB-4B9A-94C4-BCCF1BDCB0CC}
 		{FFFACD28-C300-4046-BCFE-4A7899E88EA3} = {26A0B557-53FB-4B9A-94C4-BCCF1BDCB0CC}
 		{A2D23427-9278-4D52-B31F-759212252832} = {26A0B557-53FB-4B9A-94C4-BCCF1BDCB0CC}
 		{D68B56AC-98DD-4DA7-B4F8-1243538A8A5C} = {26A0B557-53FB-4B9A-94C4-BCCF1BDCB0CC}
