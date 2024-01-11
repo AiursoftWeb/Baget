@@ -4,7 +4,7 @@ namespace Aiursoft.BaGet.Core
 {
     public class UriToStringConverter : ValueConverter<Uri, string>
     {
-        public static readonly UriToStringConverter Instance = new UriToStringConverter();
+        public static readonly UriToStringConverter Instance = new();
 
         public UriToStringConverter()
             : base(

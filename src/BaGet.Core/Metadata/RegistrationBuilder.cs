@@ -55,7 +55,7 @@ namespace Aiursoft.BaGet.Core
         }
 
         private BaGetRegistrationIndexPageItem ToRegistrationIndexPageItem(Package package) =>
-            new BaGetRegistrationIndexPageItem
+            new()
             {
                 RegistrationLeafUrl = _url.GetRegistrationLeafUrl(package.Id, package.Version),
                 PackageContentUrl = _url.GetPackageDownloadUrl(package.Id, package.Version),

@@ -162,21 +162,17 @@ namespace Aiursoft.BaGet.Core
         {
             var options = provider.GetRequiredService<IOptionsSnapshot<MirrorOptions>>();
 
-            // TODO: Convert to switch expression.
             if (!options.Value.Enabled)
             {
                 return provider.GetRequiredService<DisabledUpstreamClient>();
             }
 
-            else if (options.Value.Legacy)
+            if (options.Value.Legacy)
             {
                 return provider.GetRequiredService<V2UpstreamClient>();
             }
 
-            else
-            {
-                return provider.GetRequiredService<V3UpstreamClient>();
-            }
+            return provider.GetRequiredService<V3UpstreamClient>();
         }
     }
 }

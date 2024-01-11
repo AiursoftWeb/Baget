@@ -324,7 +324,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
 
         public class FactsBase
         {
-            protected readonly Package _package = new Package
+            protected readonly Package _package = new()
             {
                 Id = "My.Package",
                 Version = new NuGetVersion("1.2.3")

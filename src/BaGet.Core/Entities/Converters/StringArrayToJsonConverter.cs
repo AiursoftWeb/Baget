@@ -5,7 +5,7 @@ namespace Aiursoft.BaGet.Core
 {
     public class StringArrayToJsonConverter : ValueConverter<string[], string>
     {
-        public static readonly StringArrayToJsonConverter Instance = new StringArrayToJsonConverter();
+        public static readonly StringArrayToJsonConverter Instance = new();
 
         public StringArrayToJsonConverter()
             : base(

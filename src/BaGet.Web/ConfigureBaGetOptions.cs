@@ -20,22 +20,15 @@ namespace Aiursoft.BaGet
         public const string CorsPolicy = "AllowAll";
 
         private static readonly HashSet<string> ValidStorageTypes
-            = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            = new(StringComparer.OrdinalIgnoreCase)
             {
-                "AliyunOss",
-                "AwsS3",
-                "AzureBlobStorage",
-                "Filesystem",
-                "GoogleCloud",
-                "Null",
+                "Filesystem"
             };
 
         private static readonly HashSet<string> ValidSearchTypes
-            = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            = new(StringComparer.OrdinalIgnoreCase)
             {
-                "AzureSearch",
-                "Database",
-                "Null",
+                "Database"
             };
 
         public void Configure(CorsOptions options)
