@@ -81,11 +81,7 @@ namespace Aiursoft.BaGet.Web
             app.UseRouting();
             app.UseCors(ConfigureBaGetOptions.CorsPolicy);
             app.UseOperationCancelledMiddleware();
-            app.UseEndpoints(endpoints =>
-            {
-                var baget = new BaGetEndpointBuilder();
-                baget.MapEndpoints(endpoints);
-            });
+            new BaGetEndpointBuilder().MapEndpoints(app);
         }
     }
 }
