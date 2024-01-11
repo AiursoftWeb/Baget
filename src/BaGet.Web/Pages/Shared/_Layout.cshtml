@@ -8,8 +8,8 @@
 
     <link rel="shortcut icon" href="~/favicon.ico">
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/office-ui-fabric-core/dist/css/fabric.min.css" />
+    <link rel="stylesheet" href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/node_modules/office-ui-fabric-core/dist/css/fabric.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
     <title>@ViewData["Title"] - BaGet</title>
@@ -64,10 +64,10 @@
         @RenderBody()
     </section>
 
-    <script src="~/lib/alpinejs/dist/alpine.js"></script>
+    <script src="~/node_modules/alpinejs/dist/alpine.js"></script>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)

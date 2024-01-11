@@ -10,5 +10,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "alpinejs": "^2.8.1",
+    "bootstrap": "^3.4.1",
+    "jquery": "^3.5.1",
+    "office-ui-fabric-core": "^11.0.0"
+  }
 }
