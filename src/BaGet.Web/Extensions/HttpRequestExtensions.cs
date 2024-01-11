@@ -1,5 +1,4 @@
 using Aiursoft.BaGet.Core;
-using Microsoft.AspNetCore.Http;
 
 namespace Aiursoft.BaGet.Web
 {

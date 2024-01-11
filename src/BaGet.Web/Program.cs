@@ -1,4 +1,6 @@
+using Aiursoft.BaGet.Database.Sqlite;
 using Aiursoft.BaGet.Web;
+using Aiursoft.DbTools;
 using static Aiursoft.WebTools.Extends;
 
 namespace Aiursoft.Baget.Web;
@@ -14,7 +16,7 @@ public class Program
                 options.Limits.MaxRequestBodySize = null;
             });
         });
-        await app.RunMigrationsAsync();
+        await app.UpdateDbAsync<SqliteContext>(UpdateMode.MigrateThenUse);
         await app.RunAsync();
     }
 }

@@ -1,6 +1,4 @@
 using System.Net;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 
 namespace Aiursoft.BaGet.Web
 {

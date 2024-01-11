@@ -30,9 +30,6 @@ namespace Aiursoft.BaGet.Core
 
         public Task<int> SaveChangesAsync() => SaveChangesAsync(default);
 
-        public virtual async Task RunMigrationsAsync(CancellationToken cancellationToken)
-            => await Database.MigrateAsync(cancellationToken);
-
         public abstract bool IsUniqueConstraintViolationException(DbUpdateException exception);
 
         public virtual bool SupportsLimitInSubqueries => true;
