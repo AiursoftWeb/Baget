@@ -8,7 +8,7 @@ namespace Aiursoft.BaGet.Core
     // Based off: https://github.com/NuGet/NuGet.Jobs/blob/master/src/Validation.Symbols/SymbolsValidatorService.cs#L44
     public class SymbolIndexingService : ISymbolIndexingService
     {
-        private static readonly HashSet<string> ValidSymbolPackageContentExtensions = new HashSet<string>
+        private static readonly HashSet<string> ValidSymbolPackageContentExtensions = new()
         {
             ".pdb",
             ".nuspec",

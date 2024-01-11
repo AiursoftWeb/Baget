@@ -26,8 +26,8 @@ namespace Aiursoft.BaGet.Core.Tests
             {
                 Setup(localPackages: new List<Package>
                 {
-                    new Package { Version = new NuGetVersion("1.0.0") },
-                    new Package { Version = new NuGetVersion("2.0.0") },
+                    new() { Version = new NuGetVersion("1.0.0") },
+                    new() { Version = new NuGetVersion("2.0.0") },
                 });
 
                 var results = await _target.FindPackageVersionsAsync(
@@ -44,8 +44,8 @@ namespace Aiursoft.BaGet.Core.Tests
             {
                 Setup(upstreamPackages: new List<NuGetVersion>
                 {
-                    new NuGetVersion("1.0.0"),
-                    new NuGetVersion("2.0.0"),
+                    new("1.0.0"),
+                    new("2.0.0"),
                 });
 
                 var results = await _target.FindPackageVersionsAsync(
@@ -63,13 +63,13 @@ namespace Aiursoft.BaGet.Core.Tests
                 Setup(
                     localPackages: new List<Package>
                     {
-                        new Package { Version = new NuGetVersion("1.0.0") },
-                        new Package { Version = new NuGetVersion("2.0.0") },
+                        new() { Version = new NuGetVersion("1.0.0") },
+                        new() { Version = new NuGetVersion("2.0.0") },
                     },
                     upstreamPackages: new List<NuGetVersion>
                     {
-                        new NuGetVersion("2.0.0"),
-                        new NuGetVersion("3.0.0"),
+                        new("2.0.0"),
+                        new("3.0.0"),
                     });
 
                 var results = await _target.FindPackageVersionsAsync(
@@ -123,8 +123,8 @@ namespace Aiursoft.BaGet.Core.Tests
             {
                 Setup(localPackages: new List<Package>
                 {
-                    new Package { Version = new NuGetVersion("1.0.0") },
-                    new Package { Version = new NuGetVersion("2.0.0") },
+                    new() { Version = new NuGetVersion("1.0.0") },
+                    new() { Version = new NuGetVersion("2.0.0") },
                 });
 
                 var results = await _target.FindPackagesAsync("MyPackage", _cancellationToken);
@@ -139,8 +139,8 @@ namespace Aiursoft.BaGet.Core.Tests
             {
                 Setup(upstreamPackages: new List<Package>
                 {
-                    new Package { Version = new NuGetVersion("1.0.0") },
-                    new Package { Version = new NuGetVersion("2.0.0") },
+                    new() { Version = new NuGetVersion("1.0.0") },
+                    new() { Version = new NuGetVersion("2.0.0") },
                 });
 
                 var results = await _target.FindPackagesAsync("MyPackage", _cancellationToken);
@@ -156,13 +156,13 @@ namespace Aiursoft.BaGet.Core.Tests
                 Setup(
                     localPackages: new List<Package>
                     {
-                        new Package { Version = new NuGetVersion("1.0.0") },
-                        new Package { Version = new NuGetVersion("2.0.0") },
+                        new() { Version = new NuGetVersion("1.0.0") },
+                        new() { Version = new NuGetVersion("2.0.0") },
                     },
                     upstreamPackages: new List<Package>
                     {
-                        new Package { Version = new NuGetVersion("2.0.0") },
-                        new Package { Version = new NuGetVersion("3.0.0") },
+                        new() { Version = new NuGetVersion("2.0.0") },
+                        new() { Version = new NuGetVersion("3.0.0") },
                     });
 
                 var results = await _target.FindPackagesAsync("MyPackage", _cancellationToken);
@@ -263,7 +263,7 @@ namespace Aiursoft.BaGet.Core.Tests
         public abstract class MirrorAsync : FactsBase
         {
             protected readonly string _id = "MyPackage";
-            protected readonly NuGetVersion _version = new NuGetVersion("1.0.0");
+            protected readonly NuGetVersion _version = new("1.0.0");
 
             protected abstract Task TargetAsync();
 

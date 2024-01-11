@@ -54,7 +54,7 @@ namespace Aiursoft.BaGet.Core.Tests.Metadata
             {
                 Id = packageId,
                 Authors = new[] { "test" },
-                PackageTypes = new List<PackageType> { new PackageType { Name = "test" } },
+                PackageTypes = new List<PackageType> { new() { Name = "test" } },
                 Dependencies = new List<PackageDependency>(),
                 Version = new NuGetVersion(version),
             };

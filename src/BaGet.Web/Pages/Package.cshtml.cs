@@ -213,14 +213,12 @@ namespace Aiursoft.BaGet.Web
             public IReadOnlyList<DependencyModel> Dependencies { get; set; }
         }
 
-        // TODO: Convert this to records.
         public class DependencyModel
         {
             public string PackageId { get; set; }
             public string VersionSpec { get; set; }
         }
 
-        // TODO: Convert this to records.
         public class VersionModel
         {
             public NuGetVersion Version { get; set; }

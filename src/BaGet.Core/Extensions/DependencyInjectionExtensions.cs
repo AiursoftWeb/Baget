@@ -10,23 +10,6 @@ namespace Aiursoft.BaGet.Core
 {
     public static partial class DependencyInjectionExtensions
     {
-        public static IServiceCollection AddBaGetApplication(
-            this IServiceCollection services,
-            Action<BaGetApplication> configureAction)
-        {
-            var app = new BaGetApplication(services);
-
-            services.AddConfiguration();
-            services.AddBaGetServices();
-            services.AddDefaultProviders();
-
-            configureAction(app);
-
-            services.AddFallbackServices();
-
-            return services;
-        }
-
         /// <summary>
         /// Configures and validates options.
         /// </summary>
@@ -57,17 +40,16 @@ namespace Aiursoft.BaGet.Core
             return services;
         }
 
-        private static void AddConfiguration(this IServiceCollection services)
+        public static void AddConfiguration(this IServiceCollection services)
         {
             services.AddBaGetOptions<BaGetOptions>();
-            services.AddBaGetOptions<DatabaseOptions>(nameof(BaGetOptions.Database));
             services.AddBaGetOptions<FileSystemStorageOptions>(nameof(BaGetOptions.Storage));
             services.AddBaGetOptions<MirrorOptions>(nameof(BaGetOptions.Mirror));
             services.AddBaGetOptions<SearchOptions>(nameof(BaGetOptions.Search));
             services.AddBaGetOptions<StorageOptions>(nameof(BaGetOptions.Storage));
         }
 
-        private static void AddBaGetServices(this IServiceCollection services)
+        public static void AddBaGetServices(this IServiceCollection services)
         {
             services.TryAddSingleton<IFrameworkCompatibilityService, FrameworkCompatibilityService>();
             services.TryAddSingleton<IPackageDownloadsSource, PackageDownloadsJsonSource>();
@@ -108,7 +90,7 @@ namespace Aiursoft.BaGet.Core
             services.TryAddTransient(UpstreamClientFactory);
         }
 
-        private static void AddDefaultProviders(this IServiceCollection services)
+        public static void AddDefaultProviders(this IServiceCollection services)
         {
             services.AddProvider((provider, configuration) =>
             {
@@ -140,26 +122,9 @@ namespace Aiursoft.BaGet.Core
             });
         }
 
-        private static void AddFallbackServices(this IServiceCollection services)
+        public static void AddFallbackServices(this IServiceCollection services)
         {
             services.TryAddScoped<IContext, NullContext>();
-
-            // BaGet's services have multiple implementations that live side-by-side.
-            // The application will choose the implementation using one of two ways:
-            //
-            // 1. Using the first implementation that was registered in the dependency injection
-            //    container. This is the strategy used by applications that embed BaGet.
-            // 2. Using "providers". The providers will examine the application's configuration to
-            //    determine whether its service implementation is active. Thsi is the strategy used
-            //    by the default BaGet application.
-            //
-            // BaGet has database and search services, but the database services are special
-            // in that they may also act as search services. If an application registers the
-            // database service first and the search service second, the application should
-            // use the search service even though it wasn't registered first. Furthermore,
-            // if an application registers a database service without a search service, the
-            // database service should be used for search. This effect is achieved by deferring
-            // the database search service's registration until the very end.
             services.TryAddTransient<ISearchIndexer>(provider => provider.GetRequiredService<NullSearchIndexer>());
             services.TryAddTransient<ISearchService>(provider => provider.GetRequiredService<DatabaseSearchService>());
         }
@@ -197,21 +162,17 @@ namespace Aiursoft.BaGet.Core
         {
             var options = provider.GetRequiredService<IOptionsSnapshot<MirrorOptions>>();
 
-            // TODO: Convert to switch expression.
             if (!options.Value.Enabled)
             {
                 return provider.GetRequiredService<DisabledUpstreamClient>();
             }
 
-            else if (options.Value.Legacy)
+            if (options.Value.Legacy)
             {
                 return provider.GetRequiredService<V2UpstreamClient>();
             }
 
-            else
-            {
-                return provider.GetRequiredService<V3UpstreamClient>();
-            }
+            return provider.GetRequiredService<V3UpstreamClient>();
         }
     }
 }

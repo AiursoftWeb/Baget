@@ -9,7 +9,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
     public class PackageDeletionServiceTests
     {
         private static readonly string PackageId = "Package";
-        private static readonly NuGetVersion PackageVersion = new NuGetVersion("1.0.0");
+        private static readonly NuGetVersion PackageVersion = new("1.0.0");
 
         private readonly Mock<IPackageDatabase> _packages;
         private readonly Mock<IPackageStorageService> _storage;

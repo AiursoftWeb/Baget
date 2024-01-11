@@ -19,33 +19,16 @@ namespace Aiursoft.BaGet
     {
         public const string CorsPolicy = "AllowAll";
 
-        private static readonly HashSet<string> ValidDatabaseTypes
-            = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-            {
-                "AzureTable",
-                "MySql",
-                "PostgreSql",
-                "Sqlite",
-                "SqlServer",
-            };
-
         private static readonly HashSet<string> ValidStorageTypes
-            = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            = new(StringComparer.OrdinalIgnoreCase)
             {
-                "AliyunOss",
-                "AwsS3",
-                "AzureBlobStorage",
-                "Filesystem",
-                "GoogleCloud",
-                "Null",
+                "Filesystem"
             };
 
         private static readonly HashSet<string> ValidSearchTypes
-            = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            = new(StringComparer.OrdinalIgnoreCase)
             {
-                "AzureSearch",
-                "Database",
-                "Null",
+                "Database"
             };
 
         public void Configure(CorsOptions options)
@@ -81,17 +64,9 @@ namespace Aiursoft.BaGet
         {
             var failures = new List<string>();
 
-            if (options.Database == null) failures.Add($"The '{nameof(BaGetOptions.Database)}' config is required");
             if (options.Mirror == null) failures.Add($"The '{nameof(BaGetOptions.Mirror)}' config is required");
             if (options.Search == null) failures.Add($"The '{nameof(BaGetOptions.Search)}' config is required");
             if (options.Storage == null) failures.Add($"The '{nameof(BaGetOptions.Storage)}' config is required");
-
-            if (!ValidDatabaseTypes.Contains(options.Database?.Type))
-            {
-                failures.Add(
-                    $"The '{nameof(BaGetOptions.Database)}:{nameof(DatabaseOptions.Type)}' config is invalid. " +
-                    $"Allowed values: {string.Join(", ", ValidDatabaseTypes)}");
-            }
 
             if (!ValidStorageTypes.Contains(options.Storage?.Type))
             {

@@ -1,25 +1,23 @@
 using Aiursoft.BaGet.Web;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Routing.Constraints;
 
 namespace Aiursoft.BaGet
 {
     public class BaGetEndpointBuilder
     {
-        public void MapEndpoints(IEndpointRouteBuilder endpoints)
+        public void MapEndpoints(WebApplication app)
         {
-            endpoints.MapRazorPages();
+            app.MapRazorPages();
 
-            MapServiceIndexRoutes(endpoints);
-            MapPackagePublishRoutes(endpoints);
-            MapSymbolRoutes(endpoints);
-            MapSearchRoutes(endpoints);
-            MapPackageMetadataRoutes(endpoints);
-            MapPackageContentRoutes(endpoints);
+            MapServiceIndexRoutes(app);
+            MapPackagePublishRoutes(app);
+            MapSymbolRoutes(app);
+            MapSearchRoutes(app);
+            MapPackageMetadataRoutes(app);
+            MapPackageContentRoutes(app);
         }
 
-        public void MapServiceIndexRoutes(IEndpointRouteBuilder endpoints)
+        public void MapServiceIndexRoutes(WebApplication endpoints)
         {
             endpoints.MapControllerRoute(
                 name: Routes.IndexRouteName,
@@ -27,7 +25,7 @@ namespace Aiursoft.BaGet
                 defaults: new { controller = "ServiceIndex", action = "Get" });
         }
 
-        public void MapPackagePublishRoutes(IEndpointRouteBuilder endpoints)
+        public void MapPackagePublishRoutes(WebApplication endpoints)
         {
             endpoints.MapControllerRoute(
                 name: Routes.UploadPackageRouteName,
@@ -48,7 +46,7 @@ namespace Aiursoft.BaGet
                 constraints: new { httpMethod = new HttpMethodRouteConstraint("POST") });
         }
 
-        public void MapSymbolRoutes(IEndpointRouteBuilder endpoints)
+        public void MapSymbolRoutes(WebApplication endpoints)
         {
             endpoints.MapControllerRoute(
                 name: Routes.UploadSymbolRouteName,
@@ -67,7 +65,7 @@ namespace Aiursoft.BaGet
                 defaults: new { controller = "Symbol", action = "Get" });
         }
 
-        public void MapSearchRoutes(IEndpointRouteBuilder endpoints)
+        public void MapSearchRoutes(WebApplication endpoints)
         {
             endpoints.MapControllerRoute(
                 name: Routes.SearchRouteName,
@@ -86,7 +84,7 @@ namespace Aiursoft.BaGet
                 defaults: new { controller = "Search", action = "Dependents" });
         }
 
-        public void MapPackageMetadataRoutes(IEndpointRouteBuilder endpoints)
+        public void MapPackageMetadataRoutes(WebApplication endpoints)
         {
             endpoints.MapControllerRoute(
                name: Routes.RegistrationIndexRouteName,
@@ -99,7 +97,7 @@ namespace Aiursoft.BaGet
                 defaults: new { controller = "PackageMetadata", action = "RegistrationLeaf" });
         }
 
-        public void MapPackageContentRoutes(IEndpointRouteBuilder endpoints)
+        public void MapPackageContentRoutes(WebApplication endpoints)
         {
             endpoints.MapControllerRoute(
                 name: Routes.PackageVersionsRouteName,

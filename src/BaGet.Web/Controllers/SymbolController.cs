@@ -1,6 +1,5 @@
 using Aiursoft.BaGet.Core;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Aiursoft.BaGet.Web

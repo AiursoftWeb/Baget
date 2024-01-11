@@ -1,52 +1,79 @@
-# BaGet
+# Baget
 
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.cn/aiursoft/baget/-/blob/master/LICENSE)
-[![Pipeline stat](https://gitlab.aiursoft.cn/aiursoft/baget/badges/master/pipeline.svg)](https://gitlab.aiursoft.cn/aiursoft/baget/-/pipelines)
-[![Test Coverage](https://gitlab.aiursoft.cn/aiursoft/baget/badges/master/coverage.svg)](https://gitlab.aiursoft.cn/aiursoft/baget/-/pipelines)
-[![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.cn/aiursoft/baget.svg)](https://gitlab.aiursoft.cn/aiursoft/baget/-/commits/master?ref_type=heads)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.cn/aiursoft/Baget/-/blob/master/LICENSE)
+[![Pipeline stat](https://gitlab.aiursoft.cn/aiursoft/Baget/badges/master/pipeline.svg)](https://gitlab.aiursoft.cn/aiursoft/Baget/-/pipelines)
+[![Test Coverage](https://gitlab.aiursoft.cn/aiursoft/Baget/badges/master/coverage.svg)](https://gitlab.aiursoft.cn/aiursoft/Baget/-/pipelines)
+[![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.cn/aiursoft/Baget.svg)](https://gitlab.aiursoft.cn/aiursoft/Baget/-/commits/master?ref_type=heads)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fnuget.aiursoft.cn%2F)](https://nuget.aiursoft.cn)
+[![Docker](https://img.shields.io/badge/docker-latest-blue?logo=docker)](https://hub.aiursoft.cn/#!/taglist/aiursoft/Baget)
 
 A lightweight [NuGet] and [symbol] server.
 
-<p align="center">
-  <img width="100%" src="https://user-images.githubusercontent.com/737941/50140219-d8409700-0258-11e9-94c9-dad24d2b48bb.png">
-</p>
+## Try
 
-## Getting Started
+Try a running Baget [here](https://baget.aiursoft.cn).
 
-1. Install the [.NET SDK]
-2. Download and extract [BaGet's latest release]
-3. Start the service with `dotnet BaGet.dll`
-4. Browse `http://localhost:5000/` in your browser
+## Run in Ubuntu
 
-For more information, please refer to the [documentation].
+The following script will install\update this app on your Ubuntu server. Supports Ubuntu 22.04.
 
-## Features
+On your Ubuntu server, run the following command:
 
-* **Cross-platform**: runs on Windows, macOS, and Linux!
-* **Cloud native**: supports [Docker], [Azure], [AWS], [Google Cloud], [Alibaba Cloud]
-* **Offline support**: [mirror a NuGet server] to speed up builds and enable offline downloads
+```bash
+curl -sL https://gitlab.aiursoft.cn/aiursoft/baget/-/raw/master/install.sh | sudo bash
+```
 
-Stay tuned, more features are planned!
+Of course it is suggested that append a custom port number to the command:
 
-[Build status]: https://img.shields.io/github/actions/workflow/status/loic-sharma/BaGet/.github/workflows/main.yml
-[Discord image]: https://img.shields.io/discord/889377258068930591
-[Discord link]: https://discord.gg/MWbhpf66mk
-[Twitter image]: https://img.shields.io/twitter/follow/bagetapp?label=Follow
-[Twitter link]: https://twitter.com/bagetapp
+```bash
+curl -sL https://gitlab.aiursoft.cn/aiursoft/baget/-/raw/master/install.sh | sudo bash -s 8080
+```
 
-[NuGet]: https://learn.microsoft.com/nuget/what-is-nuget
-[symbol]: https://docs.microsoft.com/en-us/windows/desktop/debug/symbol-servers-and-symbol-stores
-[.NET SDK]: https://www.microsoft.com/net/download
-[Node.js]: https://nodejs.org/
+It will install the app as a systemd service, and start it automatically. Binary files will be located at `/opt/apps`. Service files will be located at `/etc/systemd/system`.
 
-[BaGet's latest release]: https://github.com/loic-sharma/BaGet/releases
+## Run manually
 
-[Documentation]: https://loic-sharma.github.io/BaGet/
-[Docker]: https://loic-sharma.github.io/BaGet/installation/docker/
-[Azure]: https://loic-sharma.github.io/BaGet/installation/azure/
-[AWS]: https://loic-sharma.github.io/BaGet/installation/aws/
-[Google Cloud]: https://loic-sharma.github.io/BaGet/installation/gcp/
-[Alibaba Cloud]: https://loic-sharma.github.io/BaGet/installation/aliyun/
+Requirements about how to run
 
-[Mirror a NuGet server]: https://loic-sharma.github.io/BaGet/configuration/#enable-read-through-caching
+1. Install [.NET 7 SDK](http://dot.net/) and [Node.js](https://nodejs.org/).
+2. Execute `npm install` at `wwwroot` folder to install the dependencies.
+3. Execute `dotnet run` to run the app.
+4. Use your browser to view [http://localhost:5000](http://localhost:5000).
+
+## Run in Microsoft Visual Studio
+
+1. Open the `.sln` file in the project path.
+2. Press `F5` to run the app.
+
+## Run in Docker
+
+First, install Docker [here](https://docs.docker.com/get-docker/).
+
+Then run the following commands in a Linux shell:
+
+```bash
+image=hub.aiursoft.cn/aiursoft/baget
+appName=baget
+docker pull $image
+docker run -d --name $appName --restart unless-stopped -p 5000:5000 -v /var/www/$appName:/data $image
+```
+
+That will start a web server at `http://localhost:5000` and you can test the app.
+
+The docker image has the following context:
+
+| Properties  | Value                           |
+|-------------|---------------------------------|
+| Image       | hub.aiursoft.cn/aiursoft/baget  |
+| Ports       | 5000                            |
+| Binary path | /app                            |
+| Data path   | /data                           |
+| Config path | /data/appsettings.json          |
+
+## How to contribute
+
+There are many ways to contribute to the project: logging bugs, submitting pull requests, reporting issues, and creating suggestions.
+
+Even if you with push rights on the repository, you should create a personal fork and create feature branches there when you need them. This keeps the main repository clean and your workflow cruft out of sight.
+
+We're also interested in your feedback on the future of this project. You can submit a suggestion or feature request through the issue tracker. To make this process more effective, we're asking that these include more information to help define them more clearly.

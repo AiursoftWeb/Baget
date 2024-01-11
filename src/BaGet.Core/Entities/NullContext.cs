@@ -16,11 +16,6 @@ namespace Aiursoft.BaGet.Core
             throw new NotImplementedException();
         }
 
-        public Task RunMigrationsAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
-
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();

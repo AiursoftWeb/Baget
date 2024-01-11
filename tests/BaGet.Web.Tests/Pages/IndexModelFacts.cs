@@ -10,7 +10,7 @@ namespace Aiursoft.BaGet.Web.Tests
         private readonly IndexModel _target;
 
         private SearchRequest _capturedRequest;
-        private readonly SearchResponse _response = new SearchResponse();
+        private readonly SearchResponse _response = new();
         private readonly CancellationToken _cancellation = CancellationToken.None;
 
         public IndexModelFacts()

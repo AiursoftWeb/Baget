@@ -6,11 +6,11 @@
     <meta name="description" content="BaGet">
     <meta name="author" content="Loic Sharma">
 
-    <link rel="shortcut icon" href="~/_content/BaGet.Web/favicon.ico">
+    <link rel="shortcut icon" href="~/favicon.ico">
 
-    <link rel="stylesheet" href="~/_content/BaGet.Web/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/_content/BaGet.Web/lib/office-ui-fabric-core/dist/css/fabric.min.css" />
-    <link rel="stylesheet" href="~/_content/BaGet.Web/css/site.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/office-ui-fabric-core/dist/css/fabric.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 
     <title>@ViewData["Title"] - BaGet</title>
 </head>
@@ -64,11 +64,11 @@
         @RenderBody()
     </section>
 
-    <script src="~/_content/BaGet.Web/lib/alpinejs/dist/alpine.js"></script>
+    <script src="~/lib/alpinejs/dist/alpine.js"></script>
 
-    <script src="~/_content/BaGet.Web/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/_content/BaGet.Web/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/_content/BaGet.Web/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

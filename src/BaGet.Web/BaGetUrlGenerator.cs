@@ -1,6 +1,4 @@
 using Aiursoft.BaGet.Core;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using NuGet.Versioning;
 
 namespace Aiursoft.BaGet.Web
