@@ -2,7 +2,7 @@ aiur() { arg="$( cut -d ' ' -f 2- <<< "$@" )" && curl -sL https://gitlab.aiursof
 
 app_name="baget"
 repo_path="https://gitlab.aiursoft.cn/aiursoft/baget"
-proj_path="src/Baget.Web/Aiursoft.Baget.Web.csproj"
+proj_path="src/BaGet.Web/Aiursoft.BaGet.Web.csproj"
 
 get_dll_name()
 {
