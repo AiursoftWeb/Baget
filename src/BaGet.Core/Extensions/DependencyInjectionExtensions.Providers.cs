@@ -63,12 +63,12 @@ namespace Aiursoft.BaGet.Core
 
             services.AddDbContext<TContext>(configureContext);
 
-            services.AddProvider<IContext>((provider, config) =>
+            services.AddProvider<IContext>((provider, _) =>
             {
                 return provider.GetRequiredService<TContext>();
             });
 
-            services.AddProvider<IPackageDatabase>((provider, config) =>
+            services.AddProvider<IPackageDatabase>((provider, _) =>
             {
                 return provider.GetRequiredService<PackageDatabase>();
             });

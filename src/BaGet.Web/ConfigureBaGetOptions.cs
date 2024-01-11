@@ -19,16 +19,6 @@ namespace Aiursoft.BaGet
     {
         public const string CorsPolicy = "AllowAll";
 
-        private static readonly HashSet<string> ValidDatabaseTypes
-            = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-            {
-                "AzureTable",
-                "MySql",
-                "PostgreSql",
-                "Sqlite",
-                "SqlServer",
-            };
-
         private static readonly HashSet<string> ValidStorageTypes
             = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {

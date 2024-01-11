@@ -44,7 +44,7 @@ namespace Aiursoft.BaGet.Web
 
             var connectionString = configuration.GetConnectionString("DefaultConnection") 
                                    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            app.Services.AddBaGetDbContextProvider<SqliteContext>("Sqlite", (provider, options) =>
+            app.Services.AddBaGetDbContextProvider<SqliteContext>("Sqlite", (_, options) =>
             {
                 options.UseSqlite(connectionString);
             });
