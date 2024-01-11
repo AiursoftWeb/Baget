@@ -1,7 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Aiursoft.BaGet.Core
 {
@@ -10,7 +8,7 @@ namespace Aiursoft.BaGet.Core
         private static readonly string SearchTypeKey = $"{nameof(BaGetOptions.Search)}:{nameof(SearchOptions.Type)}";
         private static readonly string StorageTypeKey = $"{nameof(BaGetOptions.Storage)}:{nameof(StorageOptions.Type)}";
 
-        private static readonly string DatabaseSearchType = "Database";
+        public static readonly string DatabaseSearchType = "Database";
 
         /// <summary>
         /// Add a new provider to the dependency injection container. The provider may
@@ -26,7 +24,6 @@ namespace Aiursoft.BaGet.Core
             where TService : class
         {
             services.AddSingleton<IProvider<TService>>(new DelegateProvider<TService>(func));
-
             return services;
         }
 
@@ -50,42 +47,6 @@ namespace Aiursoft.BaGet.Core
         public static bool HasStorageType(this IConfiguration config, string value)
         {
             return config[StorageTypeKey]?.Equals(value, StringComparison.OrdinalIgnoreCase) ?? false;
-        }
-
-        public static IServiceCollection AddBaGetDbContextProvider<TContext>(
-            this IServiceCollection services,
-            string databaseType,
-            Action<IServiceProvider, DbContextOptionsBuilder> configureContext)
-            where TContext : DbContext, IContext
-        {
-            services.TryAddScoped<IContext>(provider => provider.GetRequiredService<TContext>());
-            services.TryAddTransient<IPackageDatabase>(provider => provider.GetRequiredService<PackageDatabase>());
-
-            services.AddDbContext<TContext>(configureContext);
-
-            services.AddProvider<IContext>((provider, _) =>
-            {
-                return provider.GetRequiredService<TContext>();
-            });
-
-            services.AddProvider<IPackageDatabase>((provider, _) =>
-            {
-                return provider.GetRequiredService<PackageDatabase>();
-            });
-
-            services.AddProvider<ISearchIndexer>((provider, config) =>
-            {
-                if (!config.HasSearchType(DatabaseSearchType)) return null;
-                return provider.GetRequiredService<NullSearchIndexer>();
-            });
-
-            services.AddProvider<ISearchService>((provider, config) =>
-            {
-                if (!config.HasSearchType(DatabaseSearchType)) return null;
-                return provider.GetRequiredService<DatabaseSearchService>();
-            });
-
-            return services;
         }
 
         /// <summary>

@@ -1,12 +1,13 @@
 using System.Text.Json.Serialization;
 using Aiursoft.BaGet.Core;
 using Aiursoft.BaGet.Database.Sqlite;
+using Aiursoft.DbTools.Sqlite;
 using Aiursoft.WebTools.Models;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 
 namespace Aiursoft.BaGet.Web
@@ -43,11 +44,23 @@ namespace Aiursoft.BaGet.Web
             services.AddDefaultProviders();
 
             var connectionString = configuration.GetConnectionString("DefaultConnection") 
-                                   ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            app.Services.AddBaGetDbContextProvider<SqliteContext>("Sqlite", (_, options) =>
-            {
-                options.UseSqlite(connectionString);
-            });
+                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            
+            services.TryAddScoped<IContext>(provider => provider.GetRequiredService<SqliteContext>());
+            services.TryAddTransient<IPackageDatabase>(provider => provider.GetRequiredService<PackageDatabase>());
+
+            services.AddAiurSqliteWithCache<SqliteContext>(connectionString);
+
+            services.AddProvider<IContext>((provider, _) => provider.GetRequiredService<SqliteContext>());
+
+            services.AddProvider<IPackageDatabase>((provider, _) => provider.GetRequiredService<PackageDatabase>());
+
+            services.AddProvider<ISearchIndexer>((provider, config) => 
+                !config.HasSearchType(DependencyInjectionExtensions.DatabaseSearchType) ? null : provider.GetRequiredService<NullSearchIndexer>());
+
+            services.AddProvider<ISearchService>((provider, config) => 
+                !config.HasSearchType(DependencyInjectionExtensions.DatabaseSearchType) ? null : provider.GetRequiredService<DatabaseSearchService>());
+            
             app.AddFileStorage();
 
             services.AddFallbackServices();
