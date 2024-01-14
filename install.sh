@@ -35,6 +35,7 @@ install()
     fi
 
     # Publish the app
+    rm /tmp/repo/nuget.config
     aiur dotnet/publish "/tmp/repo/$proj_path" "/opt/apps/$app_name"
     
     # Register the service
