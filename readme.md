@@ -11,7 +11,7 @@ A lightweight [NuGet] and [symbol] server.
 
 ## Try
 
-Try a running Baget [here](https://baget.aiursoft.cn).
+Try a running Baget [here](https://nuget.aiursoft.cn).
 
 ## Run in Ubuntu
 
