@@ -1,4 +1,3 @@
-using Aiursoft.BaGet.Core;
 using Aiursoft.BaGet.Core.Entities;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;

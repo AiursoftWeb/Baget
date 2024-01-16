@@ -65,7 +65,7 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             [Fact]
             public async Task ReturnsEmpty()
             {
-                _client.Setup<Task<IReadOnlyList<PackageMetadata>>>(c => c.GetPackageMetadataAsync(_id, _cancellation))
+                _client.Setup(c => c.GetPackageMetadataAsync(_id, _cancellation))
                     .ReturnsAsync(new List<PackageMetadata>());
 
                 var result = await _target.ListPackagesAsync(_id, _cancellation);
@@ -76,7 +76,7 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             [Fact]
             public async Task IgnoresExceptions()
             {
-                _client.Setup<Task<IReadOnlyList<PackageMetadata>>>(c => c.GetPackageMetadataAsync(_id, _cancellation))
+                _client.Setup(c => c.GetPackageMetadataAsync(_id, _cancellation))
                     .ThrowsAsync(new InvalidDataException("Hello world"));
 
                 var result = await _target.ListPackagesAsync(_id, _cancellation);
@@ -89,7 +89,7 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             {
                 var published = DateTimeOffset.Now;
 
-                _client.Setup<Task<IReadOnlyList<PackageMetadata>>>(c => c.GetPackageMetadataAsync(_id, _cancellation))
+                _client.Setup(c => c.GetPackageMetadataAsync(_id, _cancellation))
                     .ReturnsAsync(new List<PackageMetadata>
                     {
                         new()
