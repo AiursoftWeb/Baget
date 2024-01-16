@@ -1,3 +1,5 @@
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Storage;
 using NuGet.Versioning;
 
 namespace Aiursoft.BaGet.Core

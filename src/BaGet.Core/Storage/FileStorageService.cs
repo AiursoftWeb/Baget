@@ -1,6 +1,8 @@
+using Aiursoft.BaGet.Core.Configuration;
+using Aiursoft.BaGet.Core.Extensions;
 using Microsoft.Extensions.Options;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Storage
 {
     /// <summary>
     /// Stores content on disk.

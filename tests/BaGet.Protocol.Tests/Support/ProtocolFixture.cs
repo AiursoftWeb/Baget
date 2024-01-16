@@ -1,6 +1,11 @@
-using Aiursoft.BaGet.Protocol.Internal;
+using Aiursoft.BaGet.Protocol.Catalog;
+using Aiursoft.BaGet.Protocol.ClientFactories;
+using Aiursoft.BaGet.Protocol.PackageContent;
+using Aiursoft.BaGet.Protocol.PackageMetadata;
+using Aiursoft.BaGet.Protocol.Search;
+using Aiursoft.BaGet.Protocol.ServiceIndex;
 
-namespace Aiursoft.BaGet.Protocol.Tests
+namespace Aiursoft.BaGet.Protocol.Tests.Support
 {
     public class ProtocolFixture
     {

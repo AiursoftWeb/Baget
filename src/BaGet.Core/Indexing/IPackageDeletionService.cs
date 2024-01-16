@@ -1,6 +1,6 @@
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Indexing
 {
     public interface IPackageDeletionService
     {

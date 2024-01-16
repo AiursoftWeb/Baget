@@ -1,6 +1,6 @@
 using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol.Search
 {
     /// <summary>
     /// The client used to search for packages.

@@ -1,4 +1,6 @@
-namespace Aiursoft.BaGet.Core
+using Aiursoft.BaGet.Core.Entities;
+
+namespace Aiursoft.BaGet.Core.Metadata
 {
     /// <summary>
     /// The information on all versions of a package.

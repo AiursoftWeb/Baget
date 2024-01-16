@@ -1,12 +1,25 @@
 using System.Net;
 using System.Reflection;
+using Aiursoft.BaGet.Core.Authentication;
+using Aiursoft.BaGet.Core.Configuration;
+using Aiursoft.BaGet.Core.Content;
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Indexing;
+using Aiursoft.BaGet.Core.Metadata;
+using Aiursoft.BaGet.Core.Search;
+using Aiursoft.BaGet.Core.ServiceIndex;
+using Aiursoft.BaGet.Core.Storage;
+using Aiursoft.BaGet.Core.Upstream;
+using Aiursoft.BaGet.Core.Upstream.Clients;
+using Aiursoft.BaGet.Core.Validation;
 using Aiursoft.BaGet.Protocol;
+using Aiursoft.BaGet.Protocol.ClientFactories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Extensions
 {
     public static class DependencyInjectionExtensions
     {

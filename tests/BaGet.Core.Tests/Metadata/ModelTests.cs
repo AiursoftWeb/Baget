@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text.Json.Serialization;
+using Aiursoft.BaGet.Core.Metadata;
 using Aiursoft.BaGet.Protocol.Models;
 using Xunit;
 

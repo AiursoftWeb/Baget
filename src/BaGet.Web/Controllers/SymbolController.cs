@@ -1,8 +1,12 @@
-using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.Authentication;
+using Aiursoft.BaGet.Core.Configuration;
+using Aiursoft.BaGet.Core.Indexing;
+using Aiursoft.BaGet.Core.Storage;
+using Aiursoft.BaGet.Web.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-namespace Aiursoft.BaGet.Web
+namespace Aiursoft.BaGet.Web.Controllers
 {
     public class SymbolController : Controller
     {

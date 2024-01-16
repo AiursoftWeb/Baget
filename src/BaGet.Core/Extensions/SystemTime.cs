@@ -1,4 +1,4 @@
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Extensions
 {
     /// <summary>
     /// A wrapper that allows for unit tests related to system time.

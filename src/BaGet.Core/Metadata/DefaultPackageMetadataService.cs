@@ -1,7 +1,7 @@
 using Aiursoft.BaGet.Protocol.Models;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Metadata
 {
     /// <inheritdoc />
     public class DefaultPackageMetadataService : IPackageMetadataService

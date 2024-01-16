@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Configuration
 {
     public class MirrorOptions : IValidatableObject
     {

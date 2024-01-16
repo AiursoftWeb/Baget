@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
 using NuGet.Frameworks;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Indexing
 {
     using static FrameworkConstants;
 

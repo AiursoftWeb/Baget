@@ -1,9 +1,10 @@
-﻿using Aiursoft.BaGet.Core;
+﻿using Aiursoft.BaGet.Core.Search;
 using Aiursoft.BaGet.Protocol.Models;
+using Aiursoft.BaGet.Web.Pages;
 using Moq;
 using Xunit;
 
-namespace Aiursoft.BaGet.Web.Tests
+namespace Aiursoft.BaGet.Web.Tests.Pages
 {
     public class IndexModelFacts
     {

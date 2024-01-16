@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Entities.Converters
 {
     public class StringArrayComparer : ValueComparer<string[]>
     {

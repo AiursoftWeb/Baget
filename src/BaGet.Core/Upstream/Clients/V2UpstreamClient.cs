@@ -1,3 +1,5 @@
+using Aiursoft.BaGet.Core.Configuration;
+using Aiursoft.BaGet.Core.Entities;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NuGet.Common;
@@ -7,7 +9,7 @@ using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Upstream.Clients
 {
     using ILogger = ILogger<V2UpstreamClient>;
     using INuGetLogger = NuGet.Common.ILogger;

@@ -1,7 +1,8 @@
+using Aiursoft.BaGet.Core.Entities.Converters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Entities
 {
     public abstract class AbstractContext<TContext> : DbContext, IContext where TContext : DbContext
     {

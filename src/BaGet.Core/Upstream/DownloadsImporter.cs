@@ -1,7 +1,8 @@
+using Aiursoft.BaGet.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Upstream
 {
     public class DownloadsImporter
     {

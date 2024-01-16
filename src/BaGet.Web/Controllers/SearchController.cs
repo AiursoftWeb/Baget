@@ -1,8 +1,8 @@
-using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.Search;
 using Aiursoft.BaGet.Protocol.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Aiursoft.BaGet.Web
+namespace Aiursoft.BaGet.Web.Controllers
 {
     public class SearchController : Controller
     {

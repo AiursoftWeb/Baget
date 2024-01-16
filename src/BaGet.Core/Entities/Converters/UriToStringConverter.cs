@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Entities.Converters
 {
     public class UriToStringConverter : ValueConverter<Uri, string>
     {

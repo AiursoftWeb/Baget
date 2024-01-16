@@ -1,8 +1,13 @@
+using Aiursoft.BaGet.Core.Configuration;
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Extensions;
+using Aiursoft.BaGet.Core.Search;
+using Aiursoft.BaGet.Core.Storage;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NuGet.Packaging;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Indexing
 {
     public class PackageIndexingService : IPackageIndexingService
     {

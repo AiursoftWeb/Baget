@@ -1,4 +1,4 @@
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Storage
 {
     /// <summary>
     /// A minimal storage implementation, used for advanced scenarios.

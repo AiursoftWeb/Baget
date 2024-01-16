@@ -1,8 +1,10 @@
+using Aiursoft.BaGet.Core.Configuration;
+using Aiursoft.BaGet.Core.Storage;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Indexing
 {
     public class PackageDeletionService : IPackageDeletionService
     {

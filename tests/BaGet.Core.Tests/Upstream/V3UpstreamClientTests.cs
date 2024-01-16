@@ -1,11 +1,13 @@
-﻿using Aiursoft.BaGet.Protocol;
+﻿using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Upstream.Clients;
+using Aiursoft.BaGet.Protocol;
 using Aiursoft.BaGet.Protocol.Models;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NuGet.Versioning;
 using Xunit;
 
-namespace Aiursoft.BaGet.Core.Tests
+namespace Aiursoft.BaGet.Core.Tests.Upstream
 {
     public class V3UpstreamClientTests
     {
@@ -63,8 +65,7 @@ namespace Aiursoft.BaGet.Core.Tests
             [Fact]
             public async Task ReturnsEmpty()
             {
-                _client
-                    .Setup(c => c.GetPackageMetadataAsync(_id, _cancellation))
+                _client.Setup<Task<IReadOnlyList<PackageMetadata>>>(c => c.GetPackageMetadataAsync(_id, _cancellation))
                     .ReturnsAsync(new List<PackageMetadata>());
 
                 var result = await _target.ListPackagesAsync(_id, _cancellation);
@@ -75,8 +76,7 @@ namespace Aiursoft.BaGet.Core.Tests
             [Fact]
             public async Task IgnoresExceptions()
             {
-                _client
-                    .Setup(c => c.GetPackageMetadataAsync(_id, _cancellation))
+                _client.Setup<Task<IReadOnlyList<PackageMetadata>>>(c => c.GetPackageMetadataAsync(_id, _cancellation))
                     .ThrowsAsync(new InvalidDataException("Hello world"));
 
                 var result = await _target.ListPackagesAsync(_id, _cancellation);
@@ -89,8 +89,7 @@ namespace Aiursoft.BaGet.Core.Tests
             {
                 var published = DateTimeOffset.Now;
 
-                _client
-                    .Setup(c => c.GetPackageMetadataAsync(_id, _cancellation))
+                _client.Setup<Task<IReadOnlyList<PackageMetadata>>>(c => c.GetPackageMetadataAsync(_id, _cancellation))
                     .ReturnsAsync(new List<PackageMetadata>
                     {
                         new()

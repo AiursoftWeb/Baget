@@ -1,3 +1,4 @@
+using Aiursoft.BaGet.Protocol.Extensions;
 using Aiursoft.BaGet.Protocol.Models;
 using Microsoft.Extensions.Logging;
 

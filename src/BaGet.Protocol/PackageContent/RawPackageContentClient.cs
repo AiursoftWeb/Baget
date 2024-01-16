@@ -1,8 +1,9 @@
 using System.Net;
+using Aiursoft.BaGet.Protocol.Extensions;
 using Aiursoft.BaGet.Protocol.Models;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Protocol.Internal
+namespace Aiursoft.BaGet.Protocol.PackageContent
 {
     /// <summary>
     /// The client to interact with an upstream source's Package Content resource.

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Options;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Validation
 {
     /// <summary>
     /// A configuration that validates options using data annotations.

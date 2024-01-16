@@ -1,4 +1,4 @@
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Indexing
 {
     /// <summary>
     /// The result of attempting to index a symbol package.

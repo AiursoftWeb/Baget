@@ -1,7 +1,7 @@
 using Aiursoft.BaGet.Protocol.Models;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol.PackageContent
 {
     /// <summary>
     /// The Package Content resource, used to download NuGet packages and to fetch other metadata.

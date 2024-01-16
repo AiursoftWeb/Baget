@@ -1,7 +1,8 @@
+using Aiursoft.BaGet.Core.Entities;
 using Microsoft.Extensions.Logging;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Storage
 {
     public class PackageStorageService : IPackageStorageService
     {

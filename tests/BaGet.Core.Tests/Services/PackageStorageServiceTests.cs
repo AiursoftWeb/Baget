@@ -1,4 +1,6 @@
 using System.Text;
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Storage;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NuGet.Versioning;

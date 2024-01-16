@@ -1,8 +1,10 @@
 using System.Reflection.Metadata;
+using Aiursoft.BaGet.Core.Extensions;
+using Aiursoft.BaGet.Core.Storage;
 using Microsoft.Extensions.Logging;
 using NuGet.Packaging;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Indexing
 {
     // Based off: https://github.com/NuGet/NuGetGallery/blob/master/src/NuGetGallery/Services/SymbolPackageUploadService.cs
     // Based off: https://github.com/NuGet/NuGet.Jobs/blob/master/src/Validation.Symbols/SymbolsValidatorService.cs#L44

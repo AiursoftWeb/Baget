@@ -1,9 +1,8 @@
 using Aiursoft.BaGet.Database.Sqlite;
-using Aiursoft.BaGet.Web;
 using Aiursoft.DbTools;
 using static Aiursoft.WebTools.Extends;
 
-namespace Aiursoft.Baget.Web;
+namespace Aiursoft.BaGet.Web;
 
 public class Program
 {

@@ -1,7 +1,8 @@
 using System.Text;
+using Aiursoft.BaGet.Protocol.Extensions;
 using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Protocol.Internal
+namespace Aiursoft.BaGet.Protocol.Search
 {
     /// <summary>
     /// The client used to search for packages.

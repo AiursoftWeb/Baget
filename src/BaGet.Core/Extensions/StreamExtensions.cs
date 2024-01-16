@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Extensions
 {
     public static class StreamExtensions
     {

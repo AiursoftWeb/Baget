@@ -1,4 +1,6 @@
-using Aiursoft.BaGet.Protocol.Internal;
+using Aiursoft.BaGet.Protocol.Extensions;
+using Aiursoft.BaGet.Protocol.ServiceIndex;
+using Aiursoft.BaGet.Protocol.Tests.Support;
 using Xunit;
 
 namespace Aiursoft.BaGet.Protocol.Tests

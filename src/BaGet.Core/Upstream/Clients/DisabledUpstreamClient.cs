@@ -1,6 +1,7 @@
-﻿using NuGet.Versioning;
+﻿using Aiursoft.BaGet.Core.Entities;
+using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Upstream.Clients
 {
     /// <summary>
     /// The client used when there are no upstream package sources.

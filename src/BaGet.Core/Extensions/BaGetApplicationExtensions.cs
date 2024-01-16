@@ -1,8 +1,10 @@
-using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.Configuration;
+using Aiursoft.BaGet.Core.Search;
+using Aiursoft.BaGet.Core.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace Aiursoft.BaGet
+namespace Aiursoft.BaGet.Core.Extensions
 {
     public static class BaGetApplicationExtensions
     {

@@ -1,6 +1,6 @@
 using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Protocol.Internal
+namespace Aiursoft.BaGet.Protocol.Catalog
 {
     public class NullCatalogClient : ICatalogClient
     {

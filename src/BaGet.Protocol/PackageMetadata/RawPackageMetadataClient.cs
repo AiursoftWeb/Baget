@@ -1,6 +1,7 @@
+using Aiursoft.BaGet.Protocol.Extensions;
 using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Protocol.Internal
+namespace Aiursoft.BaGet.Protocol.PackageMetadata
 {
     /// <summary>
     /// The client to interact with an upstream source's Package Metadata resource.

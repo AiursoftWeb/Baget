@@ -1,5 +1,10 @@
 using System.Net;
+using Aiursoft.BaGet.Protocol.ClientFactories;
+using Aiursoft.BaGet.Protocol.Extensions;
 using Aiursoft.BaGet.Protocol.Models;
+using Aiursoft.BaGet.Protocol.PackageContent;
+using Aiursoft.BaGet.Protocol.PackageMetadata;
+using Aiursoft.BaGet.Protocol.Search;
 using NuGet.Versioning;
 
 namespace Aiursoft.BaGet.Protocol
@@ -159,8 +164,8 @@ namespace Aiursoft.BaGet.Protocol
             var packages = await GetPackageMetadataAsync(packageId, cancellationToken);
 
             return packages
-                .Where(p => p.IsListed())
-                .Select(p => p.ParseVersion())
+                .Where(p => RegistrationModelExtensions.IsListed(p))
+                .Select(p => RegistrationModelExtensions.ParseVersion(p))
                 .ToList();
         }
 
@@ -197,11 +202,11 @@ namespace Aiursoft.BaGet.Protocol
         /// <param name="packageId">The package ID.</param>
         /// <param name="cancellationToken">A token to cancel the task.</param>
         /// <returns>The package's metadata, or an empty list if the package does not exist.</returns>
-        public virtual async Task<IReadOnlyList<PackageMetadata>> GetPackageMetadataAsync(
+        public virtual async Task<IReadOnlyList<Models.PackageMetadata>> GetPackageMetadataAsync(
             string packageId,
             CancellationToken cancellationToken = default)
         {
-            var result = new List<PackageMetadata>();
+            var result = new List<Models.PackageMetadata>();
 
             var registrationIndex = await _metadataClient.GetRegistrationIndexOrNullAsync(packageId, cancellationToken);
 
@@ -244,7 +249,7 @@ namespace Aiursoft.BaGet.Protocol
         /// <exception cref="PackageNotFoundException">
         ///     The package could not be found.
         /// </exception>
-        public virtual async Task<PackageMetadata> GetPackageMetadataAsync(
+        public virtual async Task<Models.PackageMetadata> GetPackageMetadataAsync(
             string packageId,
             NuGetVersion packageVersion,
             CancellationToken cancellationToken = default)

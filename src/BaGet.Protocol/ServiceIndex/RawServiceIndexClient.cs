@@ -1,6 +1,7 @@
+using Aiursoft.BaGet.Protocol.Extensions;
 using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Protocol.Internal
+namespace Aiursoft.BaGet.Protocol.ServiceIndex
 {
     /// <summary>
     /// The NuGet Service Index client, used to discover other resources.

@@ -1,11 +1,14 @@
 using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.Content;
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Search;
 using Markdig;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NuGet.Frameworks;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Web
+namespace Aiursoft.BaGet.Web.Pages
 {
     public class PackageModel : PageModel
     {

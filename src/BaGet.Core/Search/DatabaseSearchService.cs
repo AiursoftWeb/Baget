@@ -1,7 +1,10 @@
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Indexing;
+using Aiursoft.BaGet.Core.Metadata;
 using Aiursoft.BaGet.Protocol.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Search
 {
     public class DatabaseSearchService : ISearchService
     {

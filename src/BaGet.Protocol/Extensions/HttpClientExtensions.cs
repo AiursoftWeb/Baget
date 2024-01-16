@@ -1,7 +1,7 @@
 using System.Net;
 using System.Text.Json;
 
-namespace Aiursoft.BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol.Extensions
 {
     internal static class HttpClientExtensions
     {

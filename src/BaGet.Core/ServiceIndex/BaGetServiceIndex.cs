@@ -1,6 +1,6 @@
 using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.ServiceIndex
 {
     public class BaGetServiceIndex : IServiceIndexService
     {

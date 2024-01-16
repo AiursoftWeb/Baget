@@ -1,6 +1,7 @@
-﻿using Aiursoft.BaGet.Protocol.Models;
+﻿using Aiursoft.BaGet.Core.Metadata;
+using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Search
 {
     public class SearchResponseBuilder : ISearchResponseBuilder
     {

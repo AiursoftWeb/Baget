@@ -1,7 +1,8 @@
+using Aiursoft.BaGet.Core.Storage;
 using Aiursoft.BaGet.Protocol.Models;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Content
 {
     /// <summary>
     /// Implements the NuGet Package Content resource in NuGet's V3 protocol.

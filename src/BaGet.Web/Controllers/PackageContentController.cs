@@ -1,9 +1,9 @@
-using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.Content;
 using Aiursoft.BaGet.Protocol.Models;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Web
+namespace Aiursoft.BaGet.Web.Controllers
 {
     /// <summary>
     /// The Package Content resource, used to download content from packages.

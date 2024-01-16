@@ -1,4 +1,4 @@
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Upstream
 {
     public interface IPackageDownloadsSource
     {

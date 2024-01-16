@@ -1,4 +1,4 @@
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Storage
 {
     /// <summary>
     /// A low-level storage abstraction.

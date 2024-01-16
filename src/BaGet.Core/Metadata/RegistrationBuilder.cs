@@ -1,6 +1,7 @@
+using Aiursoft.BaGet.Core.Entities;
 using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Metadata
 {
     public class RegistrationBuilder
     {

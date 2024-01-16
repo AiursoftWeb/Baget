@@ -1,6 +1,13 @@
 using System.Text.Json.Serialization;
 using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.Configuration;
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Extensions;
+using Aiursoft.BaGet.Core.Search;
+using Aiursoft.BaGet.Core.Storage;
 using Aiursoft.BaGet.Database.Sqlite;
+using Aiursoft.BaGet.Web.Controllers;
+using Aiursoft.BaGet.Web.Extensions;
 using Aiursoft.DbTools.Sqlite;
 using Aiursoft.WebTools.Models;
 using Microsoft.AspNetCore.Cors.Infrastructure;

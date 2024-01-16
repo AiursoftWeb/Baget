@@ -1,4 +1,6 @@
-namespace Aiursoft.BaGet.Core
+using Aiursoft.BaGet.Core.Entities;
+
+namespace Aiursoft.BaGet.Core.Search
 {
     public interface ISearchIndexer
     {

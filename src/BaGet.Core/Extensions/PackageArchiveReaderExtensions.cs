@@ -1,7 +1,8 @@
+using Aiursoft.BaGet.Core.Entities;
 using NuGet.Common;
 using NuGet.Packaging;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Extensions
 {
     using NuGetPackageType = NuGet.Packaging.Core.PackageType;
 

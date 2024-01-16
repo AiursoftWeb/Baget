@@ -1,4 +1,4 @@
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Configuration
 {
     /// <summary>
     /// How BaGet should interpret package deletion requests.

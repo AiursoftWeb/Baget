@@ -1,3 +1,5 @@
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Metadata;
 using Moq;
 using NuGet.Versioning;
 using Xunit;

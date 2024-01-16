@@ -1,6 +1,6 @@
-using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.Extensions;
 
-namespace Aiursoft.BaGet.Web
+namespace Aiursoft.BaGet.Web.Extensions
 {
     public static class HttpRequestExtensions
     {

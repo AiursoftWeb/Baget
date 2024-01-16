@@ -1,4 +1,4 @@
-namespace Aiursoft.BaGet.Web
+namespace Aiursoft.BaGet.Web.Extensions
 {
     public static class IApplicationBuilderExtensions
     {

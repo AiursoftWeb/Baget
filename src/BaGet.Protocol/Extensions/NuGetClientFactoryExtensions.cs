@@ -1,7 +1,8 @@
 using Aiursoft.BaGet.Protocol.Catalog;
+using Aiursoft.BaGet.Protocol.ClientFactories;
 using Microsoft.Extensions.Logging;
 
-namespace Aiursoft.BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol.Extensions
 {
     public static class NuGetClientFactoryExtensions
     {

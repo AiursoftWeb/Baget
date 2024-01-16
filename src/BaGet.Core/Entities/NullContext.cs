@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Entities
 {
     public class NullContext : IContext
     {

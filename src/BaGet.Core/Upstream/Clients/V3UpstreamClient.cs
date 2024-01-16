@@ -1,9 +1,12 @@
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Extensions;
 using Aiursoft.BaGet.Protocol;
+using Aiursoft.BaGet.Protocol.Extensions;
 using Aiursoft.BaGet.Protocol.Models;
-using NuGet.Versioning;
 using Microsoft.Extensions.Logging;
+using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Upstream.Clients
 {
     /// <summary>
     /// The mirroring client for a NuGet server that uses the V3 protocol.

@@ -1,4 +1,6 @@
-namespace Aiursoft.BaGet.Core
+using Aiursoft.BaGet.Core.Entities;
+
+namespace Aiursoft.BaGet.Core.Search
 {
     /// <summary>
     /// A no-op indexer, used when search does not need to index packages.

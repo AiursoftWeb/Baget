@@ -2,7 +2,7 @@ using Aiursoft.BaGet.Protocol.Models;
 using NuGet.Frameworks;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol.Extensions
 {
     /// <summary>
     /// These are documented interpretations of values returned by the catalog API.

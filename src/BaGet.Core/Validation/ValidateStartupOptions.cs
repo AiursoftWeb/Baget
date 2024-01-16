@@ -1,7 +1,8 @@
+using Aiursoft.BaGet.Core.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Validation
 {
     /// <summary>
     /// Validates BaGet's options, used at startup.

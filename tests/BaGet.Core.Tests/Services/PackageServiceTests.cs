@@ -1,9 +1,12 @@
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Indexing;
+using Aiursoft.BaGet.Core.Upstream;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NuGet.Versioning;
 using Xunit;
 
-namespace Aiursoft.BaGet.Core.Tests
+namespace Aiursoft.BaGet.Core.Tests.Services
 {
     public class PackageServiceTests
     {

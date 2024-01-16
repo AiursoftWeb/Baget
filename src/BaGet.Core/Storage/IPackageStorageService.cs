@@ -1,6 +1,7 @@
+using Aiursoft.BaGet.Core.Entities;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Storage
 {
     /// <summary>
     /// Stores packages' content. Packages' state are stored by the

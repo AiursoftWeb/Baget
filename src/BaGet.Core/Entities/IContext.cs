@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Entities
 {
     public interface IContext
     {

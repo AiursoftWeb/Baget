@@ -1,3 +1,6 @@
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Indexing;
+using Aiursoft.BaGet.Core.Upstream;
 using Microsoft.Extensions.Logging;
 using NuGet.Versioning;
 

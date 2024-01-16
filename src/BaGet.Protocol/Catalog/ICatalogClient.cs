@@ -1,6 +1,6 @@
 using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol.Catalog
 {
     /// <summary>
     /// The Catalog client, used to discover package events.

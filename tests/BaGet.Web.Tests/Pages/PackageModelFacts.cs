@@ -1,9 +1,13 @@
 ﻿using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.Content;
+using Aiursoft.BaGet.Core.Entities;
+using Aiursoft.BaGet.Core.Search;
+using Aiursoft.BaGet.Web.Pages;
 using Moq;
 using NuGet.Versioning;
 using Xunit;
 
-namespace Aiursoft.BaGet.Web.Tests
+namespace Aiursoft.BaGet.Web.Tests.Pages
 {
     public class PackageModelFacts
     {

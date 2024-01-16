@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Metadata
 {
     /// <summary>
     /// BaGet's extensions to a registration index response.

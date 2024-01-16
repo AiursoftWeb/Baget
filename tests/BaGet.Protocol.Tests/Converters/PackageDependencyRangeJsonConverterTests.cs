@@ -1,8 +1,8 @@
 using System.Text.Json;
-using Aiursoft.BaGet.Protocol.Internal;
+using Aiursoft.BaGet.Protocol.Converters;
 using Xunit;
 
-namespace Aiursoft.BaGet.Protocol.Tests
+namespace Aiursoft.BaGet.Protocol.Tests.Converters
 {
     public class PackageDependencyRangeJsonConverterTests
     {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Validation
 {
     /// <summary>
     /// Provides conditional validation based on related property value.

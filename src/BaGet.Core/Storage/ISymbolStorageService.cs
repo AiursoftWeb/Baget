@@ -1,4 +1,4 @@
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Storage
 {
     /// <summary>
     /// Stores the content of symbols, also known as PDBs.

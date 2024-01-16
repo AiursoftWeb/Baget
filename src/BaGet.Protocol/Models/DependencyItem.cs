@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Aiursoft.BaGet.Protocol.Internal;
+using Aiursoft.BaGet.Protocol.Converters;
 
 namespace Aiursoft.BaGet.Protocol.Models
 {

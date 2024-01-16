@@ -1,4 +1,6 @@
 using System.Text;
+using Aiursoft.BaGet.Core.Configuration;
+using Aiursoft.BaGet.Core.Storage;
 using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;

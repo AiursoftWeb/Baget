@@ -1,4 +1,5 @@
 using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.Configuration;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;

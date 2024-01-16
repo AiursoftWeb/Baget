@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Search
 {
     /// <summary>
     /// The package ids that depend on the queried package.

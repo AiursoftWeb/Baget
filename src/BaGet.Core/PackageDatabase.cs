@@ -1,3 +1,4 @@
+using Aiursoft.BaGet.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Versioning;
 

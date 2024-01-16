@@ -1,9 +1,9 @@
-using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.Metadata;
 using Aiursoft.BaGet.Protocol.Models;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Versioning;
 
-namespace Aiursoft.BaGet.Web
+namespace Aiursoft.BaGet.Web.Controllers
 {
     /// <summary>
     /// The Package Metadata resource, used to fetch packages' information.

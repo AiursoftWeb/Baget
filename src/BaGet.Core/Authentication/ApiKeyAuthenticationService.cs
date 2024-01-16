@@ -1,6 +1,7 @@
+using Aiursoft.BaGet.Core.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Authentication
 {
     public class ApiKeyAuthenticationService : IAuthenticationService
     {

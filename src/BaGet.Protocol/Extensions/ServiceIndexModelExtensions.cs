@@ -1,6 +1,6 @@
 using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol.Extensions
 {
     /// <summary>
     /// These are documented interpretations of values returned by the Service Index resource.

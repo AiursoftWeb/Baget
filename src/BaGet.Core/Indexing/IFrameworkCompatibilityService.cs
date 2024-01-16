@@ -1,4 +1,4 @@
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Indexing
 {
     /// <summary>
     /// Used to determine the compatibility matrix between frameworks.

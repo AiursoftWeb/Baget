@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.Search;
 using Aiursoft.BaGet.Protocol.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Aiursoft.BaGet.Web
+namespace Aiursoft.BaGet.Web.Pages
 {
     public class IndexModel : PageModel
     {

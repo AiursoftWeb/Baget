@@ -1,6 +1,6 @@
 using Aiursoft.BaGet.Protocol.Models;
 
-namespace Aiursoft.BaGet.Protocol
+namespace Aiursoft.BaGet.Protocol.PackageMetadata
 {
     /// <summary>
     /// The Package Metadata client, used to fetch packages' metadata.

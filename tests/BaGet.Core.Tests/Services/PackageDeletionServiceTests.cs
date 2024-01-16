@@ -1,3 +1,6 @@
+using Aiursoft.BaGet.Core.Configuration;
+using Aiursoft.BaGet.Core.Indexing;
+using Aiursoft.BaGet.Core.Storage;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;

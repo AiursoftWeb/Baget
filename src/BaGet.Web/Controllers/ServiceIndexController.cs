@@ -1,8 +1,8 @@
-using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core.ServiceIndex;
 using Aiursoft.BaGet.Protocol.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Aiursoft.BaGet.Web
+namespace Aiursoft.BaGet.Web.Controllers
 {
     /// <summary>
     /// The NuGet Service Index. This aids NuGet client to discover this server's services.

@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace Aiursoft.BaGet.Core
+namespace Aiursoft.BaGet.Core.Extensions
 {
     /// <summary>
     /// Attempts to provide the <typeparamref name="TService"/>.
