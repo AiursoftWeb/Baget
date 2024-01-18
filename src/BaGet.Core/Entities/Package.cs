@@ -16,9 +16,7 @@ namespace Aiursoft.BaGet.Core.Entities
                 // Favor the original version string as it contains more information.
                 // Packages uploaded with older versions of BaGet may not have the original version string.
                 return NuGetVersion.Parse(
-                    OriginalVersionString != null
-                        ? OriginalVersionString
-                        : NormalizedVersionString);
+                    OriginalVersionString ?? NormalizedVersionString);
             }
 
             set

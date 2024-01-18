@@ -9,7 +9,7 @@ using Aiursoft.BaGet.Database.Sqlite;
 using Aiursoft.BaGet.Web.Controllers;
 using Aiursoft.BaGet.Web.Extensions;
 using Aiursoft.DbTools.Sqlite;
-using Aiursoft.WebTools.Models;
+using Aiursoft.WebTools.Abstractions.Models;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;

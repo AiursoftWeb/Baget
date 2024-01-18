@@ -14,7 +14,7 @@
   <ItemGroup>
     <PackageReference Include="Aiursoft.DbTools.Sqlite" Version="7.0.18" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.15" />
-    <PackageReference Include="Aiursoft.WebTools" Version="7.0.29" />
+    <PackageReference Include="Aiursoft.WebTools" Version="7.0.31" />
     <PackageReference Include="Humanizer" Version="2.14.1" />
     <PackageReference Include="Markdig" Version="0.34.0" />
   </ItemGroup>
