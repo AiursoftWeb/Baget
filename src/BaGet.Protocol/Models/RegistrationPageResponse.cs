@@ -5,7 +5,5 @@ namespace Aiursoft.BaGet.Protocol.Models
     ///
     /// See https://docs.microsoft.com/en-us/nuget/api/registration-base-url-resource#registration-page
     /// </summary>
-    public class RegistrationPageResponse : RegistrationIndexPage
-    {
-    }
+    public class RegistrationPageResponse : RegistrationIndexPage;
 }

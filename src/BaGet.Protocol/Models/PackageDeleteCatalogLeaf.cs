@@ -8,7 +8,5 @@ namespace Aiursoft.BaGet.Protocol.Models
     /// 
     /// See https://docs.microsoft.com/en-us/nuget/api/catalog-resource#catalog-leaf
     /// </summary>
-    public class PackageDeleteCatalogLeaf : CatalogLeaf
-    {
-    }
+    public class PackageDeleteCatalogLeaf : CatalogLeaf;
 }
