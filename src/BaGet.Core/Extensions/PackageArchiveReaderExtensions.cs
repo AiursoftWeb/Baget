@@ -39,9 +39,17 @@ namespace Aiursoft.BaGet.Core.Extensions
             this PackageArchiveReader package,
             CancellationToken cancellationToken)
         {
-            return await package.GetStreamAsync(
-                PathUtility.StripLeadingDirectorySeparators(package.NuspecReader.GetIcon()),
-                cancellationToken);
+            try
+            {
+                return await package.GetStreamAsync(
+                    PathUtility.StripLeadingDirectorySeparators(package.NuspecReader.GetIcon()),
+                    cancellationToken);
+            }
+            catch (Exception)
+            {
+                // Icon is missing, return an empty stream.
+                return new MemoryStream();
+            }
         }
 
         public static Package GetPackageMetadata(this PackageArchiveReader packageReader)
