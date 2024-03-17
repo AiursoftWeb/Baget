@@ -35,7 +35,7 @@ namespace Aiursoft.BaGet.Core.Extensions
             }
         }
 
-        public async static Task<Stream> GetIconAsync(
+        public static async Task<Stream> GetIconAsync(
             this PackageArchiveReader package,
             CancellationToken cancellationToken)
         {
