@@ -14,7 +14,7 @@ namespace Aiursoft.BaGet.Core.Extensions
         public static bool HasEmbeddedIcon(this PackageArchiveReader package)
             => !string.IsNullOrEmpty(package.NuspecReader.GetIcon());
 
-        public async static Task<Stream> GetReadmeAsync(
+        public static async Task<Stream> GetReadmeAsync(
             this PackageArchiveReader package,
             CancellationToken cancellationToken)
         {
@@ -24,7 +24,15 @@ namespace Aiursoft.BaGet.Core.Extensions
                 throw new InvalidOperationException("Package does not have a readme!");
             }
 
-            return await package.GetStreamAsync(readmePath, cancellationToken);
+            try
+            {
+                return await package.GetStreamAsync(readmePath, cancellationToken);
+            }
+            catch (Exception)
+            {
+                // Readme is missing, return an empty stream.
+                return new MemoryStream();
+            }
         }
 
         public async static Task<Stream> GetIconAsync(
