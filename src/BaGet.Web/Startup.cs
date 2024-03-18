@@ -69,7 +69,6 @@ namespace Aiursoft.BaGet.Web
                 !config.HasSearchType(DependencyInjectionExtensions.DatabaseSearchType) ? null : provider.GetRequiredService<DatabaseSearchService>());
             
             app.AddFileStorage();
-
             services.AddFallbackServices();
             services.AddScoped(DependencyInjectionExtensions.GetServiceFromProviders<IContext>);
             services.AddTransient(DependencyInjectionExtensions.GetServiceFromProviders<IStorageService>);
@@ -78,13 +77,7 @@ namespace Aiursoft.BaGet.Web
             services.AddTransient(DependencyInjectionExtensions.GetServiceFromProviders<ISearchIndexer>);
 
             services.AddSingleton<IConfigureOptions<MvcRazorRuntimeCompilationOptions>, ConfigureRazorRuntimeCompilation>();
-
             services.AddCors();
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.ForwardedHeaders =
-                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-            });
         }
 
         public void Configure(WebApplication app)
@@ -95,7 +88,6 @@ namespace Aiursoft.BaGet.Web
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
             }
-            app.UseForwardedHeaders();
             app.UsePathBase(options.PathBase);
             app.UseStaticFiles();
             app.UseRouting();
