@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NuGet.Versioning;
 using Xunit;
+// ReSharper disable InconsistentNaming
 
 namespace Aiursoft.BaGet.Core.Tests.Services
 {

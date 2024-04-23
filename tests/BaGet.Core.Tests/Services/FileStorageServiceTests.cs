@@ -4,6 +4,7 @@ using Aiursoft.BaGet.Core.Storage;
 using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
+// ReSharper disable InconsistentNaming
 
 namespace Aiursoft.BaGet.Core.Tests.Services
 {
@@ -22,7 +23,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task ThrowsIfFileDoesNotExist()
             {
                 // Ensure the store path exists.
-                Directory.CreateDirectory(_storePath);
+                Directory.CreateDirectory(StorePath);
 
                 await Assert.ThrowsAsync<FileNotFoundException>(() =>
                     _target.GetAsync("hello.txt"));
@@ -64,7 +65,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task CreatesUriEvenIfDoesntExist()
             {
                 var result = await _target.GetDownloadUriAsync("test.txt");
-                var expected = new Uri(Path.Combine(_storePath, "test.txt"));
+                var expected = new Uri(Path.Combine(StorePath, "test.txt"));
 
                 Assert.Equal(expected, result);
             }
@@ -91,7 +92,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                     result = await _target.PutAsync("test.txt", content, "text/plain");
                 }
 
-                var path = Path.Combine(_storePath, "test.txt");
+                var path = Path.Combine(StorePath, "test.txt");
 
                 Assert.True(File.Exists(path));
                 Assert.Equal(StoragePutResult.Success, result);
@@ -102,7 +103,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task ReturnsAlreadyExistsIfContentAlreadyExists()
             {
                 // Arrange
-                var path = Path.Combine(_storePath, "test.txt");
+                var path = Path.Combine(StorePath, "test.txt");
 
                 Directory.CreateDirectory(Path.GetDirectoryName(path) ?? throw new ArgumentNullException(nameof(path)));
                 await File.WriteAllTextAsync(path, "Hello world");
@@ -122,7 +123,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task ReturnsConflictIfContentAlreadyExistsButContentsDoNotMatch()
             {
                 // Arrange
-                var path = Path.Combine(_storePath, "test.txt");
+                var path = Path.Combine(StorePath, "test.txt");
 
                 Directory.CreateDirectory(Path.GetDirectoryName(path) ?? throw new ArgumentNullException(nameof(path)));
                 await File.WriteAllTextAsync(path, "Hello world");
@@ -162,9 +163,9 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task Deletes()
             {
                 // Arrange
-                var path = Path.Combine(_storePath, "test.txt");
+                var path = Path.Combine(StorePath, "test.txt");
 
-                Directory.CreateDirectory(_storePath);
+                Directory.CreateDirectory(StorePath);
                 await File.WriteAllTextAsync(path, "Hello world");
 
                 // Act & Assert
@@ -186,17 +187,17 @@ namespace Aiursoft.BaGet.Core.Tests.Services
 
         public class FactsBase : IDisposable
         {
-            protected readonly string _storePath;
+            protected readonly string StorePath;
             protected readonly FileStorageService _target;
 
             protected FactsBase()
             {
-                _storePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+                StorePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
                 var options = new Mock<IOptionsSnapshot<FileSystemStorageOptions>>();
 
                 options
                     .Setup(o => o.Value)
-                    .Returns(() => new FileSystemStorageOptions { Path = _storePath });
+                    .Returns(() => new FileSystemStorageOptions { Path = StorePath });
 
                 _target = new FileStorageService(options.Object);
             }
@@ -205,7 +206,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             {
                 try
                 {
-                    Directory.Delete(_storePath, recursive: true);
+                    Directory.Delete(StorePath, recursive: true);
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -229,18 +230,18 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             {
                 get
                 {
-                    var fullPath = Path.GetFullPath(_storePath);
+                    var fullPath = Path.GetFullPath(StorePath);
                     yield return "../file";
                     yield return ".";
-                    yield return $"../{Path.GetFileName(_storePath)}";
-                    yield return $"../{Path.GetFileName(_storePath)}suffix";
-                    yield return $"../{Path.GetFileName(_storePath)}suffix/file";
+                    yield return $"../{Path.GetFileName(StorePath)}";
+                    yield return $"../{Path.GetFileName(StorePath)}suffix";
+                    yield return $"../{Path.GetFileName(StorePath)}suffix/file";
                     yield return fullPath;
                     yield return fullPath + Path.DirectorySeparatorChar;
                     yield return fullPath + Path.DirectorySeparatorChar + "..";
                     yield return fullPath + Path.DirectorySeparatorChar + ".." + Path.DirectorySeparatorChar + "file";
-                    yield return Path.GetPathRoot(_storePath);
-                    yield return Path.Combine(Path.GetPathRoot(_storePath) ?? throw new ArgumentNullException(nameof(_storePath)), "file");
+                    yield return Path.GetPathRoot(StorePath);
+                    yield return Path.Combine(Path.GetPathRoot(StorePath) ?? throw new ArgumentNullException(nameof(StorePath)), "file");
                 }
             }
         }
