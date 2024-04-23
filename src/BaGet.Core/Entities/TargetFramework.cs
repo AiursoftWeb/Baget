@@ -1,3 +1,4 @@
+// ReSharper disable EntityFramework.ModelValidation.UnlimitedStringLength
 namespace Aiursoft.BaGet.Core.Entities
 {
     public class TargetFramework

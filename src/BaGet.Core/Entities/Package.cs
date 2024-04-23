@@ -1,4 +1,5 @@
 using NuGet.Versioning;
+// ReSharper disable EntityFramework.ModelValidation.UnlimitedStringLength
 
 namespace Aiursoft.BaGet.Core.Entities
 {
