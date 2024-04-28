@@ -1,3 +1,4 @@
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 using System.Text.Json.Serialization;
 
 namespace Aiursoft.BaGet.Protocol.Models
