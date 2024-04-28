@@ -16,14 +16,14 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             [Fact]
             public async Task ReturnsEmpty()
             {
-                _client
+                Client
                     .Setup(c => c.ListPackageVersionsAsync(
-                        _id,
+                        Id,
                         /*includeUnlisted: */ true,
-                        _cancellation))
+                        Cancellation))
                     .ReturnsAsync(new List<NuGetVersion>());
 
-                var result = await _target.ListPackageVersionsAsync(_id, _cancellation);
+                var result = await Target.ListPackageVersionsAsync(Id, Cancellation);
 
                 Assert.Empty(result);
             }
@@ -31,14 +31,14 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             [Fact]
             public async Task IgnoresExceptions()
             {
-                _client
+                Client
                     .Setup(c => c.ListPackageVersionsAsync(
-                        _id,
+                        Id,
                         /*includeUnlisted: */ true,
-                        _cancellation))
+                        Cancellation))
                     .ThrowsAsync(new InvalidDataException("Hello"));
 
-                var result = await _target.ListPackageVersionsAsync(_id, _cancellation);
+                var result = await Target.ListPackageVersionsAsync(Id, Cancellation);
 
                 Assert.Empty(result);
             }
@@ -46,17 +46,17 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             [Fact]
             public async Task ReturnsPackages()
             {
-                _client
+                Client
                     .Setup(c => c.ListPackageVersionsAsync(
-                        _id,
+                        Id,
                         /*includeUnlisted: */ true,
-                        _cancellation))
-                    .ReturnsAsync(new List<NuGetVersion> { _version });
+                        Cancellation))
+                    .ReturnsAsync(new List<NuGetVersion> { Version });
 
-                var result = await _target.ListPackageVersionsAsync(_id, _cancellation);
+                var result = await Target.ListPackageVersionsAsync(Id, Cancellation);
 
                 var version = Assert.Single(result);
-                Assert.Equal(_version, version);
+                Assert.Equal(Version, version);
             }
         }
 
@@ -65,10 +65,10 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             [Fact]
             public async Task ReturnsEmpty()
             {
-                _client.Setup(c => c.GetPackageMetadataAsync(_id, _cancellation))
+                Client.Setup(c => c.GetPackageMetadataAsync(Id, Cancellation))
                     .ReturnsAsync(new List<PackageMetadata>());
 
-                var result = await _target.ListPackagesAsync(_id, _cancellation);
+                var result = await Target.ListPackagesAsync(Id, Cancellation);
 
                 Assert.Empty(result);
             }
@@ -76,10 +76,10 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             [Fact]
             public async Task IgnoresExceptions()
             {
-                _client.Setup(c => c.GetPackageMetadataAsync(_id, _cancellation))
+                Client.Setup(c => c.GetPackageMetadataAsync(Id, Cancellation))
                     .ThrowsAsync(new InvalidDataException("Hello world"));
 
-                var result = await _target.ListPackagesAsync(_id, _cancellation);
+                var result = await Target.ListPackagesAsync(Id, Cancellation);
 
                 Assert.Empty(result);
             }
@@ -89,7 +89,7 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             {
                 var published = DateTimeOffset.Now;
 
-                _client.Setup(c => c.GetPackageMetadataAsync(_id, _cancellation))
+                Client.Setup(c => c.GetPackageMetadataAsync(Id, Cancellation))
                     .ReturnsAsync(new List<PackageMetadata>
                     {
                         new()
@@ -139,7 +139,7 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
                         }
                     });
 
-                var result = await _target.ListPackagesAsync(_id, _cancellation);
+                var result = await Target.ListPackagesAsync(Id, Cancellation);
 
                 var package = Assert.Single(result);
 
@@ -174,11 +174,11 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             [Fact]
             public async Task ReturnsNull()
             {
-                _client
-                    .Setup(c => c.DownloadPackageAsync(_id, _version, _cancellation))
-                    .ThrowsAsync(new PackageNotFoundException(_id, _version));
+                Client
+                    .Setup(c => c.DownloadPackageAsync(Id, Version, Cancellation))
+                    .ThrowsAsync(new PackageNotFoundException(Id, Version));
 
-                var result = await _target.DownloadPackageOrNullAsync(_id, _version, _cancellation);
+                var result = await Target.DownloadPackageOrNullAsync(Id, Version, Cancellation);
 
                 Assert.Null(result);
             }
@@ -186,11 +186,11 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             [Fact]
             public async Task IgnoresExceptions()
             {
-                _client
-                    .Setup(c => c.DownloadPackageAsync(_id, _version, _cancellation))
+                Client
+                    .Setup(c => c.DownloadPackageAsync(Id, Version, Cancellation))
                     .ThrowsAsync(new InvalidDataException("Hello world"));
 
-                var result = await _target.DownloadPackageOrNullAsync(_id, _version, _cancellation);
+                var result = await Target.DownloadPackageOrNullAsync(Id, Version, Cancellation);
 
                 Assert.Null(result);
             }
@@ -198,11 +198,11 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
             [Fact]
             public async Task ReturnsPackage()
             {
-                _client
-                    .Setup(c => c.DownloadPackageAsync(_id, _version, _cancellation))
+                Client
+                    .Setup(c => c.DownloadPackageAsync(Id, Version, Cancellation))
                     .ReturnsAsync(new MemoryStream());
 
-                var result = await _target.DownloadPackageOrNullAsync(_id, _version, _cancellation);
+                var result = await Target.DownloadPackageOrNullAsync(Id, Version, Cancellation);
 
                 Assert.NotNull(result);
                 Assert.True(result.CanSeek);
@@ -211,18 +211,18 @@ namespace Aiursoft.BaGet.Core.Tests.Upstream
 
         public class FactsBase
         {
-            protected readonly Mock<NuGetClient> _client;
-            protected readonly V3UpstreamClient _target;
+            protected readonly Mock<NuGetClient> Client;
+            protected readonly V3UpstreamClient Target;
 
-            protected readonly string _id = "Foo";
-            protected readonly NuGetVersion _version = new("1.2.3-prerelease+semver2");
-            protected readonly CancellationToken _cancellation = CancellationToken.None;
+            protected readonly string Id = "Foo";
+            protected readonly NuGetVersion Version = new("1.2.3-prerelease+semver2");
+            protected readonly CancellationToken Cancellation = CancellationToken.None;
 
             protected FactsBase()
             {
-                _client = new Mock<NuGetClient>();
-                _target = new V3UpstreamClient(
-                    _client.Object,
+                Client = new Mock<NuGetClient>();
+                Target = new V3UpstreamClient(
+                    Client.Object,
                     Mock.Of<ILogger<V3UpstreamClient>>());
             }
         }
