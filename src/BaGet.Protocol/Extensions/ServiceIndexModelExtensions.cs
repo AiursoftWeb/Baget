@@ -8,15 +8,15 @@ namespace Aiursoft.BaGet.Protocol.Extensions
     public static class ServiceIndexModelExtensions
     {
         // See: https://github.com/NuGet/NuGet.Client/blob/e08358296db5bfa6f7f32d6f4ec8de288f3b0388/src/NuGet.Core/NuGet.Protocol/ServiceTypes.cs
-        private static readonly string Version300beta = "/3.0.0-beta";
+        private static readonly string Version300Beta = "/3.0.0-beta";
         private static readonly string Version300 = "/3.0.0";
         private static readonly string Version340 = "/3.4.0";
         private static readonly string Version360 = "/3.6.0";
 
         private static readonly string[] Catalog = { "Catalog" + Version300 };
-        private static readonly string[] SearchQueryService = { "SearchQueryService" + Version340, "SearchQueryService" + Version300beta, "SearchQueryService" };
-        private static readonly string[] RegistrationsBaseUrl = { "RegistrationsBaseUrl" + Version360, "RegistrationsBaseUrl" + Version340, "RegistrationsBaseUrl" + Version300beta, "RegistrationsBaseUrl" };
-        private static readonly string[] SearchAutocompleteService = { "SearchAutocompleteService", "SearchAutocompleteService" + Version300beta };
+        private static readonly string[] SearchQueryService = { "SearchQueryService" + Version340, "SearchQueryService" + Version300Beta, "SearchQueryService" };
+        private static readonly string[] RegistrationsBaseUrl = { "RegistrationsBaseUrl" + Version360, "RegistrationsBaseUrl" + Version340, "RegistrationsBaseUrl" + Version300Beta, "RegistrationsBaseUrl" };
+        private static readonly string[] SearchAutocompleteService = { "SearchAutocompleteService", "SearchAutocompleteService" + Version300Beta };
         private static readonly string[] PackageBaseAddress = { "PackageBaseAddress" + Version300 };
 
         public static string GetPackageContentResourceUrl(this ServiceIndexResponse serviceIndex)
