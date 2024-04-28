@@ -4,6 +4,7 @@ using Aiursoft.BaGet.Protocol.PackageContent;
 using Aiursoft.BaGet.Protocol.PackageMetadata;
 using Aiursoft.BaGet.Protocol.Search;
 using Aiursoft.BaGet.Protocol.ServiceIndex;
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace Aiursoft.BaGet.Protocol.Tests.Support
 {
