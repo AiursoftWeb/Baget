@@ -1,4 +1,5 @@
 using System.Net;
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace Aiursoft.BaGet.Protocol.Models
 {

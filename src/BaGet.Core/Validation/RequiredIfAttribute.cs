@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace Aiursoft.BaGet.Core.Validation
 {

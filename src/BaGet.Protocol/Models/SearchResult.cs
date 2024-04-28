@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Aiursoft.BaGet.Protocol.Converters;
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace Aiursoft.BaGet.Protocol.Models
 {
