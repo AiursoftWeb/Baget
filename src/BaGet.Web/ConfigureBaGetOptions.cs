@@ -14,7 +14,6 @@ namespace Aiursoft.BaGet.Web
         : IConfigureOptions<CorsOptions>
         , IConfigureOptions<FormOptions>
         , IConfigureOptions<ForwardedHeadersOptions>
-        , IConfigureOptions<IISServerOptions>
         , IValidateOptions<BaGetOptions>
     {
         public const string CorsPolicy = "AllowAll";
@@ -53,11 +52,6 @@ namespace Aiursoft.BaGet.Web
             // Do not restrict to local network/proxy
             options.KnownNetworks.Clear();
             options.KnownProxies.Clear();
-        }
-
-        public void Configure(IISServerOptions options)
-        {
-            options.MaxRequestBodySize = 262144000;
         }
 
         public ValidateOptionsResult Validate(string name, BaGetOptions options)

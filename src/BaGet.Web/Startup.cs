@@ -25,10 +25,8 @@ namespace Aiursoft.BaGet.Web
             services.AddTransient<IConfigureOptions<CorsOptions>, ConfigureBaGetOptions>();
             services.AddTransient<IConfigureOptions<FormOptions>, ConfigureBaGetOptions>();
             services.AddTransient<IConfigureOptions<ForwardedHeadersOptions>, ConfigureBaGetOptions>();
-            services.AddTransient<IConfigureOptions<IISServerOptions>, ConfigureBaGetOptions>();
             services.AddTransient<IValidateOptions<BaGetOptions>, ConfigureBaGetOptions>();
 
-            services.AddBaGetOptions<IISServerOptions>(nameof(IISServerOptions));
             services
                 .AddRouting(options => options.LowercaseUrls = true)
                 .AddControllers()
