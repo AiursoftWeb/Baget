@@ -5,7 +5,7 @@
 [![Test Coverage](https://gitlab.aiursoft.cn/aiursoft/Baget/badges/master/coverage.svg)](https://gitlab.aiursoft.cn/aiursoft/Baget/-/pipelines)
 [![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.cn/aiursoft/Baget.svg)](https://gitlab.aiursoft.cn/aiursoft/Baget/-/commits/master?ref_type=heads)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fnuget.aiursoft.cn%2F)](https://nuget.aiursoft.cn)
-[![Docker](https://img.shields.io/badge/docker-latest-blue?logo=docker)](https://hub.aiursoft.cn/#!/taglist/aiursoft/Baget)
+[![Docker](https://img.shields.io/docker/pulls/aiursoft/baget.svg)](https://hub.docker.com/r/aiursoft/baget)
 
 A lightweight [NuGet] and [symbol] server.
 
