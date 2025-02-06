@@ -79,11 +79,6 @@ namespace Aiursoft.BaGet.Core
             return await MirrorAsync(id, version, cancellationToken);
         }
 
-        public async Task AddDownloadAsync(string packageId, NuGetVersion version, CancellationToken cancellationToken)
-        {
-            await _db.AddDownloadAsync(packageId, version, cancellationToken);
-        }
-
         /// <summary>
         /// Index the package from an upstream if it does not exist locally.
         /// </summary>

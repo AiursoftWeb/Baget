@@ -93,11 +93,6 @@ namespace Aiursoft.BaGet.Core
             return TryUpdatePackageAsync(id, version, p => p.Listed = true, cancellationToken);
         }
 
-        public async Task AddDownloadAsync(string id, NuGetVersion version, CancellationToken cancellationToken)
-        {
-            await TryUpdatePackageAsync(id, version, p => p.Downloads += 1, cancellationToken);
-        }
-
         public async Task<bool> HardDeletePackageAsync(string id, NuGetVersion version, CancellationToken cancellationToken)
         {
             var package = await _context.Packages

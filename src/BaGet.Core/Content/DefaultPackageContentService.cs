@@ -49,7 +49,6 @@ namespace Aiursoft.BaGet.Core.Content
                 return null;
             }
 
-            await _packages.AddDownloadAsync(id, version, cancellationToken);
             return await _storage.GetPackageStreamAsync(id, version, cancellationToken);
         }
 
