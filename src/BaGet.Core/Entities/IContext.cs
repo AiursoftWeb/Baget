@@ -13,11 +13,6 @@ namespace Aiursoft.BaGet.Core.Entities
         /// <returns>Whether the exception was caused to SQL unique constraint violation.</returns>
         bool IsUniqueConstraintViolationException(DbUpdateException exception);
 
-        /// <summary>
-        /// Whether this database engine supports LINQ "Take" in subqueries.
-        /// </summary>
-        bool SupportsLimitInSubqueries { get; }
-
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

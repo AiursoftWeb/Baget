@@ -34,8 +34,6 @@ namespace Aiursoft.BaGet.Core.Entities
 
         public abstract bool IsUniqueConstraintViolationException(DbUpdateException exception);
 
-        public virtual bool SupportsLimitInSubqueries => true;
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Package>(BuildPackageEntity);

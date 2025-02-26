@@ -35,30 +35,15 @@ namespace Aiursoft.BaGet.Core.Search
                 request.PackageType,
                 frameworks);
 
-            var packageIds = search
+            var packageIds = await search
                 .Distinct()
                 .OrderByDescending(x => x.Downloads)
                 .Select(p => p.Id)
                 .Skip(request.Skip)
-                .Take(request.Take);
+                .Take(request.Take)
+                .ToListAsync(cancellationToken);
 
-            // This query MUST fetch all versions for each package that matches the search,
-            // otherwise the results for a package's latest version may be incorrect.
-            // If possible, we'll find all these packages in a single query by matching
-            // the package IDs in a subquery. Otherwise, run two queries:
-            //   1. Find the package IDs that match the search
-            //   2. Find all package versions for these package IDs
-            if (_context.SupportsLimitInSubqueries)
-            {
-                search = _context.Packages.Where(p => packageIds.Contains(p.Id));
-            }
-            else
-            {
-                var packageIdResults = await packageIds.ToListAsync(cancellationToken);
-
-                search = _context.Packages.Where(p => packageIdResults.Contains(p.Id));
-            }
-
+            search = _context.Packages.Where(p => EF.Constant(packageIds).Contains(p.Id));
             search = ApplySearchFilters(
                 search,
                 request.IncludePrerelease,
