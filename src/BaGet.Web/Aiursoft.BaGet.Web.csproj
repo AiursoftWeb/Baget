@@ -23,6 +23,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Aiursoft.BaGet.Database.InMemory\Aiursoft.BaGet.Database.InMemory.csproj" />
     <ProjectReference Include="..\Aiursoft.BaGet.Database.MySql\Aiursoft.BaGet.Database.MySql.csproj" />
     <ProjectReference Include="..\BaGet.Database.Sqlite\Aiursoft.BaGet.Database.Sqlite.csproj" />
   </ItemGroup>

@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiursoft.BaGet.Web.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aiursoft.BaGet.Database.MySql", "src\Aiursoft.BaGet.Database.MySql\Aiursoft.BaGet.Database.MySql.csproj", "{A0A0AA50-B1FB-42CD-9DED-12F7E476BD95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aiursoft.BaGet.Database.InMemory", "src\Aiursoft.BaGet.Database.InMemory\Aiursoft.BaGet.Database.InMemory.csproj", "{9A78DC02-C86C-44BC-8B51-6CAAFC394A31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{A0A0AA50-B1FB-42CD-9DED-12F7E476BD95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0A0AA50-B1FB-42CD-9DED-12F7E476BD95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0A0AA50-B1FB-42CD-9DED-12F7E476BD95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A78DC02-C86C-44BC-8B51-6CAAFC394A31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A78DC02-C86C-44BC-8B51-6CAAFC394A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A78DC02-C86C-44BC-8B51-6CAAFC394A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A78DC02-C86C-44BC-8B51-6CAAFC394A31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{52C6DFEB-97F7-48B5-83DF-A561324B3023} = {D998480A-D226-45AA-8E55-F9116ABEE0EF}
 		{D759FED1-2DC4-4C89-B4B7-B245B7C1F988} = {D998480A-D226-45AA-8E55-F9116ABEE0EF}
 		{A0A0AA50-B1FB-42CD-9DED-12F7E476BD95} = {26A0B557-53FB-4B9A-94C4-BCCF1BDCB0CC}
+		{9A78DC02-C86C-44BC-8B51-6CAAFC394A31} = {26A0B557-53FB-4B9A-94C4-BCCF1BDCB0CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1423C027-2C90-417F-8629-2A4CF107C055}

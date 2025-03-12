@@ -4,6 +4,7 @@ using Aiursoft.BaGet.Core.Configuration;
 using Aiursoft.BaGet.Core.Extensions;
 using Aiursoft.BaGet.Core.Search;
 using Aiursoft.BaGet.Core.Storage;
+using Aiursoft.BaGet.Database.InMemory;
 using Aiursoft.BaGet.Database.Sqlite;
 using Aiursoft.BaGet.Web.Controllers;
 using Aiursoft.BaGet.Web.Extensions;
@@ -53,7 +54,8 @@ namespace Aiursoft.BaGet.Web
                 supportedDbs:
                 [
                     new SqliteSupportedDb(allowCache: allowCache, splitQuery: true),
-                    new MySqlSupportedDb(allowCache: allowCache, splitQuery: true)
+                    new MySqlSupportedDb(allowCache: allowCache, splitQuery: true),
+                    new InMemorySupportedDb()
                 ]);
 
             services.AddProvider<ISearchIndexer>((provider, config) =>
