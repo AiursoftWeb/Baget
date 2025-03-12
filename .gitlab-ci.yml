@@ -8,8 +8,8 @@ stages:
 before_script:
   - 'export DOTNET_CLI_TELEMETRY_OPTOUT=1'
   - 'export PATH=$PATH:$HOME/.dotnet/tools'
-  - 'which jb || dotnet tool install JetBrains.ReSharper.GlobalTools --global --add-source https://nuget.aiursoft.cn/v3/index.json --configfile ./nuget.config -v d'
-  - 'which reportgenerator || dotnet tool install dotnet-reportgenerator-globaltool --global --add-source https://nuget.aiursoft.cn/v3/index.json --configfile ./nuget.config -v d'
+  - 'which jb || dotnet tool install JetBrains.ReSharper.GlobalTools --global --add-source https://nuget.aiursoft.cn/v3/index.json -v d'
+  - 'which reportgenerator || dotnet tool install dotnet-reportgenerator-globaltool --global --add-source https://nuget.aiursoft.cn/v3/index.json -v d'
   - 'echo "Hostname: $(hostname)"'
   - 'dotnet --info'
 
@@ -19,18 +19,18 @@ variables:
 restore:
   stage: build
   script:
-    - dotnet restore --no-cache --configfile nuget.config
+    - dotnet restore --no-cache
 
 build:
   stage: build
-  needs: 
+  needs:
     - restore
   script:
     - dotnet build -maxcpucount:1 --no-self-contained
 
 lint:
   stage: lint
-  needs: 
+  needs:
     - build
   script:
     # 3 times retry because sometimes the first time will fail
@@ -48,7 +48,7 @@ lint:
 
 test:
   stage: test
-  needs: 
+  needs:
     - build
   coverage: '/TOTAL_COVERAGE=(\d+.\d+)/'
   script:
@@ -72,7 +72,7 @@ test:
 
 pack:
   stage: publish
-  needs: 
+  needs:
     - lint
     - test
   script:
@@ -117,7 +117,7 @@ deploy_public_nuget:
 deploy_docker_registry:
   stage: deploy
   environment: production
-  needs: 
+  needs:
     - lint
     - test
   script:
@@ -133,7 +133,7 @@ deploy_docker_registry:
 deploy_docker_hub:
   stage: deploy
   environment: production
-  needs: 
+  needs:
     - deploy_docker_registry
   script:
     - if [ "$CI_COMMIT_REF_NAME" = "master" ]; then TAG="latest"; else TAG="$CI_COMMIT_REF_NAME"; fi
