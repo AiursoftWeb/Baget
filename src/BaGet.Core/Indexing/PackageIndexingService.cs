@@ -11,7 +11,7 @@ namespace Aiursoft.BaGet.Core.Indexing
 {
     public class PackageIndexingService : IPackageIndexingService
     {
-        private readonly IPackageDatabase _packages;
+        private readonly PackageDatabase _packages;
         private readonly IPackageStorageService _storage;
         private readonly ISearchIndexer _search;
         private readonly SystemTime _time;
@@ -19,7 +19,7 @@ namespace Aiursoft.BaGet.Core.Indexing
         private readonly ILogger<PackageIndexingService> _logger;
 
         public PackageIndexingService(
-            IPackageDatabase packages,
+            PackageDatabase packages,
             IPackageStorageService storage,
             ISearchIndexer search,
             SystemTime time,

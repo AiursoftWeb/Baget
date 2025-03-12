@@ -8,7 +8,6 @@ namespace Aiursoft.BaGet.Core
     /// The service that combines the state of indexed packages and
     /// upstream packages.
     /// For upstream packages, see <see cref="IUpstreamClient"/>.
-    /// For indexed packages, see <see cref="IPackageDatabase"/>.
     /// </summary>
     public interface IPackageService
     {

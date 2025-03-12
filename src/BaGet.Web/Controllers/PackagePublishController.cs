@@ -13,7 +13,7 @@ namespace Aiursoft.BaGet.Web.Controllers
     {
         private readonly IAuthenticationService _authentication;
         private readonly IPackageIndexingService _indexer;
-        private readonly IPackageDatabase _packages;
+        private readonly PackageDatabase _packages;
         private readonly IPackageDeletionService _deleteService;
         private readonly IOptionsSnapshot<BaGetOptions> _options;
         private readonly ILogger<PackagePublishController> _logger;
@@ -21,7 +21,7 @@ namespace Aiursoft.BaGet.Web.Controllers
         public PackagePublishController(
             IAuthenticationService authentication,
             IPackageIndexingService indexer,
-            IPackageDatabase packages,
+            PackageDatabase packages,
             IPackageDeletionService deletionService,
             IOptionsSnapshot<BaGetOptions> options,
             ILogger<PackagePublishController> logger)

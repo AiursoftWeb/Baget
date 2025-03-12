@@ -13,7 +13,6 @@ using Aiursoft.WebTools.Abstractions.Models;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 
 namespace Aiursoft.BaGet.Web
@@ -46,7 +45,6 @@ namespace Aiursoft.BaGet.Web
             services.AddConfiguration();
             services.AddBaGetServices();
             services.AddDefaultProviders();
-            services.TryAddTransient<IPackageDatabase>(provider => provider.GetRequiredService<PackageDatabase>());
             var (connectionString, dbType, allowCache) = configuration.GetDbSettings();
             services.AddSwitchableRelationalDatabase(
                 dbType: EntryExtends.IsInUnitTests() ? "InMemory": dbType,
@@ -56,7 +54,6 @@ namespace Aiursoft.BaGet.Web
                     new SqliteSupportedDb(allowCache: allowCache, splitQuery: true),
                 ]);
 
-            services.AddProvider<IPackageDatabase>((provider, _) => provider.GetRequiredService<PackageDatabase>());
             services.AddProvider<ISearchIndexer>((provider, config) =>
                 !config.HasSearchType(DependencyInjectionExtensions.DatabaseSearchType) ? null : provider.GetRequiredService<NullSearchIndexer>());
 
@@ -65,9 +62,9 @@ namespace Aiursoft.BaGet.Web
             app.AddFileStorage();
             services.AddFallbackServices();
             services.AddTransient(DependencyInjectionExtensions.GetServiceFromProviders<IStorageService>);
-            services.AddTransient(DependencyInjectionExtensions.GetServiceFromProviders<IPackageDatabase>);
             services.AddTransient(DependencyInjectionExtensions.GetServiceFromProviders<ISearchService>);
             services.AddTransient(DependencyInjectionExtensions.GetServiceFromProviders<ISearchIndexer>);
+            services.AddTransient<PackageDatabase>();
 
             services.AddSingleton<IConfigureOptions<MvcRazorRuntimeCompilationOptions>, ConfigureRazorRuntimeCompilation>();
             services.AddCors();

@@ -4,7 +4,7 @@ using NuGet.Versioning;
 
 namespace Aiursoft.BaGet.Core
 {
-    public class PackageDatabase : IPackageDatabase
+    public class PackageDatabase
     {
         private readonly AbstractContext _context;
 

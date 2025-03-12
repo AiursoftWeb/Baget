@@ -5,7 +5,6 @@ namespace Aiursoft.BaGet.Core.Storage
 {
     /// <summary>
     /// Stores packages' content. Packages' state are stored by the
-    /// <see cref="IPackageDatabase"/>.
     /// </summary>
     public interface IPackageStorageService
     {

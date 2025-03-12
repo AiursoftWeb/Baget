@@ -15,7 +15,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
         private static readonly string PackageId = "Package";
         private static readonly NuGetVersion PackageVersion = new("1.0.0");
 
-        private readonly Mock<IPackageDatabase> _packages;
+        private readonly Mock<PackageDatabase> _packages;
         private readonly Mock<IPackageStorageService> _storage;
 
         private readonly BaGetOptions _options;
@@ -23,7 +23,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
 
         public PackageDeletionServiceTests()
         {
-            _packages = new Mock<IPackageDatabase>();
+            _packages = new Mock<PackageDatabase>();
             _storage = new Mock<IPackageStorageService>();
             _options = new BaGetOptions();
 

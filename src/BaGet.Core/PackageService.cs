@@ -8,13 +8,13 @@ namespace Aiursoft.BaGet.Core
 {
     public class PackageService : IPackageService
     {
-        private readonly IPackageDatabase _db;
+        private readonly PackageDatabase _db;
         private readonly IUpstreamClient _upstream;
         private readonly IPackageIndexingService _indexer;
         private readonly ILogger<PackageService> _logger;
 
         public PackageService(
-            IPackageDatabase db,
+            PackageDatabase db,
             IUpstreamClient upstream,
             IPackageIndexingService indexer,
             ILogger<PackageService> logger)

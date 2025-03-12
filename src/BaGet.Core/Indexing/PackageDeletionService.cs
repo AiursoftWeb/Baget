@@ -8,13 +8,13 @@ namespace Aiursoft.BaGet.Core.Indexing
 {
     public class PackageDeletionService : IPackageDeletionService
     {
-        private readonly IPackageDatabase _packages;
+        private readonly PackageDatabase _packages;
         private readonly IPackageStorageService _storage;
         private readonly BaGetOptions _options;
         private readonly ILogger<PackageDeletionService> _logger;
 
         public PackageDeletionService(
-            IPackageDatabase packages,
+            PackageDatabase packages,
             IPackageStorageService storage,
             IOptionsSnapshot<BaGetOptions> options,
             ILogger<PackageDeletionService> logger)

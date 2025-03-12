@@ -20,12 +20,12 @@ namespace Aiursoft.BaGet.Core.Indexing
             ".p7s"
         };
 
-        private readonly IPackageDatabase _packages;
+        private readonly PackageDatabase _packages;
         private readonly ISymbolStorageService _storage;
         private readonly ILogger<SymbolIndexingService> _logger;
 
         public SymbolIndexingService(
-            IPackageDatabase packages,
+            PackageDatabase packages,
             ISymbolStorageService storage,
             ILogger<SymbolIndexingService> logger)
         {
