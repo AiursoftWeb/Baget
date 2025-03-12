@@ -46,7 +46,7 @@ namespace Aiursoft.BaGet.Web
             services.AddConfiguration();
             services.AddBaGetServices();
             services.AddDefaultProviders();
-
+            services.TryAddTransient<IPackageDatabase>(provider => provider.GetRequiredService<PackageDatabase>());
             var (connectionString, dbType, allowCache) = configuration.GetDbSettings();
             services.AddSwitchableRelationalDatabase(
                 dbType: EntryExtends.IsInUnitTests() ? "InMemory": dbType,
@@ -56,7 +56,7 @@ namespace Aiursoft.BaGet.Web
                     new SqliteSupportedDb(allowCache: allowCache, splitQuery: true),
                 ]);
 
-            services.TryAddTransient<IPackageDatabase>(provider => provider.GetRequiredService<PackageDatabase>());
+            services.AddProvider<IPackageDatabase>((provider, _) => provider.GetRequiredService<PackageDatabase>());
             services.AddProvider<ISearchIndexer>((provider, config) =>
                 !config.HasSearchType(DependencyInjectionExtensions.DatabaseSearchType) ? null : provider.GetRequiredService<NullSearchIndexer>());
 
