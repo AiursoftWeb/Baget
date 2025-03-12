@@ -1,16 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <OutputType>Library</OutputType>
     <TargetFramework>net9.0</TargetFramework>
+    <AssemblyName>Aiursoft.BaGet.Database.MySql</AssemblyName>
+    <RootNamespace>BaGet.Database.MySql</RootNamespace>
+    <IsTestProject>false</IsTestProject>
+    <IsPackable>false</IsPackable>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>BaGet.Database.MySql</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\BaGet.Core\Aiursoft.BaGet.Core.csproj" />
   </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Aiursoft.DbTools.MySql" Version="9.0.11" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Aiursoft.DbTools.MySql" Version="9.0.12" />
+  </ItemGroup>
 </Project>
