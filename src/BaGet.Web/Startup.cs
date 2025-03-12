@@ -10,6 +10,7 @@ using Aiursoft.BaGet.Web.Extensions;
 using Aiursoft.CSTools.Tools;
 using Aiursoft.DbTools.Switchable;
 using Aiursoft.WebTools.Abstractions.Models;
+using BaGet.Database.MySql;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
@@ -52,6 +53,7 @@ namespace Aiursoft.BaGet.Web
                 supportedDbs:
                 [
                     new SqliteSupportedDb(allowCache: allowCache, splitQuery: true),
+                    new MySqlSupportedDb(allowCache: allowCache, splitQuery: true)
                 ]);
 
             services.AddProvider<ISearchIndexer>((provider, config) =>

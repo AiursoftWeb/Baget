@@ -70,24 +70,29 @@ namespace Aiursoft.BaGet.Core.Entities
 
             package.Property(p => p.IconUrl)
                 .HasConversion(UriToStringConverter.Instance)
-                .HasMaxLength(DefaultMaxStringLength);
+                .HasColumnType("TEXT");  // Change from VARCHAR(4000) to TEXT
 
             package.Property(p => p.LicenseUrl)
                 .HasConversion(UriToStringConverter.Instance)
-                .HasMaxLength(DefaultMaxStringLength);
+                .HasColumnType("TEXT");  // Change from VARCHAR(4000) to TEXT
 
             package.Property(p => p.ProjectUrl)
                 .HasConversion(UriToStringConverter.Instance)
-                .HasMaxLength(DefaultMaxStringLength);
+                .HasColumnType("TEXT");  // Change from VARCHAR(4000) to TEXT
 
             package.Property(p => p.RepositoryUrl)
                 .HasConversion(UriToStringConverter.Instance)
-                .HasMaxLength(DefaultMaxStringLength);
+                .HasColumnType("TEXT");  // Change from VARCHAR(4000) to TEXT
 
             package.Property(p => p.Tags)
                 .HasMaxLength(DefaultMaxStringLength)
                 .HasConversion(StringArrayToJsonConverter.Instance)
                 .Metadata.SetValueComparer(StringArrayComparer.Instance);
+
+            package.Property(p => p.Tags).HasColumnType("TEXT");
+            package.Property(p => p.Description).HasColumnType("TEXT");
+            package.Property(p => p.ReleaseNotes).HasColumnType("TEXT");
+            package.Property(p => p.Summary).HasColumnType("TEXT");
 
             package.Property(p => p.Description).HasMaxLength(DefaultMaxStringLength);
             package.Property(p => p.Language).HasMaxLength(MaxPackageLanguageLength);
@@ -150,16 +155,4 @@ namespace Aiursoft.BaGet.Core.Entities
             targetFramework.Property(f => f.Moniker).HasMaxLength(MaxTargetFrameworkLength);
         }
     }
-
-    // public abstract class AbstractContextObs<TContext> : DbContext, IContext where TContext : DbContext
-    // {
-    //
-    //     public AbstractContext(DbContextOptions<TContext> options)
-    //         : base(options)
-    //     { }
-    //
-    //     public Task<int> SaveChangesAsync() => SaveChangesAsync(default);
-    //
-    //
-    // }
 }
