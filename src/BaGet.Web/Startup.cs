@@ -13,6 +13,7 @@ using Aiursoft.WebTools.Abstractions.Models;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 
 namespace Aiursoft.BaGet.Web
@@ -55,12 +56,12 @@ namespace Aiursoft.BaGet.Web
                     new SqliteSupportedDb(allowCache: allowCache, splitQuery: true),
                 ]);
 
+            services.TryAddTransient<IPackageDatabase>(provider => provider.GetRequiredService<PackageDatabase>());
             services.AddProvider<ISearchIndexer>((provider, config) =>
                 !config.HasSearchType(DependencyInjectionExtensions.DatabaseSearchType) ? null : provider.GetRequiredService<NullSearchIndexer>());
 
             services.AddProvider<ISearchService>((provider, config) =>
                 !config.HasSearchType(DependencyInjectionExtensions.DatabaseSearchType) ? null : provider.GetRequiredService<DatabaseSearchService>());
-
             app.AddFileStorage();
             services.AddFallbackServices();
             services.AddTransient(DependencyInjectionExtensions.GetServiceFromProviders<IStorageService>);

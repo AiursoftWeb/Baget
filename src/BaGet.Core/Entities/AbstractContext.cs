@@ -1,4 +1,5 @@
 // ReSharper disable UnusedAutoPropertyAccessor.Global
+
 using Aiursoft.BaGet.Core.Entities.Converters;
 using Aiursoft.DbTools;
 using Microsoft.EntityFrameworkCore;
@@ -20,10 +21,10 @@ namespace Aiursoft.BaGet.Core.Entities
         public const int MaxTargetFrameworkLength = 256;
         public const int MaxPackageDependencyVersionRangeLength = 256;
 
-        public virtual  Task MigrateAsync(CancellationToken cancellationToken) =>
+        public virtual Task MigrateAsync(CancellationToken cancellationToken) =>
             Database.MigrateAsync(cancellationToken);
 
-        public virtual  Task<bool> CanConnectAsync() =>
+        public virtual Task<bool> CanConnectAsync() =>
             Database.CanConnectAsync();
 
         public DbSet<Package> Packages { get; set; }
@@ -31,15 +32,13 @@ namespace Aiursoft.BaGet.Core.Entities
         public DbSet<PackageType> PackageTypes { get; set; }
         public DbSet<TargetFramework> TargetFrameworks { get; set; }
 
-          protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Package>(BuildPackageEntity);
             builder.Entity<PackageDependency>(BuildPackageDependencyEntity);
             builder.Entity<PackageType>(BuildPackageTypeEntity);
             builder.Entity<TargetFramework>(BuildTargetFrameworkEntity);
         }
-
-        public abstract bool IsUniqueConstraintViolationException(DbUpdateException exception);
 
         private void BuildPackageEntity(EntityTypeBuilder<Package> package)
         {

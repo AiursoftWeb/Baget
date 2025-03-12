@@ -1,5 +1,4 @@
 using Aiursoft.BaGet.Core.Entities;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 namespace Aiursoft.BaGet.Database.Sqlite
@@ -34,17 +33,6 @@ namespace Aiursoft.BaGet.Database.Sqlite
             builder.Entity<TargetFramework>()
                 .Property(f => f.Moniker)
                 .HasColumnType("TEXT COLLATE NOCASE");
-        }
-
-        /// <summary>
-        /// The Sqlite error code for when a unique constraint is violated.
-        /// </summary>
-        private const int SqliteUniqueConstraintViolationErrorCode = 19;
-
-        public override bool IsUniqueConstraintViolationException(DbUpdateException exception)
-        {
-            return exception.InnerException is SqliteException sqliteException &&
-                   sqliteException.SqliteErrorCode == SqliteUniqueConstraintViolationErrorCode;
         }
     }
 }
