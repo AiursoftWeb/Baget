@@ -3,7 +3,6 @@ using System.Reflection;
 using Aiursoft.BaGet.Core.Authentication;
 using Aiursoft.BaGet.Core.Configuration;
 using Aiursoft.BaGet.Core.Content;
-using Aiursoft.BaGet.Core.Entities;
 using Aiursoft.BaGet.Core.Indexing;
 using Aiursoft.BaGet.Core.Metadata;
 using Aiursoft.BaGet.Core.Search;
@@ -98,7 +97,6 @@ namespace Aiursoft.BaGet.Core.Extensions
             services.TryAddTransient<V3UpstreamClient>();
             services.TryAddTransient<DisabledUpstreamClient>();
             services.TryAddSingleton<NullStorageService>();
-            services.TryAddTransient<PackageDatabase>();
 
             services.TryAddTransient(UpstreamClientFactory);
         }
@@ -137,7 +135,6 @@ namespace Aiursoft.BaGet.Core.Extensions
 
         public static void AddFallbackServices(this IServiceCollection services)
         {
-            services.TryAddScoped<IContext, NullContext>();
             services.TryAddTransient<ISearchIndexer>(provider => provider.GetRequiredService<NullSearchIndexer>());
             services.TryAddTransient<ISearchService>(provider => provider.GetRequiredService<DatabaseSearchService>());
         }
@@ -187,7 +184,7 @@ namespace Aiursoft.BaGet.Core.Extensions
 
             return provider.GetRequiredService<V3UpstreamClient>();
         }
-        
+
         private static readonly string SearchTypeKey = $"{nameof(BaGetOptions.Search)}:{nameof(SearchOptions.Type)}";
         private static readonly string StorageTypeKey = $"{nameof(BaGetOptions.Storage)}:{nameof(StorageOptions.Type)}";
 

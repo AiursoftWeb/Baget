@@ -1,4 +1,4 @@
-using Aiursoft.BaGet.Database.Sqlite;
+using Aiursoft.BaGet.Core.Entities;
 using Aiursoft.DbTools;
 using static Aiursoft.WebTools.Extends;
 
@@ -17,7 +17,7 @@ public class Program
     public static async Task Main(string[] args)
     {
         var app = await AppAsync<Startup>(args);
-        await app.UpdateDbAsync<SqliteContext>(UpdateMode.MigrateThenUse);
+        await app.UpdateDbAsync<AbstractContext>();
         await app.RunAsync();
     }
 }

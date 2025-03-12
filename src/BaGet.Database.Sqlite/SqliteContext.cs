@@ -4,21 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aiursoft.BaGet.Database.Sqlite
 {
-    public class SqliteContext : AbstractContext<SqliteContext>
+    public class SqliteContext(DbContextOptions<SqliteContext> options) : AbstractContext(options)
     {
-        /// <summary>
-        /// The Sqlite error code for when a unique constraint is violated.
-        /// </summary>
-        private const int SqliteUniqueConstraintViolationErrorCode = 19;
-
-        public SqliteContext(DbContextOptions<SqliteContext> options)
-            : base(options)
-        { }
-
-        public override bool IsUniqueConstraintViolationException(DbUpdateException exception)
+        public override Task<bool> CanConnectAsync()
         {
-            return exception.InnerException is SqliteException sqliteException &&
-                sqliteException.SqliteErrorCode == SqliteUniqueConstraintViolationErrorCode;
+            return Task.FromResult(true);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -44,6 +34,17 @@ namespace Aiursoft.BaGet.Database.Sqlite
             builder.Entity<TargetFramework>()
                 .Property(f => f.Moniker)
                 .HasColumnType("TEXT COLLATE NOCASE");
+        }
+
+        /// <summary>
+        /// The Sqlite error code for when a unique constraint is violated.
+        /// </summary>
+        private const int SqliteUniqueConstraintViolationErrorCode = 19;
+
+        public override bool IsUniqueConstraintViolationException(DbUpdateException exception)
+        {
+            return exception.InnerException is SqliteException sqliteException &&
+                   sqliteException.SqliteErrorCode == SqliteUniqueConstraintViolationErrorCode;
         }
     }
 }

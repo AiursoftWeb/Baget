@@ -1,14 +1,14 @@
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 using Aiursoft.BaGet.Core.Entities.Converters;
+using Aiursoft.DbTools;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Aiursoft.BaGet.Core.Entities
 {
-    public abstract class AbstractContext<TContext> : DbContext, IContext where TContext : DbContext
+    public abstract class AbstractContext(DbContextOptions options) : DbContext(options), ICanMigrate
     {
         public const int DefaultMaxStringLength = 4000;
-
         public const int MaxPackageIdLength = 128;
         public const int MaxPackageVersionLength = 64;
         public const int MaxPackageMinClientVersionLength = 44;
@@ -18,29 +18,28 @@ namespace Aiursoft.BaGet.Core.Entities
         public const int MaxPackageTypeVersionLength = 64;
         public const int MaxRepositoryTypeLength = 100;
         public const int MaxTargetFrameworkLength = 256;
-
         public const int MaxPackageDependencyVersionRangeLength = 256;
 
-        public AbstractContext(DbContextOptions<TContext> options)
-            : base(options)
-        { }
+        public virtual  Task MigrateAsync(CancellationToken cancellationToken) =>
+            Database.MigrateAsync(cancellationToken);
+
+        public virtual  Task<bool> CanConnectAsync() =>
+            Database.CanConnectAsync();
 
         public DbSet<Package> Packages { get; set; }
         public DbSet<PackageDependency> PackageDependencies { get; set; }
         public DbSet<PackageType> PackageTypes { get; set; }
         public DbSet<TargetFramework> TargetFrameworks { get; set; }
 
-        public Task<int> SaveChangesAsync() => SaveChangesAsync(default);
-
-        public abstract bool IsUniqueConstraintViolationException(DbUpdateException exception);
-
-        protected override void OnModelCreating(ModelBuilder builder)
+          protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Package>(BuildPackageEntity);
             builder.Entity<PackageDependency>(BuildPackageDependencyEntity);
             builder.Entity<PackageType>(BuildPackageTypeEntity);
             builder.Entity<TargetFramework>(BuildTargetFrameworkEntity);
         }
+
+        public abstract bool IsUniqueConstraintViolationException(DbUpdateException exception);
 
         private void BuildPackageEntity(EntityTypeBuilder<Package> package)
         {
@@ -152,4 +151,16 @@ namespace Aiursoft.BaGet.Core.Entities
             targetFramework.Property(f => f.Moniker).HasMaxLength(MaxTargetFrameworkLength);
         }
     }
+
+    // public abstract class AbstractContextObs<TContext> : DbContext, IContext where TContext : DbContext
+    // {
+    //
+    //     public AbstractContext(DbContextOptions<TContext> options)
+    //         : base(options)
+    //     { }
+    //
+    //     public Task<int> SaveChangesAsync() => SaveChangesAsync(default);
+    //
+    //
+    // }
 }

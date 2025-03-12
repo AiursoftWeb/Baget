@@ -8,12 +8,12 @@ namespace Aiursoft.BaGet.Core.Search
 {
     public class DatabaseSearchService : ISearchService
     {
-        private readonly IContext _context;
+        private readonly AbstractContext _context;
         private readonly IFrameworkCompatibilityService _frameworks;
         private readonly ISearchResponseBuilder _searchBuilder;
 
         public DatabaseSearchService(
-            IContext context,
+            AbstractContext context,
             IFrameworkCompatibilityService frameworks,
             ISearchResponseBuilder searchBuilder)
         {

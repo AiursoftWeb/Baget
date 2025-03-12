@@ -7,13 +7,12 @@ namespace Aiursoft.BaGet.Core.Upstream
     public class DownloadsImporter
     {
         private const int BatchSize = 200;
-
-        private readonly IContext _context;
+        private readonly AbstractContext _context;
         private readonly IPackageDownloadsSource _downloadsSource;
         private readonly ILogger<DownloadsImporter> _logger;
 
         public DownloadsImporter(
-            IContext context,
+            AbstractContext context,
             IPackageDownloadsSource downloadsSource,
             ILogger<DownloadsImporter> logger)
         {
