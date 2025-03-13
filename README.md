@@ -9,6 +9,9 @@
 
 A lightweight [NuGet] and [symbol] server.
 
+![overview](./screenshot.png)
+
+
 ## Try
 
 Try a running Baget [here](https://nuget.aiursoft.cn).
