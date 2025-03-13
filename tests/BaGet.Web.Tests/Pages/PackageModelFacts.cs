@@ -284,8 +284,8 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                 .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
                 .ReturnsAsync(new List<Package>
                 {
-                    CreatePackage("1.0.0", downloads: 10, published: DateTime.Now.AddDays(-2)),
-                    CreatePackage("2.0.0", listed: false, downloads: 5, published: now),
+                    CreatePackage("1.0.0", published: DateTime.Now.AddDays(-2)),
+                    CreatePackage("2.0.0", listed: false, published: now),
                 });
 
             await _target.OnGetAsync("testpackage", "1.0.0", _cancellation);
@@ -332,7 +332,6 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
 
         private Package CreatePackage(
             string version,
-            long downloads = 0,
             bool hasReadme = false,
             bool listed = true,
             DateTime? published = null,
