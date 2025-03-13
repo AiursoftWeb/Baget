@@ -45,7 +45,6 @@ namespace Aiursoft.BaGet.Web.Pages
         public bool IsDotnetTemplate { get; private set; }
         public bool IsDotnetTool { get; private set; }
         public DateTime LastUpdated { get; private set; }
-        public long TotalDownloads { get; private set; }
 
         public IReadOnlyList<PackageDependent> UsedBy { get; set; }
         public IReadOnlyList<DependencyGroupModel> DependencyGroups { get; private set; }
@@ -87,7 +86,6 @@ namespace Aiursoft.BaGet.Web.Pages
             IsDotnetTemplate = Package.PackageTypes.Any(t => t.Name.Equals("Template", StringComparison.OrdinalIgnoreCase));
             IsDotnetTool = Package.PackageTypes.Any(t => t.Name.Equals("DotnetTool", StringComparison.OrdinalIgnoreCase));
             LastUpdated = packages.Max(p => p.Published);
-            TotalDownloads = packages.Sum(p => p.Downloads);
 
             var dependents = await _search.FindDependentsAsync(Package.Id, cancellationToken);
 
@@ -182,7 +180,6 @@ namespace Aiursoft.BaGet.Web.Pages
                 .Select(p => new VersionModel
                 {
                     Version = p.Version,
-                    Downloads = p.Downloads,
                     Selected = p.Version == selectedVersion,
                     LastUpdated = p.Published,
                 })
@@ -225,7 +222,6 @@ namespace Aiursoft.BaGet.Web.Pages
         public class VersionModel
         {
             public NuGetVersion Version { get; set; }
-            public long Downloads { get; set; }
             public bool Selected { get; set; }
             public DateTime LastUpdated { get; set; }
         }

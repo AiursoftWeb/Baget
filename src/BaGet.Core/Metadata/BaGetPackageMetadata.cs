@@ -10,9 +10,6 @@ namespace Aiursoft.BaGet.Core.Metadata
     /// </summary>
     public class BaGetPackageMetadata : PackageMetadata
     {
-        [JsonPropertyName("downloads")]
-        public long Downloads { get; set; }
-
         [JsonPropertyName("hasReadme")]
         public bool HasReadme { get; set; }
 

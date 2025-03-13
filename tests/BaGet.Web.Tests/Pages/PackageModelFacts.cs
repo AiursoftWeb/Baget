@@ -1,4 +1,4 @@
-﻿using Aiursoft.BaGet.Core;
+using Aiursoft.BaGet.Core;
 using Aiursoft.BaGet.Core.Content;
 using Aiursoft.BaGet.Core.Entities;
 using Aiursoft.BaGet.Core.Search;
@@ -291,7 +291,6 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
             await _target.OnGetAsync("testpackage", "1.0.0", _cancellation);
 
             Assert.True(_target.Found);
-            Assert.Equal(15, _target.TotalDownloads);
             Assert.Equal(now, _target.LastUpdated);
         }
 
@@ -347,7 +346,6 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
             return new Package
             {
                 Id = "testpackage",
-                Downloads = downloads,
                 HasReadme = hasReadme,
                 Listed = listed,
                 NormalizedVersionString = version,

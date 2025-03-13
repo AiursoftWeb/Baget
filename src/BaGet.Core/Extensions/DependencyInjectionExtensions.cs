@@ -64,7 +64,6 @@ namespace Aiursoft.BaGet.Core.Extensions
         public static void AddBaGetServices(this IServiceCollection services)
         {
             services.TryAddSingleton<IFrameworkCompatibilityService, FrameworkCompatibilityService>();
-            services.TryAddSingleton<IPackageDownloadsSource, PackageDownloadsJsonSource>();
 
             services.TryAddSingleton<ISearchResponseBuilder, SearchResponseBuilder>();
             services.TryAddSingleton<NuGetClient>();
@@ -76,8 +75,6 @@ namespace Aiursoft.BaGet.Core.Extensions
 
             services.TryAddSingleton(HttpClientFactory);
             services.TryAddSingleton(NuGetClientFactoryFactory);
-
-            services.TryAddScoped<DownloadsImporter>();
 
             services.TryAddTransient<IAuthenticationService, ApiKeyAuthenticationService>();
             services.TryAddTransient<IPackageContentService, DefaultPackageContentService>();

@@ -24,7 +24,6 @@ namespace Aiursoft.BaGet.Core.Metadata
                 RegistrationIndexUrl = _url.GetRegistrationIndexUrl(registration.PackageId),
                 Type = RegistrationIndexResponse.DefaultType,
                 Count = 1,
-                TotalDownloads = registration.Packages.Sum(p => p.Downloads),
                 Pages = new[]
                 {
                     new BaGetRegistrationIndexPage
@@ -66,7 +65,6 @@ namespace Aiursoft.BaGet.Core.Metadata
                     Version = package.Version.ToFullString(),
                     Authors = string.Join(", ", package.Authors),
                     Description = package.Description,
-                    Downloads = package.Downloads,
                     HasReadme = package.HasReadme,
                     IconUrl = package.HasEmbeddedIcon
                         ? _url.GetPackageIconDownloadUrl(package.Id, package.Version)

@@ -34,12 +34,5 @@ namespace Aiursoft.BaGet.Core.Metadata
         /// </summary>
         [JsonPropertyName("items")]
         public IReadOnlyList<BaGetRegistrationIndexPage> Pages { get; set; }
-
-        /// <summary>
-        /// The package's total downloads across all versions.
-        /// This is not part of the official NuGet protocol.
-        /// </summary>
-        [JsonPropertyName("totalDownloads")]
-        public long TotalDownloads { get; set; }
     }
 }

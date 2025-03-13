@@ -1,4 +1,4 @@
-﻿using Aiursoft.BaGet.Core.Metadata;
+using Aiursoft.BaGet.Core.Metadata;
 using Aiursoft.BaGet.Protocol.Models;
 
 namespace Aiursoft.BaGet.Core.Search
@@ -37,13 +37,11 @@ namespace Aiursoft.BaGet.Core.Search
                     Summary = latest.Summary,
                     Tags = latest.Tags,
                     Title = latest.Title,
-                    TotalDownloads = versions.Sum(p => p.Downloads),
                     Versions = versions
                         .Select(p => new SearchResultVersion
                         {
                             RegistrationLeafUrl = _url.GetRegistrationLeafUrl(p.Id, p.Version),
                             Version = p.Version.ToFullString(),
-                            Downloads = p.Downloads,
                         })
                         .ToList(),
                 });

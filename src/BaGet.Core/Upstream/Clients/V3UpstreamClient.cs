@@ -91,7 +91,6 @@ namespace Aiursoft.BaGet.Core.Upstream.Clients
                 Version = version,
                 Authors = ParseAuthors(metadata.Authors),
                 Description = metadata.Description,
-                Downloads = 0,
                 HasReadme = false,
                 IsPrerelease = version.IsPrerelease,
                 Language = metadata.Language,

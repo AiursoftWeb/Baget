@@ -21,11 +21,5 @@ namespace Aiursoft.BaGet.Protocol.Models
         /// </summary>
         [JsonPropertyName("version")]
         public string Version { get; set; }
-
-        /// <summary>
-        /// The downloads for this single version of the matched package.
-        /// </summary>
-        [JsonPropertyName("downloads")]
-        public long Downloads { get; set; }
     }
 }

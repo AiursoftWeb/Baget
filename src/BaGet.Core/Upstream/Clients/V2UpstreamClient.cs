@@ -132,7 +132,6 @@ namespace Aiursoft.BaGet.Core.Upstream.Clients
                 Version = package.Identity.Version,
                 Authors = ParseAuthors(package.Authors),
                 Description = package.Description,
-                Downloads = 0,
                 HasReadme = false,
                 Language = null,
                 Listed = package.IsListed,

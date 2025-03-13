@@ -86,12 +86,6 @@ namespace Aiursoft.BaGet.Protocol.Models
         public string Title { get; set; }
 
         /// <summary>
-        /// The total downloads for all versions of the matched package.
-        /// </summary>
-        [JsonPropertyName("totalDownloads")]
-        public long TotalDownloads { get; set; }
-
-        /// <summary>
         /// The versions of the matched package.
         /// </summary>
         [JsonPropertyName("versions")]

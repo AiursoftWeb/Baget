@@ -24,11 +24,6 @@ namespace Aiursoft.BaGet.Core.Tests.Metadata
                     OriginalType = typeof(RegistrationIndexResponse),
                     DerivedType = typeof(BaGetRegistrationIndexResponse),
 
-                    AddedProperties = new Dictionary<string, Type>
-                    {
-                        { "TotalDownloads", typeof(long) },
-                    },
-
                     ModifiedProperties = new Dictionary<string, (Type From, Type To)>
                     {
                         {

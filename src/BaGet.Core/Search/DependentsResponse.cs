@@ -38,11 +38,5 @@ namespace Aiursoft.BaGet.Core.Search
         /// </summary>
         [JsonPropertyName("description")]
         public string Description { get; set; }
-
-        /// <summary>
-        /// The total downloads for the dependent package.
-        /// </summary>
-        [JsonPropertyName("totalDownloads")]
-        public long TotalDownloads { get; set; }
     }
 }

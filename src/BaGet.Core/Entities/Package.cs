@@ -29,7 +29,6 @@ namespace Aiursoft.BaGet.Core.Entities
 
         public string[] Authors { get; set; }
         public string Description { get; set; }
-        public long Downloads { get; set; }
         public bool HasReadme { get; set; }
         public bool HasEmbeddedIcon { get; set; }
         public bool IsPrerelease { get; set; }

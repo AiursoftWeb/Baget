@@ -38,9 +38,6 @@ namespace BaGet.Database.MySql.Migrations
                         .HasMaxLength(4000)
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("Downloads")
-                        .HasColumnType("bigint");
-
                     b.Property<bool>("HasEmbeddedIcon")
                         .HasColumnType("tinyint(1)");
 

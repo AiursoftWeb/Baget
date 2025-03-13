@@ -37,7 +37,7 @@ namespace Aiursoft.BaGet.Core.Search
 
             var packageIds = await search
                 .Distinct()
-                .OrderByDescending(x => x.Downloads)
+                .OrderBy(x => x.Id)
                 .Select(p => p.Id)
                 .Skip(request.Skip)
                 .Take(request.Take)
@@ -75,7 +75,7 @@ namespace Aiursoft.BaGet.Core.Search
                 frameworks: null);
 
             var packageIds = await search
-                .OrderByDescending(p => p.Downloads)
+                .OrderBy(p => p.Id)
                 .Select(p => p.Id)
                 .Distinct()
                 .Skip(request.Skip)
@@ -113,14 +113,13 @@ namespace Aiursoft.BaGet.Core.Search
             var dependents = await _context
                 .Packages
                 .Where(p => p.Listed)
-                .OrderByDescending(p => p.Downloads)
+                .OrderBy(p => p.Id)
                 .Where(p => p.Dependencies.Any(d => d.Id == packageId))
                 .Take(20)
                 .Select(r => new PackageDependent
                 {
                     Id = r.Id,
-                    Description = r.Description,
-                    TotalDownloads = r.Downloads
+                    Description = r.Description
                 })
                 .Distinct()
                 .ToListAsync(cancellationToken);

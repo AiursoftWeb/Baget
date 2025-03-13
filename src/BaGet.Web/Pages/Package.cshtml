@@ -106,10 +106,6 @@ else
                                                     <a href="@Url.Page("/Package", new { package.Id })">@package.Id</a>
                                                     <div>@package.Description</div>
                                                 </td>
-                                                <td>
-                                                    <i class="ms-Icon ms-Icon--Download" aria-hidden="true"></i>
-                                                    <span>@package.TotalDownloads.ToString("N0")</span>
-                                                </td>
                                             </tr>
                                         }
                                     </tbody>
@@ -185,7 +181,6 @@ else
 
                                 <tr class="@(version.Selected ? "bg-info" : "")" x-show="showAll || @alwaysShow">
                                     <td><a asp-page="Package" asp-route-version="@version.Version">@version.Version.ToNormalizedString()</a></td>
-                                    <td>@version.Downloads.ToString("N0")</td>
                                     <td>@version.LastUpdated.ToShortDateString()</td>
                                 </tr>
                             }
@@ -241,22 +236,6 @@ else
                     <li>
                         <i class="ms-Icon ms-Icon--CloudDownload"></i>
                         <a href="@Model.PackageDownloadUrl">Download package</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div>
-                <h2>Statistics</h2>
-
-                <ul class="list-unstyled ms-Icon-ul">
-                    <li>
-                        <i class="ms-Icon ms-Icon--Download"></i>
-                        @Model.TotalDownloads.ToString("N0") total downloads
-                    </li>
-
-                    <li>
-                        <i class="ms-Icon ms-Icon--Giftbox"></i>
-                        @Model.Package.Downloads.ToString("N0") downloads of current version
                     </li>
                 </ul>
             </div>
