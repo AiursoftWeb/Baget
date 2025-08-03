@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Aiursoft.BaGet.Protocol.Converters;
 using Xunit;
+using Assert = Xunit.Assert;
 
 namespace Aiursoft.BaGet.Protocol.Tests.Converters
 {

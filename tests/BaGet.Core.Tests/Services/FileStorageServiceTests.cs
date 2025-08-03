@@ -4,6 +4,8 @@ using Aiursoft.BaGet.Core.Storage;
 using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
+using Assert = Xunit.Assert;
+
 // ReSharper disable InconsistentNaming
 
 namespace Aiursoft.BaGet.Core.Tests.Services

@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using Aiursoft.BaGet.Core.Metadata;
 using Aiursoft.BaGet.Protocol.Models;
 using Xunit;
+using Assert = Xunit.Assert;
 
 namespace Aiursoft.BaGet.Core.Tests.Metadata
 {

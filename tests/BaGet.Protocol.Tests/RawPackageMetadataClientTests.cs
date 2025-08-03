@@ -1,6 +1,7 @@
 using Aiursoft.BaGet.Protocol.PackageMetadata;
 using Aiursoft.BaGet.Protocol.Tests.Support;
 using Xunit;
+using Assert = Xunit.Assert;
 
 namespace Aiursoft.BaGet.Protocol.Tests
 {

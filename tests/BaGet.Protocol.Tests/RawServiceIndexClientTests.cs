@@ -2,6 +2,7 @@ using Aiursoft.BaGet.Protocol.Extensions;
 using Aiursoft.BaGet.Protocol.ServiceIndex;
 using Aiursoft.BaGet.Protocol.Tests.Support;
 using Xunit;
+using Assert = Xunit.Assert;
 
 namespace Aiursoft.BaGet.Protocol.Tests
 {

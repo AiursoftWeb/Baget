@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NuGet.Versioning;
 using Xunit;
+using Assert = Xunit.Assert;
 
 namespace Aiursoft.BaGet.Core.Tests.Upstream
 {

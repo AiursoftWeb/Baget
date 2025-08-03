@@ -5,6 +5,8 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NuGet.Versioning;
 using Xunit;
+using Assert = Xunit.Assert;
+
 // ReSharper disable InconsistentNaming
 
 namespace Aiursoft.BaGet.Core.Tests.Services

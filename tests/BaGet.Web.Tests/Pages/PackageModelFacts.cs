@@ -6,6 +6,7 @@ using Aiursoft.BaGet.Web.Pages;
 using Moq;
 using NuGet.Versioning;
 using Xunit;
+using Assert = Xunit.Assert;
 
 namespace Aiursoft.BaGet.Web.Tests.Pages
 {

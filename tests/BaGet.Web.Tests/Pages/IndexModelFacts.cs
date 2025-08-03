@@ -3,6 +3,7 @@ using Aiursoft.BaGet.Protocol.Models;
 using Aiursoft.BaGet.Web.Pages;
 using Moq;
 using Xunit;
+using Assert = Xunit.Assert;
 
 namespace Aiursoft.BaGet.Web.Tests.Pages
 {
