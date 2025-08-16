@@ -11,7 +11,7 @@
     <PackageTags>NuGet</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Aiursoft.DbTools.Sqlite" Version="9.0.20" />
+    <PackageReference Include="Aiursoft.DbTools.Sqlite" Version="9.0.21" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BaGet.Core\Aiursoft.BaGet.Core.csproj" />
