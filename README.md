@@ -4,7 +4,7 @@
 [![Pipeline stat](https://gitlab.aiursoft.com/aiursoft/Baget/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/aiursoft/Baget/-/pipelines)
 [![Test Coverage](https://gitlab.aiursoft.com/aiursoft/Baget/badges/master/coverage.svg)](https://gitlab.aiursoft.com/aiursoft/Baget/-/pipelines)
 [![ManHours](https://manhours.aiursoft.cn/r/gitlab.aiursoft.com/aiursoft/Baget.svg)](https://gitlab.aiursoft.com/aiursoft/Baget/-/commits/master?ref_type=heads)
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fnuget.aiursoft.cn%2F)](https://nuget.aiursoft.cn)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fnuget.aiursoft.com%2F)](https://nuget.aiursoft.com)
 [![Docker](https://img.shields.io/docker/pulls/aiursoft/baget.svg)](https://hub.docker.com/r/aiursoft/baget)
 
 A lightweight [NuGet] and [symbol] server.
@@ -14,7 +14,7 @@ A lightweight [NuGet] and [symbol] server.
 
 ## Try
 
-Try a running Baget [here](https://nuget.aiursoft.cn).
+Try a running Baget [here](https://nuget.aiursoft.com).
 
 ## Run in Ubuntu
 
