@@ -1,7 +1,7 @@
-aiur() { arg="$( cut -d ' ' -f 2- <<< "$@" )" && curl -sL https://gitlab.aiursoft.cn/aiursoft/aiurscript/-/raw/master/$1.sh | sudo bash -s $arg; }
+aiur() { arg="$( cut -d ' ' -f 2- <<< "$@" )" && curl -sL https://gitlab.aiursoft.com/aiursoft/aiurscript/-/raw/master/$1.sh | sudo bash -s $arg; }
 
 app_name="baget"
-repo_path="https://gitlab.aiursoft.cn/aiursoft/baget"
+repo_path="https://gitlab.aiursoft.com/aiursoft/baget"
 proj_path="src/BaGet.Web/Aiursoft.BaGet.Web.csproj"
 
 get_dll_name()
