@@ -14,7 +14,6 @@ using Aiursoft.WebTools.Abstractions.Models;
 using BaGet.Database.MySql;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.Extensions.Options;
 
 namespace Aiursoft.BaGet.Web
@@ -69,8 +68,6 @@ namespace Aiursoft.BaGet.Web
             services.AddTransient(DependencyInjectionExtensions.GetServiceFromProviders<ISearchService>);
             services.AddTransient(DependencyInjectionExtensions.GetServiceFromProviders<ISearchIndexer>);
             services.AddTransient<PackageDatabase>();
-
-            services.AddSingleton<IConfigureOptions<MvcRazorRuntimeCompilationOptions>, ConfigureRazorRuntimeCompilation>();
             services.AddCors();
         }
 
