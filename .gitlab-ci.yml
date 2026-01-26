@@ -8,8 +8,8 @@ stages:
 before_script:
     - "export DOTNET_CLI_TELEMETRY_OPTOUT=1"
     - "export PATH=$PATH:$HOME/.dotnet/tools"
-    - "which jb || dotnet tool install JetBrains.ReSharper.GlobalTools -v d --global"
-    - "which reportgenerator || dotnet tool install dotnet-reportgenerator-globaltool -v d --global"
+    - "which jb || dotnet tool install JetBrains.ReSharper.GlobalTools --global --add-source https://nuget.aiursoft.com/v3/index.json --configfile ./nuget.config -v d"
+    - "which reportgenerator || dotnet tool install dotnet-reportgenerator-globaltool --global --add-source https://nuget.aiursoft.com/v3/index.json --configfile ./nuget.config -v d"
     - 'echo "Hostname: $(hostname)"'
     - "dotnet --info"
 
@@ -20,9 +20,9 @@ restore:
     stage: build
     script:
         - |
-            dotnet restore --no-cache || \
-            (echo "Restore failed. Retrying in 10 seconds..." && sleep 10 && dotnet restore --no-cache) || \
-            (echo "Restore failed again. Retrying in 20 seconds..." && sleep 20 && dotnet restore --no-cache)
+            dotnet restore --no-cache --configfile nuget.config || \
+            (echo "Restore failed. Retrying in 10 seconds..." && sleep 10 && dotnet restore --no-cache --configfile nuget.config) || \
+            (echo "Restore failed again. Retrying in 20 seconds..." && sleep 20 && dotnet restore --no-cache --configfile nuget.config)
 
 build:
     stage: build
