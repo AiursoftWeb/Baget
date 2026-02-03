@@ -23,7 +23,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="JunitXml.TestLogger" Version="8.0.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="4.0.2" />
+    <PackageReference Include="MSTest.TestAdapter" Version="4.1.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="TestData.Designer.cs">
