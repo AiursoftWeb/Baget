@@ -5,8 +5,8 @@ namespace Aiursoft.BaGet.Core.Search
 {
     public interface ISearchResponseBuilder
     {
-        SearchResponse BuildSearch(IReadOnlyList<PackageRegistration> results);
-        AutocompleteResponse BuildAutocomplete(IReadOnlyList<string> data);
+        SearchResponse BuildSearch(long totalHits, IReadOnlyList<PackageRegistration> results);
+        AutocompleteResponse BuildAutocomplete(long totalHits, IReadOnlyList<string> data);
         DependentsResponse BuildDependents(IReadOnlyList<PackageDependent> results);
     }
 }

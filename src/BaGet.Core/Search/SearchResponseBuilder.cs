@@ -12,7 +12,7 @@ namespace Aiursoft.BaGet.Core.Search
             _url = url ?? throw new ArgumentNullException(nameof(url));
         }
 
-        public SearchResponse BuildSearch(IReadOnlyList<PackageRegistration> packageRegistrations)
+        public SearchResponse BuildSearch(long totalHits, IReadOnlyList<PackageRegistration> packageRegistrations)
         {
             var result = new List<SearchResult>();
 
@@ -49,17 +49,17 @@ namespace Aiursoft.BaGet.Core.Search
 
             return new SearchResponse
             {
-                TotalHits = result.Count,
+                TotalHits = totalHits,
                 Data = result,
                 Context = SearchContext.Default(_url.GetPackageMetadataResourceUrl()),
             };
         }
 
-        public AutocompleteResponse BuildAutocomplete(IReadOnlyList<string> data)
+        public AutocompleteResponse BuildAutocomplete(long totalHits, IReadOnlyList<string> data)
         {
             return new AutocompleteResponse
             {
-                TotalHits = data.Count,
+                TotalHits = totalHits,
                 Data = data,
                 Context = AutocompleteContext.Default
             };
