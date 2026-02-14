@@ -145,15 +145,28 @@ else
     }
 
     var showPreviousLink = Model.PageIndex > 1;
-    var showNextLink = Model.Packages.Count >= IndexModel.ResultsPerPage;
+    var showNextLink = Model.PageIndex * IndexModel.ResultsPerPage < Model.TotalHits;
 
-    if (showPreviousLink || showNextLink)
+    <hr />
+
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            @if (Model.TotalHits > 0)
+            {
+                <p>
+                    Showing @((Model.PageIndex - 1) * IndexModel.ResultsPerPage + 1) - @(Math.Min(Model.PageIndex * IndexModel.ResultsPerPage, Model.TotalHits)) of @Model.TotalHits packages
+                </p>
+            }
+        </div>
+    </div>
+
+    @if (showPreviousLink || showNextLink)
     {
         <nav aria-label="Search page navigation">
             <ul class="pager">
                 @if (showPreviousLink)
                 {
-                    <li><a href="@SearchLink(page:Model.PageIndex - 1)">Previous</a></li>
+                    <li><a href="@SearchLink(page: Model.PageIndex - 1)">Previous</a></li>
                 }
 
                 @if (showNextLink)

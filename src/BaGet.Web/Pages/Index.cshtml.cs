@@ -35,6 +35,8 @@ namespace Aiursoft.BaGet.Web.Pages
 
         public IReadOnlyList<SearchResult> Packages { get; private set; }
 
+        public long TotalHits { get; private set; }
+
         public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -56,6 +58,7 @@ namespace Aiursoft.BaGet.Web.Pages
                 cancellationToken);
 
             Packages = search.Data;
+            TotalHits = search.TotalHits;
 
             return Page();
         }

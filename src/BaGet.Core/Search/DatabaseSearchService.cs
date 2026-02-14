@@ -35,15 +35,17 @@ namespace Aiursoft.BaGet.Core.Search
                 request.PackageType,
                 frameworks);
 
-            var packageIds = await search
-                .Distinct()
-                .OrderBy(x => x.Id)
-                .Select(p => p.Id)
+            var query = search.GroupBy(p => p.Id);
+            var totalHits = await query.CountAsync(cancellationToken);
+
+            var packageIds = await query
+                .OrderByDescending(g => g.Max(p => p.Published))
+                .Select(g => g.Key)
                 .Skip(request.Skip)
                 .Take(request.Take)
                 .ToListAsync(cancellationToken);
 
-            search = _context.Packages.Where(p => EF.Constant(packageIds).Contains(p.Id));
+            search = _context.Packages.Where(p => packageIds.Contains(p.Id));
             search = ApplySearchFilters(
                 search,
                 request.IncludePrerelease,
@@ -55,9 +57,10 @@ namespace Aiursoft.BaGet.Core.Search
             var groupedResults = results
                 .GroupBy(p => p.Id, StringComparer.OrdinalIgnoreCase)
                 .Select(group => new PackageRegistration(group.Key, group.ToList()))
+                .OrderBy(registration => packageIds.IndexOf(registration.PackageId))
                 .ToList();
 
-            return _searchBuilder.BuildSearch(groupedResults);
+            return _searchBuilder.BuildSearch(totalHits, groupedResults);
         }
 
         public async Task<AutocompleteResponse> AutocompleteAsync(
@@ -74,15 +77,16 @@ namespace Aiursoft.BaGet.Core.Search
                 request.PackageType,
                 frameworks: null);
 
-            var packageIds = await search
-                .OrderBy(p => p.Id)
-                .Select(p => p.Id)
-                .Distinct()
+            var query = search.Select(p => p.Id).Distinct();
+            var totalHits = await query.CountAsync(cancellationToken);
+
+            var packageIds = await query
+                .OrderBy(id => id)
                 .Skip(request.Skip)
                 .Take(request.Take)
                 .ToListAsync(cancellationToken);
 
-            return _searchBuilder.BuildAutocomplete(packageIds);
+            return _searchBuilder.BuildAutocomplete(totalHits, packageIds);
         }
 
         public async Task<AutocompleteResponse> ListPackageVersionsAsync(
@@ -105,7 +109,7 @@ namespace Aiursoft.BaGet.Core.Search
                 .Select(p => p.NormalizedVersionString)
                 .ToListAsync(cancellationToken);
 
-            return _searchBuilder.BuildAutocomplete(packageVersions);
+            return _searchBuilder.BuildAutocomplete(packageVersions.Count, packageVersions);
         }
 
         public async Task<DependentsResponse> FindDependentsAsync(string packageId, CancellationToken cancellationToken)
