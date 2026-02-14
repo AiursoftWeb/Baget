@@ -18,7 +18,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetsServiceIndex()
         {
-            var result = await _target.GetAsync();
+            var result = await _target.GetAsync(TestContext.Current.CancellationToken);
 
             Assert.Equal("3.0.0", result.Version);
             Assert.Equal(5, result.Resources.Count);

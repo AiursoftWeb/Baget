@@ -17,8 +17,6 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         private readonly Mock<ISearchService> _search;
         private readonly PackageModel _target;
 
-        private readonly CancellationToken _cancellation = CancellationToken.None;
-
         public PackageModelFacts()
         {
             _content = new Mock<IPackageContentService>();
@@ -32,7 +30,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                 url.Object);
 
             _search
-                .Setup(s => s.FindDependentsAsync("testpackage", _cancellation))
+                .Setup(s => s.FindDependentsAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new DependentsResponse());
         }
 
@@ -40,10 +38,10 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         public async Task ReturnsNotFound()
         {
             _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
+                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new List<Package>());
 
-            await _target.OnGetAsync("testpackage", "1.0.0", _cancellation);
+            await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
             Assert.False(_target.Found);
             Assert.Equal("testpackage", _target.Package.Id);
@@ -55,13 +53,13 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         public async Task ReturnsNotFoundIfAllUnlisted()
         {
             _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
+                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new List<Package>
                 {
                     CreatePackage("1.0.0", listed: false),
                 });
 
-            await _target.OnGetAsync("testpackage", version: null, _cancellation);
+            await _target.OnGetAsync("testpackage", version: null, TestContext.Current.CancellationToken);
 
             Assert.False(_target.Found);
             Assert.Equal("testpackage", _target.Package.Id);
@@ -73,7 +71,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         public async Task ReturnsRequestedVersion()
         {
             _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
+                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new List<Package>
                 {
                     CreatePackage("1.0.0"),
@@ -81,7 +79,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                     CreatePackage("3.0.0"),
                 });
 
-            await _target.OnGetAsync("testpackage", "2.0.0", _cancellation);
+            await _target.OnGetAsync("testpackage", "2.0.0", TestContext.Current.CancellationToken);
 
             Assert.True(_target.Found);
             Assert.Equal("testpackage", _target.Package.Id);
@@ -100,7 +98,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         public async Task ReturnsRequestedUnlistedVersion()
         {
             _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
+                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new List<Package>
                 {
                     CreatePackage("1.0.0"),
@@ -108,7 +106,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                     CreatePackage("3.0.0"),
                 });
 
-            await _target.OnGetAsync("testpackage", "2.0.0", _cancellation);
+            await _target.OnGetAsync("testpackage", "2.0.0", TestContext.Current.CancellationToken);
 
             Assert.True(_target.Found);
             Assert.Equal("testpackage", _target.Package.Id);
@@ -125,7 +123,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         public async Task FallsBackToLatestListedVersion()
         {
             _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
+                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new List<Package>
                 {
                     CreatePackage("1.0.0"),
@@ -133,7 +131,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                     CreatePackage("3.0.0", listed: false),
                 });
 
-            await _target.OnGetAsync("testpackage", "4.0.0", _cancellation);
+            await _target.OnGetAsync("testpackage", "4.0.0", TestContext.Current.CancellationToken);
 
             Assert.True(_target.Found);
             Assert.Equal("testpackage", _target.Package.Id);
@@ -155,13 +153,13 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         public async Task HandlesPackageTypes(IEnumerable<string> packageTypes, bool expectDotnetTemplate, bool expectDotnetTool)
         {
             _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
+                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new List<Package>
                 {
                     CreatePackage("1.0.0", packageTypes: packageTypes)
                 });
 
-            await _target.OnGetAsync("testpackage", "1.0.0", _cancellation);
+            await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
             Assert.True(_target.Found);
             Assert.Equal(expectDotnetTemplate, _target.IsDotnetTemplate);
@@ -172,14 +170,14 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         public async Task FindsDependentPackages()
         {
             _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
+                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new List<Package>
                 {
                     CreatePackage("1.0.0")
                 });
 
             _search
-                .Setup(s => s.FindDependentsAsync("testpackage", _cancellation))
+                .Setup(s => s.FindDependentsAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new DependentsResponse
                 {
                     Data = new List<PackageDependent>
@@ -189,7 +187,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                     }
                 });
 
-            await _target.OnGetAsync("testpackage", "1.0.0", _cancellation);
+            await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
             Assert.Equal(2, _target.UsedBy.Count);
             Assert.Equal("Used by 1", _target.UsedBy[0].Id);
@@ -200,7 +198,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         public async Task GroupsVersions()
         {
             _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
+                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new List<Package>
                 {
                     CreatePackage("1.0.0", dependencies: new[]
@@ -226,7 +224,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                     })
                 });
 
-            await _target.OnGetAsync("testpackage", "1.0.0", _cancellation);
+            await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
             Assert.True(_target.Found);
             Assert.Equal(2, _target.DependencyGroups.Count);
@@ -255,7 +253,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         public async Task PrettifiesTargetFramework(string targetFramework, string expectedResult)
         {
             _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
+                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new List<Package>
                 {
                     CreatePackage("1.0.0", dependencies: new[]
@@ -269,7 +267,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                     })
                 });
 
-            await _target.OnGetAsync("testpackage", "1.0.0", _cancellation);
+            await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
             Assert.True(_target.Found);
             var group = Assert.Single(_target.DependencyGroups);
@@ -282,14 +280,14 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
             var now = DateTime.Now;
 
             _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
+                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
                 .ReturnsAsync(new List<Package>
                 {
                     CreatePackage("1.0.0", published: DateTime.Now.AddDays(-2)),
                     CreatePackage("2.0.0", listed: false, published: now),
                 });
 
-            await _target.OnGetAsync("testpackage", "1.0.0", _cancellation);
+            await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
             Assert.True(_target.Found);
             Assert.Equal(now, _target.LastUpdated);
@@ -302,15 +300,15 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
             {
                 using (var streamWriter = new StreamWriter(readmeStream, leaveOpen: true))
                 {
-                    await streamWriter.WriteLineAsync("# My readme");
-                    await streamWriter.WriteLineAsync("Hello world!");
-                    await streamWriter.FlushAsync();
+                    await streamWriter.WriteLineAsync("# My readme".AsMemory(), TestContext.Current.CancellationToken);
+                    await streamWriter.WriteLineAsync("Hello world!".AsMemory(), TestContext.Current.CancellationToken);
+                    await streamWriter.FlushAsync(TestContext.Current.CancellationToken);
                 }
 
                 readmeStream.Position = 0;
 
                 _packages
-                    .Setup(m => m.FindPackagesAsync("testpackage", _cancellation))
+                    .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
                     .ReturnsAsync(new List<Package>
                     {
                         CreatePackage("1.0.0", hasReadme: true),
@@ -320,10 +318,10 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                     .Setup(c => c.GetPackageReadmeStreamOrNullAsync(
                         "testpackage",
                         It.Is<NuGetVersion>(v => v.OriginalVersion == "1.0.0"),
-                        _cancellation))
+                        TestContext.Current.CancellationToken))
                     .ReturnsAsync(readmeStream);
 
-                await _target.OnGetAsync("testpackage", "1.0.0", _cancellation);
+                await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
                 Assert.Equal(
                     "<h1 id=\"my-readme\">My readme</h1>\n<p>Hello world!</p>\n",

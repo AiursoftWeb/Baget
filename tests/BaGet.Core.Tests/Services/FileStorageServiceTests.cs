@@ -18,7 +18,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task ThrowsIfStorePathDoesNotExist()
             {
                 await Assert.ThrowsAsync<DirectoryNotFoundException>(() =>
-                    _target.GetAsync("hello.txt"));
+                    _target.GetAsync("hello.txt", TestContext.Current.CancellationToken));
             }
 
             [Fact]
@@ -28,10 +28,10 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 Directory.CreateDirectory(StorePath);
 
                 await Assert.ThrowsAsync<FileNotFoundException>(() =>
-                    _target.GetAsync("hello.txt"));
+                    _target.GetAsync("hello.txt", TestContext.Current.CancellationToken));
 
                 await Assert.ThrowsAsync<DirectoryNotFoundException>(() =>
-                    _target.GetAsync("hello/world.txt"));
+                    _target.GetAsync("hello/world.txt", TestContext.Current.CancellationToken));
             }
 
             [Fact]
@@ -40,11 +40,11 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 // Arrange
                 await using (var content = StringStream("Hello world"))
                 {
-                    await _target.PutAsync("hello.txt", content, "text/plain");
+                    await _target.PutAsync("hello.txt", content, "text/plain", TestContext.Current.CancellationToken);
                 }
 
                 // Act
-                var result = await _target.GetAsync("hello.txt");
+                var result = await _target.GetAsync("hello.txt", TestContext.Current.CancellationToken);
 
                 // Assert
                 Assert.Equal("Hello world", await ToStringAsync(result));
@@ -56,7 +56,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 foreach (var path in OutsideStorePathData)
                 {
                     await Assert.ThrowsAsync<ArgumentException>(() =>
-                        _target.GetAsync(path));
+                        _target.GetAsync(path, TestContext.Current.CancellationToken));
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             [Fact]
             public async Task CreatesUriEvenIfDoesntExist()
             {
-                var result = await _target.GetDownloadUriAsync("test.txt");
+                var result = await _target.GetDownloadUriAsync("test.txt", TestContext.Current.CancellationToken);
                 var expected = new Uri(Path.Combine(StorePath, "test.txt"));
 
                 Assert.Equal(expected, result);
@@ -78,7 +78,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 foreach (var path in OutsideStorePathData)
                 {
                     await Assert.ThrowsAsync<ArgumentException>(() =>
-                        _target.GetDownloadUriAsync(path));
+                        _target.GetDownloadUriAsync(path, TestContext.Current.CancellationToken));
                 }
             }
         }
@@ -91,14 +91,14 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 StoragePutResult result;
                 await using (var content = StringStream("Hello world"))
                 {
-                    result = await _target.PutAsync("test.txt", content, "text/plain");
+                    result = await _target.PutAsync("test.txt", content, "text/plain", TestContext.Current.CancellationToken);
                 }
 
                 var path = Path.Combine(StorePath, "test.txt");
 
                 Assert.True(File.Exists(path));
                 Assert.Equal(StoragePutResult.Success, result);
-                Assert.Equal("Hello world", await File.ReadAllTextAsync(path));
+                Assert.Equal("Hello world", await File.ReadAllTextAsync(path, TestContext.Current.CancellationToken));
             }
 
             [Fact]
@@ -108,13 +108,13 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 var path = Path.Combine(StorePath, "test.txt");
 
                 Directory.CreateDirectory(Path.GetDirectoryName(path) ?? throw new ArgumentNullException(nameof(path)));
-                await File.WriteAllTextAsync(path, "Hello world");
+                await File.WriteAllTextAsync(path, "Hello world", TestContext.Current.CancellationToken);
 
                 StoragePutResult result;
                 await using (var content = StringStream("Hello world"))
                 {
                     // Act
-                    result = await _target.PutAsync("test.txt", content, "text/plain");
+                    result = await _target.PutAsync("test.txt", content, "text/plain", TestContext.Current.CancellationToken);
                 }
 
                 // Assert
@@ -128,13 +128,13 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 var path = Path.Combine(StorePath, "test.txt");
 
                 Directory.CreateDirectory(Path.GetDirectoryName(path) ?? throw new ArgumentNullException(nameof(path)));
-                await File.WriteAllTextAsync(path, "Hello world");
+                await File.WriteAllTextAsync(path, "Hello world", TestContext.Current.CancellationToken);
 
                 StoragePutResult result;
                 await using (var content = StringStream("foo bar"))
                 {
                     // Act
-                    result = await _target.PutAsync("test.txt", content, "text/plain");
+                    result = await _target.PutAsync("test.txt", content, "text/plain", TestContext.Current.CancellationToken);
                 }
 
                 // Assert
@@ -148,7 +148,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 {
                     await using var content = StringStream("Hello world");
                     await Assert.ThrowsAsync<ArgumentException>(() =>
-                        _target.PutAsync(path, content, "text/plain"));
+                        _target.PutAsync(path, content, "text/plain", TestContext.Current.CancellationToken));
                 }
             }
         }
@@ -158,7 +158,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             [Fact]
             public async Task DoesNotThrowIfPathDoesNotExist()
             {
-                await _target.DeleteAsync("test.txt");
+                await _target.DeleteAsync("test.txt", TestContext.Current.CancellationToken);
             }
 
             [Fact]
@@ -168,10 +168,10 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 var path = Path.Combine(StorePath, "test.txt");
 
                 Directory.CreateDirectory(StorePath);
-                await File.WriteAllTextAsync(path, "Hello world");
+                await File.WriteAllTextAsync(path, "Hello world", TestContext.Current.CancellationToken);
 
                 // Act & Assert
-                await _target.DeleteAsync("test.txt");
+                await _target.DeleteAsync("test.txt", TestContext.Current.CancellationToken);
 
                 Assert.False(File.Exists(path));
             }
@@ -182,7 +182,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 foreach (var path in OutsideStorePathData)
                 {
                     await Assert.ThrowsAsync<ArgumentException>(() =>
-                        _target.DeleteAsync(path));
+                        _target.DeleteAsync(path, TestContext.Current.CancellationToken));
                 }
             }
         }
@@ -225,7 +225,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             protected async Task<string> ToStringAsync(Stream input)
             {
                 using var reader = new StreamReader(input);
-                return await reader.ReadToEndAsync();
+                return await reader.ReadToEndAsync(TestContext.Current.CancellationToken);
             }
 
             protected IEnumerable<string> OutsideStorePathData

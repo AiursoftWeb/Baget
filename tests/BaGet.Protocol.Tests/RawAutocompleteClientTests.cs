@@ -17,7 +17,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetDefaultAutocompleteResults()
         {
-            var response = await _target.AutocompleteAsync();
+            var response = await _target.AutocompleteAsync(cancellationToken: TestContext.Current.CancellationToken);
 
             Assert.NotNull(response);
             Assert.Equal(1, response.TotalHits);

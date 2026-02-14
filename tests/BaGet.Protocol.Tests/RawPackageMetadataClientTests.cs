@@ -17,7 +17,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetRegistrationIndexInlinedItems()
         {
-            var result = await _target.GetRegistrationIndexOrNullAsync("Test.Package");
+            var result = await _target.GetRegistrationIndexOrNullAsync("Test.Package", TestContext.Current.CancellationToken);
 
             Assert.NotNull(result);
             Assert.Equal(2, result.Pages.Count);
@@ -38,7 +38,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetRegistrationIndexPagedItems()
         {
-            var result = await _target.GetRegistrationIndexOrNullAsync("Paged.Package");
+            var result = await _target.GetRegistrationIndexOrNullAsync("Paged.Package", TestContext.Current.CancellationToken);
 
             Assert.NotNull(result);
             Assert.Equal(2, result.Pages.Count);
@@ -57,7 +57,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetRegistrationPage()
         {
-            var result = await _target.GetRegistrationPageAsync(TestData.RegistrationPageUrl);
+            var result = await _target.GetRegistrationPageAsync(TestData.RegistrationPageUrl, TestContext.Current.CancellationToken);
 
             Assert.NotNull(result);
             Assert.Equal(2, result.Count);
@@ -82,7 +82,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetsRegistrationLeaf()
         {
-            var result = await _target.GetRegistrationLeafAsync(TestData.RegistrationLeafListedUrl);
+            var result = await _target.GetRegistrationLeafAsync(TestData.RegistrationLeafListedUrl, TestContext.Current.CancellationToken);
 
             Assert.NotNull(result);
             Assert.True(result.Listed);
@@ -102,7 +102,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetsRegistrationLeafUnlisted()
         {
-            var result = await _target.GetRegistrationLeafAsync(TestData.RegistrationLeafUnlistedUrl);
+            var result = await _target.GetRegistrationLeafAsync(TestData.RegistrationLeafUnlistedUrl, TestContext.Current.CancellationToken);
 
             Assert.NotNull(result);
             Assert.False(result.Listed);

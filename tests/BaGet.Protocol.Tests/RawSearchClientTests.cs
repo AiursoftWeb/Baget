@@ -17,7 +17,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetDefaultSearchResults()
         {
-            var response = await _target.SearchAsync();
+            var response = await _target.SearchAsync(cancellationToken: TestContext.Current.CancellationToken);
 
             Assert.NotNull(response);
             Assert.Equal(1, response.TotalHits);

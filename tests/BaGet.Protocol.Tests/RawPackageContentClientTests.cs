@@ -17,7 +17,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetsPackageVersions()
         {
-            var result = await _target.GetPackageVersionsOrNullAsync("Test.Package");
+            var result = await _target.GetPackageVersionsOrNullAsync("Test.Package", TestContext.Current.CancellationToken);
 
             Assert.NotNull(result);
             Assert.Equal(2, result.Versions.Count);
@@ -28,7 +28,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task ReturnsNullIfPackageDoesNotExist()
         {
-            var result = await _target.GetPackageVersionsOrNullAsync(Guid.NewGuid().ToString());
+            var result = await _target.GetPackageVersionsOrNullAsync(Guid.NewGuid().ToString(), TestContext.Current.CancellationToken);
 
             Assert.Null(result);
         }

@@ -24,7 +24,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                         packageStream: Stream.Null,
                         nuspecStream: Stream.Null,
                         readmeStream: Stream.Null,
-                        iconStream: Stream.Null));
+                        iconStream: Stream.Null,
+                        cancellationToken: TestContext.Current.CancellationToken));
             }
 
             [Fact]
@@ -36,7 +37,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                         packageStream: null,
                         nuspecStream: Stream.Null,
                         readmeStream: Stream.Null,
-                        iconStream: Stream.Null));
+                        iconStream: Stream.Null,
+                        cancellationToken: TestContext.Current.CancellationToken));
             }
 
             [Fact]
@@ -48,7 +50,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                         packageStream: Stream.Null,
                         nuspecStream: null,
                         readmeStream: Stream.Null,
-                        iconStream: Stream.Null));
+                        iconStream: Stream.Null,
+                        cancellationToken: TestContext.Current.CancellationToken));
             }
 
             [Fact]
@@ -68,7 +71,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                         packageStream: packageStream,
                         nuspecStream: nuspecStream,
                         readmeStream: readmeStream,
-                        iconStream: iconStream);
+                        iconStream: iconStream,
+                        cancellationToken: TestContext.Current.CancellationToken);
 
                     // Assert
                     Assert.True(_puts.ContainsKey(PackagePath));
@@ -104,7 +108,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                         packageStream: packageStream,
                         nuspecStream: nuspecStream,
                         readmeStream: null,
-                        iconStream: null);
+                        iconStream: null,
+                        cancellationToken: TestContext.Current.CancellationToken);
                 }
 
                 // Assert
@@ -129,7 +134,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                         packageStream: packageStream,
                         nuspecStream: nuspecStream,
                         readmeStream: readmeStream,
-                        iconStream: iconStream);
+                        iconStream: iconStream,
+                        cancellationToken: TestContext.Current.CancellationToken);
                 }
 
                 // Assert
@@ -154,7 +160,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                         packageStream: packageStream,
                         nuspecStream: nuspecStream,
                         readmeStream: readmeStream,
-                        iconStream: iconStream);
+                        iconStream: iconStream,
+                        cancellationToken: TestContext.Current.CancellationToken);
 
                     // Assert
                     Assert.True(_puts.ContainsKey(PackagePath));
@@ -193,7 +200,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                             packageStream: packageStream,
                             nuspecStream: nuspecStream,
                             readmeStream: readmeStream,
-                            iconStream: iconStream));
+                            iconStream: iconStream,
+                            cancellationToken: TestContext.Current.CancellationToken));
                 }
             }
         }
@@ -204,7 +212,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task ThrowsIfStorageThrows()
             {
                 // Arrange
-                var cancellationToken = CancellationToken.None;
+                var cancellationToken = TestContext.Current.CancellationToken;
                 _storage
                     .Setup(s => s.GetAsync(PackagePath, cancellationToken))
                     .ThrowsAsync(new DirectoryNotFoundException());
@@ -218,7 +226,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task GetsStream()
             {
                 // Arrange
-                var cancellationToken = CancellationToken.None;
+                var cancellationToken = TestContext.Current.CancellationToken;
                 using (var packageStream = StringStream("My package"))
                 {
                     _storage
@@ -242,7 +250,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task ThrowsIfDoesntExist()
             {
                 // Arrange
-                var cancellationToken = CancellationToken.None;
+                var cancellationToken = TestContext.Current.CancellationToken;
                 _storage
                     .Setup(s => s.GetAsync(NuspecPath, cancellationToken))
                     .ThrowsAsync(new DirectoryNotFoundException());
@@ -256,7 +264,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task GetsStream()
             {
                 // Arrange
-                var cancellationToken = CancellationToken.None;
+                var cancellationToken = TestContext.Current.CancellationToken;
                 using (var nuspecStream = StringStream("My nuspec"))
                 {
                     _storage
@@ -280,7 +288,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task ThrowsIfDoesntExist()
             {
                 // Arrange
-                var cancellationToken = CancellationToken.None;
+                var cancellationToken = TestContext.Current.CancellationToken;
                 _storage
                     .Setup(s => s.GetAsync(ReadmePath, cancellationToken))
                     .ThrowsAsync(new DirectoryNotFoundException());
@@ -294,7 +302,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task GetsStream()
             {
                 // Arrange
-                var cancellationToken = CancellationToken.None;
+                var cancellationToken = TestContext.Current.CancellationToken;
                 using (var readmeStream = StringStream("My readme"))
                 {
                     _storage
@@ -318,7 +326,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             public async Task Deletes()
             {
                 // Act
-                var cancellationToken = CancellationToken.None;
+                var cancellationToken = TestContext.Current.CancellationToken;
                 await _target.DeleteAsync(_package.Id, _package.Version, cancellationToken);
 
                 _storage.Verify(s => s.DeleteAsync(PackagePath, cancellationToken), Times.Once);

@@ -17,7 +17,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetCatalogIndex()
         {
-            var result = await _target.GetIndexAsync();
+            var result = await _target.GetIndexAsync(TestContext.Current.CancellationToken);
 
             Assert.NotNull(result);
             Assert.Equal(2, result.Count);
@@ -28,7 +28,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetCatalogPage()
         {
-            var page = await _target.GetPageAsync(TestData.CatalogPageUrl);
+            var page = await _target.GetPageAsync(TestData.CatalogPageUrl, TestContext.Current.CancellationToken);
 
             Assert.Equal(2, page.Count);
             Assert.Equal(2, page.Items.Count);
@@ -40,7 +40,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetPackageDetailsLeaf()
         {
-            var leaf = await _target.GetPackageDetailsLeafAsync(TestData.PackageDetailsCatalogLeafUrl);
+            var leaf = await _target.GetPackageDetailsLeafAsync(TestData.PackageDetailsCatalogLeafUrl, TestContext.Current.CancellationToken);
 
             Assert.Equal(TestData.PackageDetailsCatalogLeafUrl, leaf.CatalogLeafUrl);
             Assert.Equal("PackageDetails", leaf.Type[0]);
@@ -53,7 +53,7 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task GetPackageDeleteLeaf()
         {
-            var leaf = await _target.GetPackageDeleteLeafAsync(TestData.PackageDeleteCatalogLeafUrl);
+            var leaf = await _target.GetPackageDeleteLeafAsync(TestData.PackageDeleteCatalogLeafUrl, TestContext.Current.CancellationToken);
 
             Assert.Equal(TestData.PackageDeleteCatalogLeafUrl, leaf.CatalogLeafUrl);
             Assert.Equal("PackageDelete", leaf.Type[0]);
@@ -66,8 +66,8 @@ namespace Aiursoft.BaGet.Protocol.Tests
         [Fact]
         public async Task ThrowsOnTypeMismatch()
         {
-            await Assert.ThrowsAsync<ArgumentException>(() => _target.GetPackageDetailsLeafAsync(TestData.PackageDeleteCatalogLeafUrl));
-            await Assert.ThrowsAsync<ArgumentException>(() => _target.GetPackageDeleteLeafAsync(TestData.PackageDetailsCatalogLeafUrl));
+            await Assert.ThrowsAsync<ArgumentException>(() => _target.GetPackageDetailsLeafAsync(TestData.PackageDeleteCatalogLeafUrl, TestContext.Current.CancellationToken));
+            await Assert.ThrowsAsync<ArgumentException>(() => _target.GetPackageDeleteLeafAsync(TestData.PackageDetailsCatalogLeafUrl, TestContext.Current.CancellationToken));
         }
     }
 }
