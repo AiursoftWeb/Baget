@@ -1,5 +1,3 @@
-using Aiursoft.BaGet.Web;
-using Aiursoft.CSTools.Tools;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
@@ -21,11 +19,11 @@ namespace Aiursoft.BaGet.Web.Tests
             var client = _factory.CreateClient();
 
             // Act
-            var response = await client.GetAsync("/health");
+            var response = await client.GetAsync("/health", TestContext.Current.CancellationToken);
 
             // Assert
             response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
+            var content = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);
             Assert.Contains("Healthy", content);
         }
     }
