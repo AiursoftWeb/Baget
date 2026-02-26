@@ -4,14 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Aiursoft.BaGet.Web.Controllers
 {
-    public class SearchController : Controller
+    public class SearchController(ISearchService searchService) : Controller
     {
-        private readonly ISearchService _searchService;
-
-        public SearchController(ISearchService searchService)
-        {
-            _searchService = searchService ?? throw new ArgumentNullException(nameof(searchService));
-        }
+        private readonly ISearchService _searchService = searchService ?? throw new ArgumentNullException(nameof(searchService));
 
         public async Task<ActionResult<SearchResponse>> SearchAsync(
             [FromQuery(Name = "q")] string query = null,

@@ -9,30 +9,21 @@ using NuGet.Packaging;
 
 namespace Aiursoft.BaGet.Core.Indexing
 {
-    public class PackageIndexingService : IPackageIndexingService
+    public class PackageIndexingService(
+        PackageDatabase packages,
+        IPackageStorageService storage,
+        ISearchIndexer search,
+        SystemTime time,
+        IOptionsSnapshot<BaGetOptions> options,
+        ILogger<PackageIndexingService> logger)
+        : IPackageIndexingService
     {
-        private readonly PackageDatabase _packages;
-        private readonly IPackageStorageService _storage;
-        private readonly ISearchIndexer _search;
-        private readonly SystemTime _time;
-        private readonly IOptionsSnapshot<BaGetOptions> _options;
-        private readonly ILogger<PackageIndexingService> _logger;
-
-        public PackageIndexingService(
-            PackageDatabase packages,
-            IPackageStorageService storage,
-            ISearchIndexer search,
-            SystemTime time,
-            IOptionsSnapshot<BaGetOptions> options,
-            ILogger<PackageIndexingService> logger)
-        {
-            _packages = packages ?? throw new ArgumentNullException(nameof(packages));
-            _storage = storage ?? throw new ArgumentNullException(nameof(storage));
-            _search = search ?? throw new ArgumentNullException(nameof(search));
-            _time = time ?? throw new ArgumentNullException(nameof(time));
-            _options = options ?? throw new ArgumentNullException(nameof(options));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
+        private readonly PackageDatabase _packages = packages ?? throw new ArgumentNullException(nameof(packages));
+        private readonly IPackageStorageService _storage = storage ?? throw new ArgumentNullException(nameof(storage));
+        private readonly ISearchIndexer _search = search ?? throw new ArgumentNullException(nameof(search));
+        private readonly SystemTime _time = time ?? throw new ArgumentNullException(nameof(time));
+        private readonly IOptionsSnapshot<BaGetOptions> _options = options ?? throw new ArgumentNullException(nameof(options));
+        private readonly ILogger<PackageIndexingService> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
         public async Task<PackageIndexingResult> IndexAsync(Stream packageStream, CancellationToken cancellationToken)
         {
@@ -48,6 +39,8 @@ namespace Aiursoft.BaGet.Core.Indexing
                 {
                     package = packageReader.GetPackageMetadata();
                     package.Published = _time.UtcNow;
+
+                    await packageReader.ValidatePackageEntriesAsync(cancellationToken);
 
                     nuspecStream = await packageReader.GetNuspecAsync(cancellationToken);
                     nuspecStream = await nuspecStream.AsTemporaryFileStreamAsync(cancellationToken);

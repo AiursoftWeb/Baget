@@ -8,70 +8,53 @@ using Microsoft.Extensions.Options;
 
 namespace Aiursoft.BaGet.Web.Controllers
 {
-    public class SymbolController : Controller
+    public class SymbolController(
+        IAuthenticationService authentication,
+        ISymbolIndexingService indexer,
+        ISymbolStorageService storage,
+        IOptionsSnapshot<BaGetOptions> options,
+        ILogger<SymbolController> logger)
+        : Controller
     {
-        private readonly IAuthenticationService _authentication;
-        private readonly ISymbolIndexingService _indexer;
-        private readonly ISymbolStorageService _storage;
-        private readonly IOptionsSnapshot<BaGetOptions> _options;
-        private readonly ILogger<SymbolController> _logger;
-
-        public SymbolController(
-            IAuthenticationService authentication,
-            ISymbolIndexingService indexer,
-            ISymbolStorageService storage,
-            IOptionsSnapshot<BaGetOptions> options,
-            ILogger<SymbolController> logger)
-        {
-            _authentication = authentication ?? throw new ArgumentNullException(nameof(authentication));
-            _indexer = indexer ?? throw new ArgumentNullException(nameof(indexer));
-            _storage = storage ?? throw new ArgumentNullException(nameof(storage));
-            _options = options ?? throw new ArgumentNullException(nameof(options));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
+        private readonly IAuthenticationService _authentication = authentication ?? throw new ArgumentNullException(nameof(authentication));
+        private readonly ISymbolIndexingService _indexer = indexer ?? throw new ArgumentNullException(nameof(indexer));
+        private readonly ISymbolStorageService _storage = storage ?? throw new ArgumentNullException(nameof(storage));
+        private readonly IOptionsSnapshot<BaGetOptions> _options = options ?? throw new ArgumentNullException(nameof(options));
+        private readonly ILogger _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
         // See: https://docs.microsoft.com/en-us/nuget/api/package-publish-resource#push-a-package
-        public async Task Upload(CancellationToken cancellationToken)
+        public async Task<IActionResult> Upload(CancellationToken cancellationToken)
         {
             if (_options.Value.IsReadOnlyMode || !await _authentication.AuthenticateAsync(Request.GetApiKey(), cancellationToken))
             {
-                HttpContext.Response.StatusCode = 401;
-                return;
+                return Unauthorized();
             }
 
             try
             {
-                using (var uploadStream = await Request.GetUploadStreamOrNullAsync(cancellationToken))
+                await using (var uploadStream = await Request.GetUploadStreamOrNullAsync(cancellationToken))
                 {
                     if (uploadStream == null)
                     {
-                        HttpContext.Response.StatusCode = 400;
-                        return;
+                        return BadRequest();
                     }
 
                     var result = await _indexer.IndexAsync(uploadStream, cancellationToken);
 
-                    switch (result)
+                    return result switch
                     {
-                        case SymbolIndexingResult.InvalidSymbolPackage:
-                            HttpContext.Response.StatusCode = 400;
-                            break;
-
-                        case SymbolIndexingResult.PackageNotFound:
-                            HttpContext.Response.StatusCode = 404;
-                            break;
-
-                        case SymbolIndexingResult.Success:
-                            HttpContext.Response.StatusCode = 201;
-                            break;
-                    }
+                        SymbolIndexingResult.InvalidSymbolPackage => BadRequest(),
+                        SymbolIndexingResult.PackageNotFound => NotFound(),
+                        SymbolIndexingResult.Success => StatusCode(201),
+                        _ => StatusCode(500)
+                    };
                 }
             }
             catch (Exception e)
             {
                 _logger.LogError(e, "Exception thrown during symbol upload");
 
-                HttpContext.Response.StatusCode = 500;
+                return StatusCode(500);
             }
         }
 
