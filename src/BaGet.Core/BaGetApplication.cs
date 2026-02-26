@@ -2,13 +2,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Aiursoft.BaGet.Core
 {
-    public class BaGetApplication
+    public class BaGetApplication(IServiceCollection services)
     {
-        public BaGetApplication(IServiceCollection services)
-        {
-            Services = services ?? throw new ArgumentNullException(nameof(services));
-        }
-
-        public IServiceCollection Services { get; }
+        public IServiceCollection Services { get; } = services ?? throw new ArgumentNullException(nameof(services));
     }
 }

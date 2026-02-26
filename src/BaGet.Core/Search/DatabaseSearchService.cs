@@ -6,27 +6,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aiursoft.BaGet.Core.Search
 {
-    public class DatabaseSearchService : ISearchService
+    public class DatabaseSearchService(
+        AbstractContext context,
+        IFrameworkCompatibilityService frameworks,
+        ISearchResponseBuilder searchBuilder)
+        : ISearchService
     {
-        private readonly AbstractContext _context;
-        private readonly IFrameworkCompatibilityService _frameworks;
-        private readonly ISearchResponseBuilder _searchBuilder;
-
-        public DatabaseSearchService(
-            AbstractContext context,
-            IFrameworkCompatibilityService frameworks,
-            ISearchResponseBuilder searchBuilder)
-        {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
-            _frameworks = frameworks ?? throw new ArgumentNullException(nameof(frameworks));
-            _searchBuilder = searchBuilder ?? throw new ArgumentNullException(nameof(searchBuilder));
-        }
+        private readonly AbstractContext _context = context ?? throw new ArgumentNullException(nameof(context));
+        private readonly IFrameworkCompatibilityService _frameworks = frameworks ?? throw new ArgumentNullException(nameof(frameworks));
+        private readonly ISearchResponseBuilder _searchBuilder = searchBuilder ?? throw new ArgumentNullException(nameof(searchBuilder));
 
         public async Task<SearchResponse> SearchAsync(SearchRequest request,  CancellationToken cancellationToken)
         {
             var frameworks = GetCompatibleFrameworksOrNull(request.Framework);
 
-            IQueryable<Package> search = _context.Packages;
+            IQueryable<Package> search = _context.Packages.AsNoTracking();
             search = ApplySearchQuery(search, request.Query);
             search = ApplySearchFilters(
                 search,
@@ -45,7 +39,7 @@ namespace Aiursoft.BaGet.Core.Search
                 .Take(request.Take)
                 .ToListAsync(cancellationToken);
 
-            search = _context.Packages.Where(p => packageIds.Contains(p.Id));
+            search = _context.Packages.AsNoTracking().Where(p => packageIds.Contains(p.Id));
             search = ApplySearchFilters(
                 search,
                 request.IncludePrerelease,
@@ -67,7 +61,7 @@ namespace Aiursoft.BaGet.Core.Search
             AutocompleteRequest request,
             CancellationToken cancellationToken)
         {
-            IQueryable<Package> search = _context.Packages;
+            IQueryable<Package> search = _context.Packages.AsNoTracking();
 
             search = ApplySearchQuery(search, request.Query);
             search = ApplySearchFilters(
@@ -96,6 +90,7 @@ namespace Aiursoft.BaGet.Core.Search
             var packageId = request.PackageId.ToLower();
             var search = _context
                 .Packages
+                .AsNoTracking()
                 .Where(p => p.Id.ToLower().Equals(packageId));
 
             search = ApplySearchFilters(
@@ -116,6 +111,7 @@ namespace Aiursoft.BaGet.Core.Search
         {
             var dependents = await _context
                 .Packages
+                .AsNoTracking()
                 .Where(p => p.Listed)
                 .OrderBy(p => p.Id)
                 .Where(p => p.Dependencies.Any(d => d.Id == packageId))

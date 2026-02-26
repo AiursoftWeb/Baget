@@ -9,74 +9,56 @@ using NuGet.Versioning;
 
 namespace Aiursoft.BaGet.Web.Controllers
 {
-    public class PackagePublishController : Controller
+    public class PackagePublishController(
+        IAuthenticationService authentication,
+        IPackageIndexingService indexer,
+        PackageDatabase packages,
+        IPackageDeletionService deletionService,
+        IOptionsSnapshot<BaGetOptions> options,
+        ILogger<PackagePublishController> logger)
+        : Controller
     {
-        private readonly IAuthenticationService _authentication;
-        private readonly IPackageIndexingService _indexer;
-        private readonly PackageDatabase _packages;
-        private readonly IPackageDeletionService _deleteService;
-        private readonly IOptionsSnapshot<BaGetOptions> _options;
-        private readonly ILogger<PackagePublishController> _logger;
-
-        public PackagePublishController(
-            IAuthenticationService authentication,
-            IPackageIndexingService indexer,
-            PackageDatabase packages,
-            IPackageDeletionService deletionService,
-            IOptionsSnapshot<BaGetOptions> options,
-            ILogger<PackagePublishController> logger)
-        {
-            _authentication = authentication ?? throw new ArgumentNullException(nameof(authentication));
-            _indexer = indexer ?? throw new ArgumentNullException(nameof(indexer));
-            _packages = packages ?? throw new ArgumentNullException(nameof(packages));
-            _deleteService = deletionService ?? throw new ArgumentNullException(nameof(deletionService));
-            _options = options ?? throw new ArgumentNullException(nameof(options));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
+        private readonly IAuthenticationService _authentication = authentication ?? throw new ArgumentNullException(nameof(authentication));
+        private readonly IPackageIndexingService _indexer = indexer ?? throw new ArgumentNullException(nameof(indexer));
+        private readonly PackageDatabase _packages = packages ?? throw new ArgumentNullException(nameof(packages));
+        private readonly IPackageDeletionService _deleteService = deletionService ?? throw new ArgumentNullException(nameof(deletionService));
+        private readonly IOptionsSnapshot<BaGetOptions> _options = options ?? throw new ArgumentNullException(nameof(options));
+        private readonly ILogger<PackagePublishController> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
         // See: https://docs.microsoft.com/en-us/nuget/api/package-publish-resource#push-a-package
-        public async Task Upload(CancellationToken cancellationToken)
+        public async Task<IActionResult> Upload(CancellationToken cancellationToken)
         {
             if (_options.Value.IsReadOnlyMode ||
                 !await _authentication.AuthenticateAsync(Request.GetApiKey(), cancellationToken))
             {
-                HttpContext.Response.StatusCode = 401;
-                return;
+                return Unauthorized();
             }
 
             try
             {
-                using (var uploadStream = await Request.GetUploadStreamOrNullAsync(cancellationToken))
+                await using (var uploadStream = await Request.GetUploadStreamOrNullAsync(cancellationToken))
                 {
                     if (uploadStream == null)
                     {
-                        HttpContext.Response.StatusCode = 400;
-                        return;
+                        return BadRequest();
                     }
 
                     var result = await _indexer.IndexAsync(uploadStream, cancellationToken);
 
-                    switch (result)
+                    return result switch
                     {
-                        case PackageIndexingResult.InvalidPackage:
-                            HttpContext.Response.StatusCode = 400;
-                            break;
-
-                        case PackageIndexingResult.PackageAlreadyExists:
-                            HttpContext.Response.StatusCode = 409;
-                            break;
-
-                        case PackageIndexingResult.Success:
-                            HttpContext.Response.StatusCode = 201;
-                            break;
-                    }
+                        PackageIndexingResult.InvalidPackage => BadRequest(),
+                        PackageIndexingResult.PackageAlreadyExists => Conflict(),
+                        PackageIndexingResult.Success => StatusCode(201),
+                        _ => StatusCode(500)
+                    };
                 }
             }
             catch (Exception e)
             {
                 _logger.LogError(e, "Exception thrown during package upload");
 
-                HttpContext.Response.StatusCode = 500;
+                return StatusCode(500);
             }
         }
 

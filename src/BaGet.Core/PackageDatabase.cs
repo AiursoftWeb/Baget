@@ -4,14 +4,9 @@ using NuGet.Versioning;
 
 namespace Aiursoft.BaGet.Core
 {
-    public class PackageDatabase
+    public class PackageDatabase(AbstractContext context)
     {
-        private readonly AbstractContext _context;
-
-        public PackageDatabase(AbstractContext context)
-        {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
-        }
+        private readonly AbstractContext _context = context ?? throw new ArgumentNullException(nameof(context));
 
         public async Task<PackageAddResult> AddAsync(Package package, CancellationToken cancellationToken)
         {
@@ -33,6 +28,7 @@ namespace Aiursoft.BaGet.Core
         {
             return await _context
                 .Packages
+                .AsNoTracking()
                 .Where(p => p.Id == id)
                 .AnyAsync(cancellationToken);
         }
@@ -41,6 +37,7 @@ namespace Aiursoft.BaGet.Core
         {
             return await _context
                 .Packages
+                .AsNoTracking()
                 .Where(p => p.Id == id)
                 .Where(p => p.NormalizedVersionString == version.ToNormalizedString())
                 .AnyAsync(cancellationToken);
@@ -49,6 +46,7 @@ namespace Aiursoft.BaGet.Core
         public async Task<IReadOnlyList<Package>> FindAsync(string id, bool includeUnlisted, CancellationToken cancellationToken)
         {
             var query = _context.Packages
+                .AsNoTracking()
                 .Include(p => p.Dependencies)
                 .Include(p => p.PackageTypes)
                 .Include(p => p.TargetFrameworks)
@@ -69,6 +67,7 @@ namespace Aiursoft.BaGet.Core
             CancellationToken cancellationToken)
         {
             var query = _context.Packages
+                .AsNoTracking()
                 .Include(p => p.Dependencies)
                 .Include(p => p.TargetFrameworks)
                 .Where(p => p.Id == id)

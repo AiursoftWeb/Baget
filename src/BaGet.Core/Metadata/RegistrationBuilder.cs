@@ -24,17 +24,17 @@ namespace Aiursoft.BaGet.Core.Metadata
                 RegistrationIndexUrl = _url.GetRegistrationIndexUrl(registration.PackageId),
                 Type = RegistrationIndexResponse.DefaultType,
                 Count = 1,
-                Pages = new[]
-                {
+                Pages =
+                [
                     new BaGetRegistrationIndexPage
                     {
                         RegistrationPageUrl = _url.GetRegistrationIndexUrl(registration.PackageId),
-                        Count = registration.Packages.Count(),
-                        Lower = sortedPackages.First().Version.ToNormalizedString().ToLowerInvariant(),
-                        Upper = sortedPackages.Last().Version.ToNormalizedString().ToLowerInvariant(),
+                        Count = sortedPackages.Count,
+                        Lower = sortedPackages[0].Version.ToNormalizedString().ToLowerInvariant(),
+                        Upper = sortedPackages[^1].Version.ToNormalizedString().ToLowerInvariant(),
                         ItemsOrNull = sortedPackages.Select(ToRegistrationIndexPageItem).ToList(),
                     }
-                }
+                ]
             };
         }
 

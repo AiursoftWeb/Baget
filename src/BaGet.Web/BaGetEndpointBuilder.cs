@@ -7,6 +7,7 @@ namespace Aiursoft.BaGet.Web
         public void MapEndpoints(WebApplication app)
         {
             app.MapRazorPages();
+            app.MapControllers();
 
             MapServiceIndexRoutes(app);
             MapPackagePublishRoutes(app);

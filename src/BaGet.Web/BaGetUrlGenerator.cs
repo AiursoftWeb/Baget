@@ -3,17 +3,10 @@ using NuGet.Versioning;
 
 namespace Aiursoft.BaGet.Web
 {
-    // TODO: This should validate the "Host" header against known valid values
-    public class BaGetUrlGenerator : IUrlGenerator
+    public class BaGetUrlGenerator(IHttpContextAccessor httpContextAccessor, LinkGenerator linkGenerator) : IUrlGenerator
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly LinkGenerator _linkGenerator;
-
-        public BaGetUrlGenerator(IHttpContextAccessor httpContextAccessor, LinkGenerator linkGenerator)
-        {
-            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
-            _linkGenerator = linkGenerator ?? throw new ArgumentNullException(nameof(linkGenerator));
-        }
+        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+        private readonly LinkGenerator _linkGenerator = linkGenerator ?? throw new ArgumentNullException(nameof(linkGenerator));
 
         public string GetServiceIndexUrl()
         {

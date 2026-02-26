@@ -30,7 +30,16 @@
     // source: http://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
     // enhancement with special case for IEs, otherwise the temp textarea will be visible
     baget.copyTextToClipboard = function (text, elementToFocus) {
-        if (detectIE()) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function() {
+                console.log('Copying text command was successful');
+                if (elementToFocus) {
+                    elementToFocus.focus();
+                }
+            }, function(err) {
+                console.error('Oops, unable to copy', err);
+            });
+        } else if (detectIE()) {
             try {
                 window.clipboardData.setData('Text', text);
                 console.log('Copying text command via IE-setData');
