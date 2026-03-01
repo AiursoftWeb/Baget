@@ -16,7 +16,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="10.0.3" />
     <PackageReference Include="Aiursoft.WebTools" Version="10.0.8" />
     <PackageReference Include="Humanizer" Version="3.0.1" />
-    <PackageReference Include="Markdig" Version="1.0.1" />
+    <PackageReference Include="Markdig" Version="1.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
