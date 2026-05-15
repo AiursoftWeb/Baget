@@ -176,7 +176,7 @@ namespace Aiursoft.BaGet.Core.Upstream.Clients
 
             // BaGet stores a dependency group with no dependencies as a package dependency
             // with no package id nor package version.
-            if ((group.Packages?.Count() ?? 0) == 0)
+            if (group.Packages.Count() == 0)
             {
                 return new[]
                 {
@@ -192,7 +192,7 @@ namespace Aiursoft.BaGet.Core.Upstream.Clients
             return group.Packages.Select(d => new PackageDependency
             {
                 Id = d.Id,
-                VersionRange = d.VersionRange?.ToString(),
+                VersionRange = d.VersionRange.ToString(),
                 TargetFramework = framework,
             });
         }

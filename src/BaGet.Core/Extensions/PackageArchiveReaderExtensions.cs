@@ -68,7 +68,7 @@ namespace Aiursoft.BaGet.Core.Extensions
                 HasEmbeddedIcon = packageReader.HasEmbeddedIcon(),
                 IsPrerelease = nuspec.GetVersion().IsPrerelease,
                 Language = nuspec.GetLanguage() ?? string.Empty,
-                ReleaseNotes = nuspec.GetReleaseNotes() ?? string.Empty,
+                ReleaseNotes = nuspec.GetReleaseNotes(),
                 Listed = true,
                 MinClientVersion = nuspec.GetMinClientVersion()?.ToNormalizedString() ?? string.Empty,
                 Published = DateTime.UtcNow,
@@ -136,7 +136,7 @@ namespace Aiursoft.BaGet.Core.Extensions
         {
             var repository = nuspec.GetRepositoryMetadata();
 
-            if (string.IsNullOrEmpty(repository?.Url) ||
+            if (string.IsNullOrEmpty(repository.Url) ||
                 !Uri.TryCreate(repository.Url, UriKind.Absolute, out var repositoryUri))
             {
                 return (null, null);
@@ -178,7 +178,7 @@ namespace Aiursoft.BaGet.Core.Extensions
                     dependencies.Add(new PackageDependency
                     {
                         Id = dependency.Id,
-                        VersionRange = dependency.VersionRange?.ToString(),
+                        VersionRange = dependency.VersionRange.ToString(),
                         TargetFramework = targetFramework,
                     });
                 }
