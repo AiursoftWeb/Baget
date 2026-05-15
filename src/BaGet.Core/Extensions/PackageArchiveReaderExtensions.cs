@@ -67,7 +67,7 @@ namespace Aiursoft.BaGet.Core.Extensions
                 HasReadme = packageReader.HasReadme(),
                 HasEmbeddedIcon = packageReader.HasEmbeddedIcon(),
                 IsPrerelease = nuspec.GetVersion().IsPrerelease,
-                Language = nuspec.GetLanguage() ?? string.Empty,
+                Language = nuspec.GetLanguage(),
                 ReleaseNotes = nuspec.GetReleaseNotes(),
                 Listed = true,
                 MinClientVersion = nuspec.GetMinClientVersion()?.ToNormalizedString() ?? string.Empty,
