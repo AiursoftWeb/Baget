@@ -25,18 +25,18 @@ install()
     aiur install/node
 
     # Clone the repo
-    aiur git/clone_to $repo_path /tmp/repo
+    aiur git/clone_to $repo_path /var/tmp/repo
 
     # Install node modules
-    wwwrootPath=$(dirname "/tmp/repo/$proj_path")/wwwroot
+    wwwrootPath=$(dirname "/var/tmp/repo/$proj_path")/wwwroot
     if [ -d "$wwwrootPath" ]; then
         echo "Found wwwroot folder $wwwrootPath, will install node modules."
         npm install --prefix "$wwwrootPath" -force --loglevel verbose
     fi
 
     # Publish the app
-    rm /tmp/repo/nuget.config
-    aiur dotnet/publish "/tmp/repo/$proj_path" "/opt/apps/$app_name"
+    rm /var/tmp/repo/nuget.config
+    aiur dotnet/publish "/var/tmp/repo/$proj_path" "/opt/apps/$app_name"
     
     # Register the service
     dll_name=$(get_dll_name)
@@ -47,7 +47,7 @@ install()
     settings_file_path="/opt/apps/$app_name/appsettings.Production.json"
     echo "Please change the settings in $settings_file_path ASAP to fit your own needs!!!"
     echo "Currently settings may save files to /tmp folder."
-    rm /tmp/repo -rf
+    rm /var/tmp/repo -rf
 }
 
 # This will install this app under /opt/apps and register a new service with systemd.
