@@ -50,6 +50,11 @@ namespace Aiursoft.BaGet.Core.Upstream.Clients
             try
             {
                 var resource = await _repository.GetResourceAsync<FindPackageByIdResource>(cancellationToken);
+                if (resource == null)
+                {
+                    return new List<NuGetVersion>();
+                }
+
                 var versions = await resource.GetAllVersionsAsync(id, _cache, _ngLogger, cancellationToken);
 
                 return versions.ToList();
@@ -68,6 +73,11 @@ namespace Aiursoft.BaGet.Core.Upstream.Clients
             try
             {
                 var resource = await _repository.GetResourceAsync<PackageMetadataResource>(cancellationToken);
+                if (resource == null)
+                {
+                    return new List<Package>();
+                }
+
                 var packages = await resource.GetMetadataAsync(
                     id,
                     includePrerelease: true,
@@ -95,6 +105,12 @@ namespace Aiursoft.BaGet.Core.Upstream.Clients
             try
             {
                 var resource = await _repository.GetResourceAsync<FindPackageByIdResource>(cancellationToken);
+                if (resource == null)
+                {
+                    packageStream.Dispose();
+                    return null;
+                }
+
                 var success = await resource.CopyNupkgToStreamAsync(
                     id, version, packageStream, _cache, _ngLogger,
                     cancellationToken);
