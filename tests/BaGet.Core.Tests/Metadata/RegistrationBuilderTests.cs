@@ -48,6 +48,28 @@ namespace Aiursoft.BaGet.Core.Tests.Metadata
             }
         }
 
+        [Theory]
+        [InlineData(0L, DateTimeKind.Unspecified)]
+        [InlineData(0L, DateTimeKind.Utc)]
+        [InlineData(638000000000000000L, DateTimeKind.Unspecified)]
+        [InlineData(638000000000000000L, DateTimeKind.Utc)]
+        public void PublicationTimestampsRemainUtc(long ticks, DateTimeKind kind)
+        {
+            var package = GetTestPackage("BaGet.Test", "1.0.0");
+            package.Published = new DateTime(ticks, kind);
+            var builder = new RegistrationBuilder(_urlGenerator.Object);
+            var registration = new PackageRegistration(package.Id, new[] { package });
+
+            var index = builder.BuildIndex(registration);
+            var leaf = builder.BuildLeaf(package);
+            var expected = new DateTimeOffset(new DateTime(ticks, DateTimeKind.Utc));
+
+            Assert.Equal(expected, index.Pages[0].ItemsOrNull[0].PackageMetadata.Published);
+            Assert.Equal(TimeSpan.Zero, index.Pages[0].ItemsOrNull[0].PackageMetadata.Published.Offset);
+            Assert.Equal(expected, leaf.Published);
+            Assert.Equal(TimeSpan.Zero, leaf.Published.Offset);
+        }
+
         /// <summary>
         /// Create a fake <see cref="Package"></see> with the minimum metadata needed by the <see cref="RegistrationBuilder"></see>.
         /// </summary>
