@@ -1,8 +1,7 @@
 using System.Text;
 using Aiursoft.BaGet.Core.Entities;
 using Aiursoft.BaGet.Core.Storage;
-using Microsoft.Extensions.Logging;
-using Moq;
+using Microsoft.Extensions.Logging.Abstractions;
 using NuGet.Versioning;
 using Xunit;
 using Assert = Xunit.Assert;
@@ -213,9 +212,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             {
                 // Arrange
                 var cancellationToken = TestContext.Current.CancellationToken;
-                _storage
-                    .Setup(s => s.GetAsync(PackagePath, cancellationToken))
-                    .ThrowsAsync(new DirectoryNotFoundException());
+                _storage.ExpectedGet = (PackagePath, cancellationToken);
+                _storage.GetException = new DirectoryNotFoundException();
 
                 // Act
                 await Assert.ThrowsAsync<DirectoryNotFoundException>(() =>
@@ -229,9 +227,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 var cancellationToken = TestContext.Current.CancellationToken;
                 using (var packageStream = StringStream("My package"))
                 {
-                    _storage
-                        .Setup(s => s.GetAsync(PackagePath, cancellationToken))
-                        .ReturnsAsync(packageStream);
+                    _storage.ExpectedGet = (PackagePath, cancellationToken);
+                    _storage.GetContent = packageStream;
 
                     // Act
                     var result = await _target.GetPackageStreamAsync(_package.Id, _package.Version, cancellationToken);
@@ -239,7 +236,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                     // Assert
                     Assert.Equal("My package", await ToStringAsync(result));
 
-                    _storage.Verify(s => s.GetAsync(PackagePath, cancellationToken), Times.Once);
+                    Assert.Equal(1, _storage.GetCalls.Count(call => call == (PackagePath, cancellationToken)));
                 }
             }
         }
@@ -251,9 +248,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             {
                 // Arrange
                 var cancellationToken = TestContext.Current.CancellationToken;
-                _storage
-                    .Setup(s => s.GetAsync(NuspecPath, cancellationToken))
-                    .ThrowsAsync(new DirectoryNotFoundException());
+                _storage.ExpectedGet = (NuspecPath, cancellationToken);
+                _storage.GetException = new DirectoryNotFoundException();
 
                 // Act
                 await Assert.ThrowsAsync<DirectoryNotFoundException>(() =>
@@ -267,9 +263,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 var cancellationToken = TestContext.Current.CancellationToken;
                 using (var nuspecStream = StringStream("My nuspec"))
                 {
-                    _storage
-                        .Setup(s => s.GetAsync(NuspecPath, cancellationToken))
-                        .ReturnsAsync(nuspecStream);
+                    _storage.ExpectedGet = (NuspecPath, cancellationToken);
+                    _storage.GetContent = nuspecStream;
 
                     // Act
                     var result = await _target.GetNuspecStreamAsync(_package.Id, _package.Version, cancellationToken);
@@ -277,7 +272,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                     // Assert
                     Assert.Equal("My nuspec", await ToStringAsync(result));
 
-                    _storage.Verify(s => s.GetAsync(NuspecPath, cancellationToken), Times.Once);
+                    Assert.Equal(1, _storage.GetCalls.Count(call => call == (NuspecPath, cancellationToken)));
                 }
             }
         }
@@ -289,9 +284,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             {
                 // Arrange
                 var cancellationToken = TestContext.Current.CancellationToken;
-                _storage
-                    .Setup(s => s.GetAsync(ReadmePath, cancellationToken))
-                    .ThrowsAsync(new DirectoryNotFoundException());
+                _storage.ExpectedGet = (ReadmePath, cancellationToken);
+                _storage.GetException = new DirectoryNotFoundException();
 
                 // Act
                 await Assert.ThrowsAsync<DirectoryNotFoundException>(() =>
@@ -305,9 +299,8 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 var cancellationToken = TestContext.Current.CancellationToken;
                 using (var readmeStream = StringStream("My readme"))
                 {
-                    _storage
-                        .Setup(s => s.GetAsync(ReadmePath, cancellationToken))
-                        .ReturnsAsync(readmeStream);
+                    _storage.ExpectedGet = (ReadmePath, cancellationToken);
+                    _storage.GetContent = readmeStream;
 
                     // Act
                     var result = await _target.GetReadmeStreamAsync(_package.Id, _package.Version, cancellationToken);
@@ -315,7 +308,7 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                     // Assert
                     Assert.Equal("My readme", await ToStringAsync(result));
 
-                    _storage.Verify(s => s.GetAsync(ReadmePath, cancellationToken), Times.Once);
+                    Assert.Equal(1, _storage.GetCalls.Count(call => call == (ReadmePath, cancellationToken)));
                 }
             }
         }
@@ -329,9 +322,9 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 var cancellationToken = TestContext.Current.CancellationToken;
                 await _target.DeleteAsync(_package.Id, _package.Version, cancellationToken);
 
-                _storage.Verify(s => s.DeleteAsync(PackagePath, cancellationToken), Times.Once);
-                _storage.Verify(s => s.DeleteAsync(NuspecPath, cancellationToken), Times.Once);
-                _storage.Verify(s => s.DeleteAsync(ReadmePath, cancellationToken), Times.Once);
+                Assert.Equal(1, _storage.DeleteCalls.Count(call => call == (PackagePath, cancellationToken)));
+                Assert.Equal(1, _storage.DeleteCalls.Count(call => call == (NuspecPath, cancellationToken)));
+                Assert.Equal(1, _storage.DeleteCalls.Count(call => call == (ReadmePath, cancellationToken)));
             }
         }
 
@@ -343,15 +336,15 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 Version = new NuGetVersion("1.2.3")
             };
 
-            protected readonly Mock<IStorageService> _storage;
+            protected readonly RecordingStorage _storage;
             protected readonly PackageStorageService _target;
 
             protected readonly Dictionary<string, (Stream Content, string ContentType)> _puts;
 
             public FactsBase()
             {
-                _storage = new Mock<IStorageService>();
-                _target = new PackageStorageService(_storage.Object, Mock.Of<ILogger<PackageStorageService>>());
+                _storage = new RecordingStorage();
+                _target = new PackageStorageService(_storage, NullLogger<PackageStorageService>.Instance);
 
                 _puts = new Dictionary<string, (Stream Content, string ContentType)>();
             }
@@ -378,19 +371,40 @@ namespace Aiursoft.BaGet.Core.Tests.Services
 
             protected void SetupPutResult(StoragePutResult result)
             {
-                _storage
-                    .Setup(
-                        s => s.PutAsync(
-                            It.IsAny<string>(),
-                            It.IsAny<Stream>(),
-                            It.IsAny<string>(),
-                            It.IsAny<CancellationToken>()))
-                    .Callback((string path, Stream content, string contentType, CancellationToken _) =>
-                    {
-                        _puts[path] = (content, contentType);
-                    })
-                    .ReturnsAsync(result);
+                _storage.PutResult = (path, content, contentType, _) =>
+                {
+                    _puts[path] = (content, contentType);
+                    return Task.FromResult(result);
+                };
             }
+        }
+    }
+    public sealed class RecordingStorage : IStorageService
+    {
+        public (string Path, CancellationToken Token) ExpectedGet { get; set; }
+        public Stream GetContent { get; set; }
+        public Exception GetException { get; set; }
+        public Func<string, Stream, string, CancellationToken, Task<StoragePutResult>> PutResult { get; set; }
+        public List<(string Path, CancellationToken Token)> GetCalls { get; } = new();
+        public List<(string Path, CancellationToken Token)> DeleteCalls { get; } = new();
+
+        public Task<Stream> GetAsync(string path, CancellationToken cancellationToken = default)
+        {
+            GetCalls.Add((path, cancellationToken));
+            Assert.Equal(ExpectedGet, (path, cancellationToken));
+            return GetException == null ? Task.FromResult(GetContent) : Task.FromException<Stream>(GetException);
+        }
+
+        public Task<StoragePutResult> PutAsync(string path, Stream content, string contentType, CancellationToken cancellationToken = default)
+            => PutResult(path, content, contentType, cancellationToken);
+
+        public Task<Uri> GetDownloadUriAsync(string path, CancellationToken cancellationToken = default)
+            => throw new NotSupportedException();
+
+        public Task DeleteAsync(string path, CancellationToken cancellationToken = default)
+        {
+            DeleteCalls.Add((path, cancellationToken));
+            return Task.CompletedTask;
         }
     }
 }

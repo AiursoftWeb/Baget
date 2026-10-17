@@ -2,7 +2,6 @@ using System.Text;
 using Aiursoft.BaGet.Core.Configuration;
 using Aiursoft.BaGet.Core.Storage;
 using Microsoft.Extensions.Options;
-using Moq;
 using Xunit;
 using Assert = Xunit.Assert;
 
@@ -195,13 +194,9 @@ namespace Aiursoft.BaGet.Core.Tests.Services
             protected FactsBase()
             {
                 StorePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
-                var options = new Mock<IOptionsSnapshot<FileSystemStorageOptions>>();
+                var options = new FixedStorageOptions(new FileSystemStorageOptions { Path = StorePath });
+                _target = new FileStorageService(options);
 
-                options
-                    .Setup(o => o.Value)
-                    .Returns(() => new FileSystemStorageOptions { Path = StorePath });
-
-                _target = new FileStorageService(options.Object);
             }
 
             public void Dispose()
@@ -247,5 +242,10 @@ namespace Aiursoft.BaGet.Core.Tests.Services
                 }
             }
         }
+    }
+    internal sealed class FixedStorageOptions(FileSystemStorageOptions value) : IOptionsSnapshot<FileSystemStorageOptions>
+    {
+        public FileSystemStorageOptions Value => value;
+        public FileSystemStorageOptions Get(string name) => value;
     }
 }

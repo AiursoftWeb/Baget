@@ -1,9 +1,7 @@
 using Aiursoft.BaGet.Core;
-using Aiursoft.BaGet.Core.Content;
 using Aiursoft.BaGet.Core.Entities;
 using Aiursoft.BaGet.Core.Search;
 using Aiursoft.BaGet.Web.Pages;
-using Moq;
 using NuGet.Versioning;
 using Xunit;
 using Assert = Xunit.Assert;
@@ -12,34 +10,30 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
 {
     public class PackageModelFacts
     {
-        private readonly Mock<IPackageContentService> _content;
-        private readonly Mock<IPackageService> _packages;
-        private readonly Mock<ISearchService> _search;
+        private readonly StubContentService _content;
+        private readonly StubPackageService _packages;
+        private readonly StubSearchService _search;
         private readonly PackageModel _target;
 
         public PackageModelFacts()
         {
-            _content = new Mock<IPackageContentService>();
-            _packages = new Mock<IPackageService>();
-            _search = new Mock<ISearchService>();
-            var url = new Mock<IUrlGenerator>();
+            _content = new StubContentService();
+            _packages = new StubPackageService();
+            _search = new StubSearchService();
+            var url = new StubUrlGenerator();
             _target = new PackageModel(
-                _packages.Object,
-                _content.Object,
-                _search.Object,
-                url.Object);
+                _packages,
+                _content,
+                _search,
+                url);
 
-            _search
-                .Setup(s => s.FindDependentsAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new DependentsResponse());
+            _search.Dependents = new DependentsResponse();
         }
 
         [Fact]
         public async Task ReturnsNotFound()
         {
-            _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new List<Package>());
+            _packages.Packages = new List<Package>();
 
             await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
@@ -52,12 +46,10 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         [Fact]
         public async Task ReturnsNotFoundIfAllUnlisted()
         {
-            _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new List<Package>
+            _packages.Packages = new List<Package>
                 {
                     CreatePackage("1.0.0", listed: false),
-                });
+                };
 
             await _target.OnGetAsync("testpackage", version: null, TestContext.Current.CancellationToken);
 
@@ -70,14 +62,12 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         [Fact]
         public async Task ReturnsRequestedVersion()
         {
-            _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new List<Package>
+            _packages.Packages = new List<Package>
                 {
                     CreatePackage("1.0.0"),
                     CreatePackage("2.0.0"),
                     CreatePackage("3.0.0"),
-                });
+                };
 
             await _target.OnGetAsync("testpackage", "2.0.0", TestContext.Current.CancellationToken);
 
@@ -97,14 +87,12 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         [Fact]
         public async Task ReturnsRequestedUnlistedVersion()
         {
-            _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new List<Package>
+            _packages.Packages = new List<Package>
                 {
                     CreatePackage("1.0.0"),
                     CreatePackage("2.0.0", listed: false),
                     CreatePackage("3.0.0"),
-                });
+                };
 
             await _target.OnGetAsync("testpackage", "2.0.0", TestContext.Current.CancellationToken);
 
@@ -122,14 +110,12 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         [Fact]
         public async Task FallsBackToLatestListedVersion()
         {
-            _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new List<Package>
+            _packages.Packages = new List<Package>
                 {
                     CreatePackage("1.0.0"),
                     CreatePackage("2.0.0"),
                     CreatePackage("3.0.0", listed: false),
-                });
+                };
 
             await _target.OnGetAsync("testpackage", "4.0.0", TestContext.Current.CancellationToken);
 
@@ -152,12 +138,10 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         [InlineData(new[] { "tEmPlAte", "dOtNeTtOoL" }, /*expectDotnetTemplate: */ true, /*expectDotnetTool: */ true)]
         public async Task HandlesPackageTypes(IEnumerable<string> packageTypes, bool expectDotnetTemplate, bool expectDotnetTool)
         {
-            _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new List<Package>
+            _packages.Packages = new List<Package>
                 {
                     CreatePackage("1.0.0", packageTypes: packageTypes)
-                });
+                };
 
             await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
@@ -169,23 +153,19 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         [Fact]
         public async Task FindsDependentPackages()
         {
-            _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new List<Package>
+            _packages.Packages = new List<Package>
                 {
                     CreatePackage("1.0.0")
-                });
+                };
 
-            _search
-                .Setup(s => s.FindDependentsAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new DependentsResponse
+            _search.Dependents = new DependentsResponse
                 {
                     Data = new List<PackageDependent>
                     {
                         new() { Id = "Used by 1" },
                         new() { Id = "Used by 2" },
                     }
-                });
+                };
 
             await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
@@ -197,9 +177,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         [Fact]
         public async Task GroupsVersions()
         {
-            _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new List<Package>
+            _packages.Packages = new List<Package>
                 {
                     CreatePackage("1.0.0", dependencies: new[]
                     {
@@ -222,7 +200,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                             VersionRange = "[3.0.0, )",
                         },
                     })
-                });
+                };
 
             await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
@@ -252,9 +230,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         [InlineData("net4.8", ".NET Framework 4.8")]
         public async Task PrettifiesTargetFramework(string targetFramework, string expectedResult)
         {
-            _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new List<Package>
+            _packages.Packages = new List<Package>
                 {
                     CreatePackage("1.0.0", dependencies: new[]
                     {
@@ -265,7 +241,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                            VersionRange = "[1.0.0, )",
                        }
                     })
-                });
+                };
 
             await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
@@ -279,13 +255,11 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         {
             var now = DateTime.Now;
 
-            _packages
-                .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
-                .ReturnsAsync(new List<Package>
+            _packages.Packages = new List<Package>
                 {
                     CreatePackage("1.0.0", published: DateTime.Now.AddDays(-2)),
                     CreatePackage("2.0.0", listed: false, published: now),
-                });
+                };
 
             await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
@@ -307,19 +281,12 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
 
                 readmeStream.Position = 0;
 
-                _packages
-                    .Setup(m => m.FindPackagesAsync("testpackage", TestContext.Current.CancellationToken))
-                    .ReturnsAsync(new List<Package>
+                _packages.Packages = new List<Package>
                     {
                         CreatePackage("1.0.0", hasReadme: true),
-                    });
+                    };
 
-                _content
-                    .Setup(c => c.GetPackageReadmeStreamOrNullAsync(
-                        "testpackage",
-                        It.Is<NuGetVersion>(v => v.OriginalVersion == "1.0.0"),
-                        TestContext.Current.CancellationToken))
-                    .ReturnsAsync(readmeStream);
+                _content.Readme = readmeStream;
 
                 await _target.OnGetAsync("testpackage", "1.0.0", TestContext.Current.CancellationToken);
 
@@ -355,5 +322,23 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
                     .ToList(),
             };
         }
+    }
+
+    internal sealed class StubUrlGenerator : IUrlGenerator
+    {
+        public string GetServiceIndexUrl() => null;
+        public string GetPackageContentResourceUrl() => null;
+        public string GetPackageMetadataResourceUrl() => null;
+        public string GetPackagePublishResourceUrl() => null;
+        public string GetSymbolPublishResourceUrl() => null;
+        public string GetSearchResourceUrl() => null;
+        public string GetAutocompleteResourceUrl() => null;
+        public string GetRegistrationIndexUrl(string id) => null;
+        public string GetRegistrationPageUrl(string id, NuGetVersion lower, NuGetVersion upper) => null;
+        public string GetRegistrationLeafUrl(string id, NuGetVersion version) => null;
+        public string GetPackageVersionsUrl(string id) => null;
+        public string GetPackageDownloadUrl(string id, NuGetVersion version) => null;
+        public string GetPackageManifestDownloadUrl(string id, NuGetVersion version) => null;
+        public string GetPackageIconDownloadUrl(string id, NuGetVersion version) => null;
     }
 }
