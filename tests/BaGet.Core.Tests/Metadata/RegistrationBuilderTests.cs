@@ -1,6 +1,5 @@
 using Aiursoft.BaGet.Core.Entities;
 using Aiursoft.BaGet.Core.Metadata;
-using Moq;
 using NuGet.Versioning;
 using Xunit;
 using Assert = Xunit.Assert;
@@ -9,11 +8,11 @@ namespace Aiursoft.BaGet.Core.Tests.Metadata
 {
     public class RegistrationBuilderTests
     {
-        private readonly Mock<IUrlGenerator> _urlGenerator;
+        private readonly StubUrlGenerator _urlGenerator;
 
         public RegistrationBuilderTests()
         {
-            _urlGenerator = new Mock<IUrlGenerator>();
+            _urlGenerator = new StubUrlGenerator();
         }
 
         [Fact]
@@ -34,7 +33,7 @@ namespace Aiursoft.BaGet.Core.Tests.Metadata
 
             var registration = new PackageRegistration(packageId, packages);
 
-            var registrationBuilder = new RegistrationBuilder(_urlGenerator.Object);
+            var registrationBuilder = new RegistrationBuilder(_urlGenerator);
 
             // Act
             var response = registrationBuilder.BuildIndex(registration);
@@ -57,7 +56,7 @@ namespace Aiursoft.BaGet.Core.Tests.Metadata
         {
             var package = GetTestPackage("BaGet.Test", "1.0.0");
             package.Published = new DateTime(ticks, kind);
-            var builder = new RegistrationBuilder(_urlGenerator.Object);
+            var builder = new RegistrationBuilder(_urlGenerator);
             var registration = new PackageRegistration(package.Id, new[] { package });
 
             var index = builder.BuildIndex(registration);
@@ -84,5 +83,23 @@ namespace Aiursoft.BaGet.Core.Tests.Metadata
                 Version = new NuGetVersion(version),
             };
         }
+    }
+
+    internal sealed class StubUrlGenerator : IUrlGenerator
+    {
+        public string GetServiceIndexUrl() => null;
+        public string GetPackageContentResourceUrl() => null;
+        public string GetPackageMetadataResourceUrl() => null;
+        public string GetPackagePublishResourceUrl() => null;
+        public string GetSymbolPublishResourceUrl() => null;
+        public string GetSearchResourceUrl() => null;
+        public string GetAutocompleteResourceUrl() => null;
+        public string GetRegistrationIndexUrl(string id) => null;
+        public string GetRegistrationPageUrl(string id, NuGetVersion lower, NuGetVersion upper) => null;
+        public string GetRegistrationLeafUrl(string id, NuGetVersion version) => null;
+        public string GetPackageVersionsUrl(string id) => null;
+        public string GetPackageDownloadUrl(string id, NuGetVersion version) => null;
+        public string GetPackageManifestDownloadUrl(string id, NuGetVersion version) => null;
+        public string GetPackageIconDownloadUrl(string id, NuGetVersion version) => null;
     }
 }

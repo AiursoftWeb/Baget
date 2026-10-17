@@ -1,7 +1,6 @@
 ﻿using Aiursoft.BaGet.Core.Search;
 using Aiursoft.BaGet.Protocol.Models;
 using Aiursoft.BaGet.Web.Pages;
-using Moq;
 using Xunit;
 using Assert = Xunit.Assert;
 
@@ -12,18 +11,22 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         private readonly IndexModel _target;
 
         private SearchRequest _capturedRequest;
+        private CancellationToken _capturedCancellation;
         private readonly SearchResponse _response = new();
         private readonly CancellationToken _cancellation = CancellationToken.None;
 
         public IndexModelFacts()
         {
-            var search = new Mock<ISearchService>();
-            search
-                .Setup(s => s.SearchAsync(It.IsAny<SearchRequest>(), _cancellation))
-                .Callback((SearchRequest r, CancellationToken _) => _capturedRequest = r)
-                .ReturnsAsync(_response);
-
-            _target = new IndexModel(search.Object);
+            var search = new StubSearchService
+            {
+                Search = (request, token) =>
+                {
+                    _capturedCancellation = token;
+                    _capturedRequest = request;
+                    return Task.FromResult(_response);
+                }
+            };
+            _target = new IndexModel(search);
         }
 
         [Fact]
@@ -31,6 +34,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
         {
             await _target.OnGetAsync(_cancellation);
 
+            Assert.Equal(_cancellation, _capturedCancellation);
             Assert.Equal(0, _capturedRequest.Skip);
             Assert.Equal(20, _capturedRequest.Take);
             Assert.True(_capturedRequest.IncludePrerelease);
@@ -51,6 +55,7 @@ namespace Aiursoft.BaGet.Web.Tests.Pages
 
             await _target.OnGetAsync(_cancellation);
 
+            Assert.Equal(_cancellation, _capturedCancellation);
             Assert.Equal(80, _capturedRequest.Skip);
             Assert.Equal(20, _capturedRequest.Take);
             Assert.False(_capturedRequest.IncludePrerelease);
