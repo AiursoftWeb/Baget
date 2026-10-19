@@ -113,3 +113,7 @@
         }
     };
 })();
+
+import('../node_modules/@aiursoft/utctime.js/dist/esm/utctime.js').then(({ default: UtcTime }) => {
+    new UtcTime({ disableAgo: true, disableAutoUpdate: true });
+});

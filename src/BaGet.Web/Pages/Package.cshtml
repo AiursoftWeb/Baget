@@ -178,7 +178,7 @@ else
 
                                 <tr class="@(version.Selected ? "bg-info" : "")" x-show="showAll || @alwaysShow">
                                     <td><a asp-page="Package" asp-route-version="@version.Version">@version.Version.ToNormalizedString()</a></td>
-                                    <td>@version.LastUpdated.ToShortDateString()</td>
+                                    <td><span data-utc-time="@version.LastUpdated.ToString("O")"></span></td>
                                 </tr>
                             }
                         </tbody>
@@ -203,7 +203,7 @@ else
                 <ul class="list-unstyled ms-Icon-ul">
                     <li>
                         <i class="ms-Icon ms-Icon--History" aria-hidden="true"></i>
-                        Last updated @Model.LastUpdated.Humanize()
+                        Last updated <span data-utc-time="@Model.LastUpdated.ToString("O")"></span>
                     </li>
 
                     @if (Model.Package.ProjectUrlString != null)

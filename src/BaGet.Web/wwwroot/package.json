@@ -15,6 +15,7 @@
     "alpinejs": "^2.8.1",
     "bootstrap": "^3.4.1",
     "jquery": "^3.5.1",
-    "office-ui-fabric-core": "^11.0.0"
+    "office-ui-fabric-core": "^11.0.0",
+    "@aiursoft/utctime.js": "^1.0.6"
   }
 }
