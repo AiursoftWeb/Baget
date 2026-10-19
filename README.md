@@ -1,6 +1,6 @@
 # Baget
 
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.aiursoft.com/aiursoft/Baget/-/blob/master/LICENSE)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AiursoftWeb/baget/blob/master/LICENSE)
 [![Pipeline stat](https://gitlab.aiursoft.com/aiursoft/Baget/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/aiursoft/Baget/-/pipelines)
 [![Test Coverage](https://gitlab.aiursoft.com/aiursoft/Baget/badges/master/coverage.svg)](https://gitlab.aiursoft.com/aiursoft/Baget/-/pipelines)
 [![Man hours](https://manhours.aiursoft.com/r/github.com/aiursoftweb/Baget.svg)](https://manhours.aiursoft.com/r/github.com/aiursoftweb/Baget.html)
