@@ -13,6 +13,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.13" />
     <PackageReference Include="NuGet.Protocol" Version="7.9.0" />
+    <!-- Override NuGet.Packaging's vulnerable transitive dependency until upstream updates it. -->
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="8.0.2" />
     <PackageReference Include="Aiursoft.DbTools" Version="10.0.27" />
   </ItemGroup>
   <ItemGroup>
