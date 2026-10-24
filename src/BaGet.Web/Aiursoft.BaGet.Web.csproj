@@ -12,11 +12,11 @@
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Aiursoft.DbTools.Switchable" Version="10.0.27" />
+    <PackageReference Include="Aiursoft.DbTools.Switchable" Version="10.0.29" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="10.0.13" />
     <PackageReference Include="Aiursoft.WebTools" Version="10.0.19" />
     <PackageReference Include="Humanizer" Version="3.0.10" />
-    <PackageReference Include="Markdig" Version="1.4.1" />
+    <PackageReference Include="Markdig" Version="1.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.13">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
