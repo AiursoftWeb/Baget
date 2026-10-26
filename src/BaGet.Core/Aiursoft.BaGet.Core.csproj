@@ -15,7 +15,7 @@
     <PackageReference Include="NuGet.Protocol" Version="7.9.0" />
     <!-- Override NuGet.Packaging's vulnerable transitive dependency until upstream updates it. -->
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.14" />
-    <PackageReference Include="Aiursoft.DbTools" Version="10.0.29" />
+    <PackageReference Include="Aiursoft.DbTools" Version="10.0.30" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BaGet.Protocol\Aiursoft.BaGet.Protocol.csproj" />
