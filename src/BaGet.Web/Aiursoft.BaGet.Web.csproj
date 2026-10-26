@@ -22,6 +22,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="../../LICENSE" Link="LICENSE" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <None Include="../../THIRD-PARTY-NOTICES" Link="THIRD-PARTY-NOTICES" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Aiursoft.BaGet.Database.InMemory\Aiursoft.BaGet.Database.InMemory.csproj" />
     <ProjectReference Include="..\Aiursoft.BaGet.Database.MySql\Aiursoft.BaGet.Database.MySql.csproj" />
     <ProjectReference Include="..\BaGet.Database.Sqlite\Aiursoft.BaGet.Database.Sqlite.csproj" />
