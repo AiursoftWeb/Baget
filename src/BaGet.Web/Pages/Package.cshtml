@@ -40,25 +40,25 @@ else
                 <ul class="nav">
                     <template x-for="tab in tabs" :key="tab.name">
                         <li x-bind:class="{ active: tab.name === active.name }">
-                            <a href="#" x-text="tab.name" @@click="active = tab"></a>
+                            <a href="#" x-text="tab.name" @@click.prevent="active = tab"></a>
                         </li>
                     </template>
                 </ul>
 
                 <div class="content">
-                    <div class="script" x-text="`${active.prefix} ${active.content}`"></div>
+                    <div class="script"><span aria-hidden="true" x-text="active.prefix ? active.prefix + ' ' : ''"></span><span class="command-text" tabindex="-1" x-text="active.content.join('\n')"></span></div>
 
                     <div class="copy-button">
                         <button class="btn btn-default btn-warning"
                                 type="button"
-                                data-tottle="popover"
-                                data-placement="bottom"
-                                data-content="Copied"
-                                @@click="window.baget.copyTextToClipboard(active.content.join('\n'), $el)">
-                            <i class="ms-Icon ms-Icon--Copy"></i>
+                                aria-label="Copy command"
+                                title="Copy command"
+                                @@click="window.baget.copyTextToClipboard(active.content.join('\n'), $event.currentTarget)">
+                            <i class="ms-Icon ms-Icon--Copy" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
+                <p class="copy-status" role="status"></p>
             </div>
 
             @{
